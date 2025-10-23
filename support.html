@@ -1,180 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Support • Beyond Normal • Strength</title>
-  <meta name="description" content="Help and troubleshooting for Beyond Normal • Strength." />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Support • Beyond Normal • Strength</title>
+    <meta name="description" content="Help and troubleshooting for Beyond Normal • Strength." />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --brand-bg:#fafaf0;
-      --brand-orange:#e55722;
-      --ink:#0f0f0f;
-      --ink-muted:#36454f;
-      --teal:#2c7f7a;
-      --ring:rgba(0,0,0,.08);
-      --card:#fff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--brand-bg),#fff);
-      color:var(--ink);
-      font:16px/1.7 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    .nav{
-      position:fixed; top:16px; right:16px; display:flex; gap:10px;
-    }
-    .nav a{
-      font:600 14px/1 "Montserrat"; color:var(--ink-muted); text-decoration:none;
-      background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:10px;
-    }
-    header{padding:26px 20px 8px; display:flex; justify-content:center}
-    .badge{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 14px; border-radius:999px; background:#fff; border:1px solid var(--ring);
-      box-shadow:0 1px 0 var(--ring), 0 8px 30px rgba(0,0,0,.04);
-      font-weight:600; color:var(--ink-muted); letter-spacing:.02em;
-    }
-    .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--brand-orange)}
+    <style>
+        :root{
+            --brand-bg:#fafaf0;
+            --brand-orange:#e55722;
+            --ink:#0f0f0f;
+            --ink-muted:#36454f;
+            --teal:#2c7f7a;
+            --ring:rgba(0,0,0,.08);
+            --card:#fff;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            background:linear-gradient(180deg,var(--brand-bg),#fff);
+            color:var(--ink);
+            font:16px/1.7 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+        .nav{
+            position:fixed; top:16px; right:16px; display:flex; gap:10px; flex-wrap:wrap;
+        }
+        .nav a{
+            font:600 14px/1 "Montserrat"; color:var(--ink-muted); text-decoration:none;
+            background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:10px;
+        }
+        header{padding:26px 20px 8px; display:flex; justify-content:center}
+        .badge{
+            display:inline-flex; gap:10px; align-items:center;
+            padding:10px 14px; border-radius:999px; background:#fff; border:1px solid var(--ring);
+            box-shadow:0 1px 0 var(--ring), 0 8px 30px rgba(0,0,0,.04);
+            font-weight:600; color:var(--ink-muted); letter-spacing:.02em;
+        }
+        .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--brand-orange)}
 
-    .wrap{max-width:980px;margin:18px auto 40px;padding:0 18px}
-    h1{
-      font-family:"Bebas Neue"; letter-spacing:.02em; margin:16px 0 4px; font-size:56px;
-      text-align:center;
-    }
-    .lead{color:#5b666d; text-align:center; margin:0 0 22px}
-    .card{
-      background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:18px 18px;
-      box-shadow:0 10px 40px rgba(0,0,0,.06);
-    }
-    section{margin:18px 0}
-    section>h2{
-      font:700 18px/1 "Montserrat"; margin:0 0 10px; color:var(--ink)
-    }
-    .grid{display:grid; gap:14px; grid-template-columns:repeat(12,1fr)}
-    .col-12{grid-column:1/-1}
-    .col-6{grid-column:span 6}
-    .col-4{grid-column:span 4}
-    @media (max-width:860px){.col-6,.col-4{grid-column:1/-1}}
-    ul{margin:8px 0 0; padding-left:20px}
-    .pill{
-      display:inline-block; background:#fff; border:1px solid var(--ring);
-      border-radius:999px; padding:6px 10px; font:700 12px/1 "Montserrat"; color:var(--ink-muted)
-    }
-    a{color:var(--ink-muted)}
-    .cta{
-      display:inline-flex; align-items:center; gap:8px;
-      background:var(--brand-orange); color:#fff; border:none; border-radius:12px;
-      padding:12px 14px; font:700 14px "Montserrat"; text-decoration:none;
-      box-shadow:0 10px 24px rgba(229,87,34,.22);
-    }
-    footer{color:#5b666d;text-align:center;margin:26px 0}
-  </style>
+        .wrap{max-width:980px;margin:18px auto 40px;padding:0 18px}
+        h1{
+            font-family:"Bebas Neue"; letter-spacing:.02em; margin:16px 0 4px; font-size:56px;
+            text-align:center;
+        }
+        .lead{color:#5b666d; text-align:center; margin:0 0 22px}
+        .card{
+            background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:18px 18px;
+            box-shadow:0 10px 40px rgba(0,0,0,.06);
+        }
+        section{margin:18px 0}
+        section>h2{
+            font:700 18px/1 "Montserrat"; margin:0 0 10px; color:var(--ink)
+        }
+        .grid{display:grid; gap:14px; grid-template-columns:repeat(12,1fr)}
+        .col-12{grid-column:1/-1}
+        .col-6{grid-column:span 6}
+        .col-4{grid-column:span 4}
+        @media (max-width:860px){.col-6,.col-4{grid-column:1/-1}}
+        ul{margin:8px 0 0; padding-left:20px}
+        .pill{
+            display:inline-block; background:#fff; border:1px solid var(--ring);
+            border-radius:999px; padding:6px 10px; font:700 12px/1 "Montserrat"; color:var(--ink-muted)
+        }
+        a{color:var(--ink-muted)}
+        .cta{
+            display:inline-flex; align-items:center; gap:8px;
+            background:var(--brand-orange); color:#fff; border:none; border-radius:12px;
+            padding:12px 14px; font:700 14px "Montserrat"; text-decoration:none;
+            box-shadow:0 10px 24px rgba(229,87,34,.22);
+        }
+        footer{color:#5b666d;text-align:center;margin:26px 0}
+    </style>
 </head>
 <body>
-  <nav class="nav">
+<!-- Top-right nav (all pages linked) -->
+<nav class="nav">
     <a href="index.html">Home</a>
+    <a href="philosophy.html">Philosophy</a>
+    <a href="support.html" aria-current="page">Support</a>
     <a href="privacy.html">Privacy</a>
-  </nav>
+</nav>
 
-  <header>
+<header>
     <div class="badge"><span class="dot"></span> Beyond Normal • Strength</div>
-  </header>
+</header>
 
-  <main class="wrap">
+<main class="wrap">
     <h1>Support</h1>
     <p class="lead">Quick answers, troubleshooting, and how to contact us.</p>
 
     <!-- Quick links -->
     <section class="grid">
-      <div class="col-6 card">
-        <h2>Contact</h2>
-        <p>Need help? Email us and we’ll get back as soon as possible.</p>
-        <p><a class="cta" href="mailto:support@beyondnormal.app?subject=Beyond%20Normal%20Support">Email Support</a></p>
-        <p class="pill">Tip</p>
-        <ul>
-          <li>Include your iPhone model, iOS version, and steps to reproduce the issue.</li>
-          <li>Attach screenshots or a short screen recording if helpful.</li>
-        </ul>
-      </div>
+        <div class="col-6 card">
+            <h2>Contact</h2>
+            <p>Need help? Email us and we’ll get back as soon as possible.</p>
+            <p>
+                <a class="cta" href="mailto:patcrouse@gmail.com?subject=Beyond%20Normal%20Support">
+                    Email Support
+                </a>
+            </p>
+            <p class="pill">Tip</p>
+            <ul>
+                <li>Include your iPhone model, iOS version, and steps to reproduce the issue.</li>
+                <li>Attach screenshots or a short screen recording if helpful.</li>
+            </ul>
+        </div>
 
-      <div class="col-6 card">
-        <h2>System Requirements</h2>
-        <ul>
-          <li>iPhone running <strong>iOS 17 or later</strong>.</li>
-          <li>No account required. Purchases are tied to your Apple ID.</li>
-          <li>Works offline; data stays on your device.</li>
-        </ul>
-      </div>
+        <div class="col-6 card">
+            <h2>System Requirements</h2>
+            <ul>
+                <li>iPhone running <strong>iOS 17 or later</strong>.</li>
+                <li>No account required. Purchases are tied to your Apple ID.</li>
+                <li>Works offline; data stays on your device.</li>
+            </ul>
+        </div>
     </section>
 
     <!-- Common tasks -->
     <section class="card">
-      <h2>Common Tasks</h2>
-      <div class="grid">
-        <div class="col-4">
-          <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Restore Purchases</h3>
-          <p>On the app’s paywall, tap <em>Restore Purchases</em>. Make sure you’re signed in with the same Apple ID you used to buy.</p>
+        <h2>Common Tasks</h2>
+        <div class="grid">
+            <div class="col-4">
+                <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Restore Purchases</h3>
+                <p>On the app’s paywall, tap <em>Restore Purchases</em>. Make sure you’re signed in with the same Apple ID you used to buy.</p>
+            </div>
+            <div class="col-4">
+                <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Manage Subscription</h3>
+                <p>Go to <em>Settings › Apple ID › Subscriptions</em>, or visit <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">Manage Subscriptions</a>.</p>
+            </div>
+            <div class="col-4">
+                <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Request a Refund</h3>
+                <p>Apple handles billing. Visit <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a> to request a refund.</p>
+            </div>
         </div>
-        <div class="col-4">
-          <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Manage Subscription</h3>
-          <p>Go to <em>Settings › Apple ID › Subscriptions</em>, or visit <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">Manage Subscriptions</a>.</p>
-        </div>
-        <div class="col-4">
-          <h3 style="margin:.25rem 0 .5rem;font:700 16px 'Montserrat'">Request a Refund</h3>
-          <p>Apple handles billing. Visit <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a> to request a refund.</p>
-        </div>
-      </div>
     </section>
 
     <!-- Data section -->
     <section class="grid">
-      <div class="col-6 card">
-        <h2>Data Export</h2>
-        <ul>
-          <li>Open the app → <strong>Data Management</strong> → choose CSV or JSON export.</li>
-          <li>Share/export to Files, Mail, or your preferred destination.</li>
-        </ul>
-      </div>
-      <div class="col-6 card">
-        <h2>Data Deletion</h2>
-        <ul>
-          <li>Open the app → <strong>Data Management</strong> → <em>Delete All Data</em>.</li>
-          <li>Or delete the app from your device to remove local data.</li>
-        </ul>
-      </div>
+        <div class="col-6 card">
+            <h2>Data Export</h2>
+            <ul>
+                <li>Open the app → <strong>Data Management</strong> → choose CSV or JSON export.</li>
+                <li>Share/export to Files, Mail, or your preferred destination.</li>
+            </ul>
+        </div>
+        <div class="col-6 card">
+            <h2>Data Deletion</h2>
+            <ul>
+                <li>Open the app → <strong>Data Management</strong> → <em>Delete All Data</em>.</li>
+                <li>Or delete the app from your device to remove local data.</li>
+            </ul>
+        </div>
     </section>
 
     <!-- Troubleshooting -->
     <section class="card">
-      <h2>Troubleshooting</h2>
-      <ul>
-        <li><strong>Purchased but no access?</strong> Tap <em>Restore Purchases</em>. Confirm your Apple ID in Settings.</li>
-        <li><strong>Free trial confusion?</strong> Trials are offered by Apple’s subscription system—cancelling within the trial ends access at the trial’s end.</li>
-        <li><strong>Switched devices?</strong> Install the app on the new device, then tap <em>Restore Purchases</em>.</li>
-        <li><strong>App won’t open or behaves oddly?</strong> Force quit and reopen. If it persists, reboot the device. Send details to support if still stuck.</li>
-      </ul>
+        <h2>Troubleshooting</h2>
+        <ul>
+            <li><strong>Purchased but no access?</strong> Tap <em>Restore Purchases</em>. Confirm your Apple ID in Settings.</li>
+            <li><strong>Free trial confusion?</strong> Trials are offered by Apple’s subscription system—cancelling within the trial ends access at the trial’s end.</li>
+            <li><strong>Switched devices?</strong> Install the app on the new device, then tap <em>Restore Purchases</em>.</li>
+            <li><strong>App won’t open or behaves oddly?</strong> Force quit and reopen. If it persists, reboot the device. Send details to support if still stuck.</li>
+        </ul>
     </section>
 
     <!-- Policy & links -->
     <section class="card">
-      <h2>Policies & Links</h2>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple Media Services Terms</a></li>
-        <li><a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">Manage Subscriptions</a></li>
-        <li><a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">Request a Refund</a></li>
-      </ul>
+        <h2>Policies & Links</h2>
+        <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple Media Services Terms</a></li>
+            <li><a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">Manage Subscriptions</a></li>
+            <li><a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">Request a Refund</a></li>
+        </ul>
     </section>
 
     <footer>
-      © <span id="y"></span> Beyond Normal. All rights reserved.
+        © <span id="y"></span> Beyond Normal. All rights reserved.
     </footer>
-  </main>
+</main>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>

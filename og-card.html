@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>OG Card · Beyond Normal</title>
+  <meta name="robots" content="noindex">
+  <!--
+    Open this file in Chrome to render a 1200x630 share card.
+    To export as assets/og-image.png:
+
+    1. Open this page in Chrome
+    2. DevTools (⌘⌥I) → "..." menu → More tools → Capture full size screenshot
+       OR ⌘⇧P → "Capture full size screenshot"
+    3. Save the PNG as assets/og-image.png (overwriting the stopgap logo)
+    4. Commit + push — social previews update once their caches refresh
+       (FB/Twitter cache up to 24 hours; you can force-refresh via their debuggers)
+
+    Validators to test:
+      https://developers.facebook.com/tools/debug/        (also serves Slack/iMessage)
+      https://cards-dev.twitter.com/validator
+      https://www.opengraph.xyz/url/{your-url}
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: #0a0a0a; }
+    body {
+      font-family: "Open Sans", system-ui, sans-serif;
+      color: white;
+      position: relative;
+    }
+    .card {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 55%, #2a1a12 100%);
+      padding: 70px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Orange glow accent */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -150px;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(229,87,34,.32) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Diagonal stripes accent on the right */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        135deg,
+        transparent 0,
+        transparent 30px,
+        rgba(229,87,34,.06) 30px,
+        rgba(229,87,34,.06) 32px
+      );
+      pointer-events: none;
+    }
+    .row { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+    .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #e55722, #ff7a3d);
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      box-shadow: 0 12px 40px rgba(229,87,34,.4);
+    }
+    .brand {
+      font: 800 30px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      color: white;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      font: 700 14px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #e55722;
+      border-radius: 50%;
+      box-shadow: 0 0 14px #e55722;
+    }
+    h1 {
+      font: 800 96px/1.05 "Montserrat", system-ui, sans-serif;
+      letter-spacing: -0.025em;
+      max-width: 900px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 2;
+    }
+    h1 .accent {
+      background: linear-gradient(120deg, #e55722 0%, #ff7a3d 60%, #e55722 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .features {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+    .feature {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 600 20px/1 "Montserrat", system-ui, sans-serif;
+      color: rgba(255,255,255,.78);
+    }
+    .feature .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e55722;
+      box-shadow: 0 0 12px rgba(229,87,34,.5);
+    }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    .platform {
+      font: 600 18px/1 "Montserrat", system-ui, sans-serif;
+      color: rgba(255,255,255,.55);
+      letter-spacing: 0.08em;
+    }
+    .url {
+      font: 700 18px/1 "Montserrat", system-ui, sans-serif;
+      color: #e55722;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <div class="row" style="margin-bottom: 38px;">
+        <div class="icon">🔥</div>
+        <div class="brand">Beyond Normal</div>
+      </div>
+
+      <span class="eyebrow">5/3/1 · Reinvented</span>
+
+      <h1>The thinking lifter's <span class="accent">5/3/1.</span></h1>
+
+      <div class="features">
+        <span class="feature"><span class="dot"></span>AI Strength Coach</span>
+        <span class="feature"><span class="dot"></span>Adaptive Autoregulation</span>
+        <span class="feature"><span class="dot"></span>Readiness Analytics</span>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="platform">IPHONE · APPLE WATCH</span>
+      <span class="url">beyondnormal.app</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -3,202 +3,1191 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Beyond Normal • Strength</title>
-  <meta name="description" content="Beyond Normal • Strength — Intelligent training, PR tracking, data export, and more.">
-  <meta property="og:title" content="Beyond Normal • Strength">
-  <meta property="og:description" content="5/3/1 training, PR tracking, data export, and more.">
+  <title>Beyond Normal — The thinking lifter's 5/3/1</title>
+  <meta name="description" content="An adaptive 5/3/1 training companion with an AI strength coach, autoregulation that responds to your readiness, and a complete training history you actually own.">
+  <meta property="og:title" content="Beyond Normal — The thinking lifter's 5/3/1">
+  <meta property="og:description" content="AI strength coach. Adaptive autoregulation. Full readiness history. Built for lifters who want more than a logbook.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://beyondnormal.github.io/">
+  <meta property="og:url" content="https://beyondnormal.app/">
   <meta name="theme-color" content="#e55722">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- iOS Safari Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=6753819612">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --brand-bg:#fafaf0;          /* your brand background */
-      --brand-orange:#e55722;      /* primary accent */
-      --ink:#0f0f0f;
-      --ink-muted:#36454f;         /* slate option */
-      --teal:#2c7f7a;              /* secondary option */
-      --card:#ffffff;
-      --ring:rgba(0,0,0,.08);
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #1a1a1a;
+      --ink-muted: #36454f;
+      --ink-soft: #5b666d;
+      --brand-bg: #fafaf0;
+      --brand-orange: #e55722;
+      --brand-orange-dark: #c8471a;
+      --teal: #2c7f7a;
+      --success: #2c7f7a;
+      --card: #ffffff;
+      --ring: rgba(0,0,0,.08);
+      --ring-strong: rgba(0,0,0,.18);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.04);
+      --shadow-md: 0 8px 30px rgba(0,0,0,.08);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.12);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--brand-bg),#fff);
-      color:var(--ink);
-      font:16px/1.6 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font: 16px/1.6 "Open Sans", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--brand-bg);
+      overflow-x: hidden;
     }
-    .wrap{
-      min-height:100%;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
+
+    /* ===================== Navigation ===================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 250, 240, 0.92);
+      backdrop-filter: saturate(1.3) blur(12px);
+      -webkit-backdrop-filter: saturate(1.3) blur(12px);
+      border-bottom: 1px solid var(--ring);
     }
-    header{
-      padding:18px 20px;
-      display:flex; align-items:center; justify-content:center;
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .badge{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 14px; border-radius:999px;
-      background:#fff; box-shadow:0 1px 0 var(--ring), 0 8px 30px rgba(0,0,0,.04);
-      border:1px solid var(--ring);
-      font-weight:600; color:var(--ink-muted); letter-spacing:.02em;
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 800 18px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
     }
-    .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--brand-orange)}
-    main{display:grid; place-items:center; padding:40px 20px}
-    .hero{
-      width:min(980px,100%);
-      background:var(--card);
-      border:1px solid var(--ring);
-      border-radius:20px;
-      padding:48px 28px;
-      box-shadow:0 12px 50px rgba(0,0,0,.06);
-      text-align:center;
+    .nav-brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--brand-orange);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 18px;
     }
-    .logo{
-      width:min(220px,60vw);
-      aspect-ratio:1/1;
-      object-fit:contain;
-      display:block; margin:0 auto 18px;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,.08));
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
-    .title{
-      font-family:"Bebas Neue", system-ui, sans-serif;
-      font-size: clamp(40px, 6vw, 76px);
-      line-height:1;
-      margin:6px 0 6px;
-      letter-spacing:.02em;
-      color:var(--ink);
+    .nav-links a {
+      font: 600 14px/1 "Montserrat", system-ui, sans-serif;
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
     }
-    .kicker{
-      font-family:"Montserrat", system-ui, sans-serif;
-      font-weight:700;
-      font-size: clamp(16px, 2.2vw, 20px);
-      color:var(--ink-muted);
-      letter-spacing:.12em;
-      text-transform:uppercase;
+    .nav-links a:hover {
+      color: var(--brand-orange);
+      background: rgba(229, 87, 34, 0.08);
     }
-    .tagline{
-      max-width:760px; margin:18px auto 26px;
-      font-size:clamp(16px,2.2vw,18px);
-      color:#333; opacity:.9;
+    .nav-cta {
+      background: var(--ink);
+      color: white !important;
     }
-    .features{
-      display:grid; gap:12px;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      margin:12px auto 24px; text-align:left;
+    .nav-cta:hover { background: var(--brand-orange) !important; }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.nav-cta) { display: none; }
     }
-    .feat{
-      display:flex; gap:12px; align-items:flex-start;
-      padding:14px 16px; border-radius:14px; background:#fff;
-      border:1px solid var(--ring);
+
+    /* ===================== Hero ===================== */
+    .hero {
+      background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 60%, #2a1a12 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
-    .chip{width:10px;height:10px;border-radius:50%;}
-    .chip.orange{background:var(--brand-orange)}
-    .chip.teal{background:var(--teal)}
-    .chip.slate{background:var(--ink-muted)}
-    .actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:6px}
-    .btn{
-      appearance:none; border:none; cursor:pointer;
-      font-family:"Montserrat", system-ui, sans-serif; font-weight:700;
-      padding:14px 18px; border-radius:12px; letter-spacing:.02em;
-      transition:transform .05s ease, box-shadow .2s ease, background .2s ease;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 140%;
+      background: radial-gradient(circle, rgba(229, 87, 34, 0.18) 0%, transparent 50%);
+      pointer-events: none;
     }
-    .btn-primary{
-      background:var(--brand-orange); color:white;
-      box-shadow:0 10px 24px rgba(229,87,34,.22);
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 22px 100px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
     }
-    .btn-primary:hover{transform:translateY(-1px)}
-    .btn-ghost{
-      background:#fff; color:var(--ink-muted); border:1px solid var(--ring);
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      font: 700 12px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 22px;
     }
-    footer{
-      padding:30px 20px; text-align:center; color:#5b666d;
-      font-size:14px;
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--brand-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--brand-orange);
     }
-    footer a{color:var(--ink-muted); text-decoration:none; border-bottom:1px dotted rgba(54,69,79,.5)}
-    .nav{
-      position:fixed; top:16px; right:16px;
-      display:flex; gap:10px;
+    .hero h1 {
+      font: 800 clamp(40px, 6.5vw, 76px) / 1.05 "Montserrat", system-ui, sans-serif;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
     }
-    .nav a{
-      font:600 14px/1 "Montserrat", system-ui, sans-serif;
-      color:var(--ink-muted); text-decoration:none;
-      background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:10px;
+    .hero h1 .accent {
+      background: linear-gradient(120deg, var(--brand-orange) 0%, #ff7a3d 60%, var(--brand-orange) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    @media (max-width:520px){
-      .hero{padding:34px 18px}
-      .features{gap:10px}
-      .feat{padding:12px 12px}
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 19px);
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 22px;
+      background: white;
+      color: var(--ink);
+      border-radius: 14px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+    .app-store-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    }
+    .app-store-btn svg { flex-shrink: 0; }
+    .app-store-btn .stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+    }
+    .app-store-btn .stack .small {
+      font: 500 11px/1.2 "Montserrat", system-ui, sans-serif;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+    .app-store-btn .stack .big {
+      font: 700 19px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      font: 600 15px/1 "Montserrat", system-ui, sans-serif;
+      transition: all 0.15s ease;
+    }
+    .secondary-cta:hover {
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+    }
+
+    /* Hero phone mockup */
+    .hero-phone {
+      position: relative;
+      justify-self: center;
+      width: min(320px, 90%);
+    }
+    .phone-frame {
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+      border: 8px solid #2a2a2a;
+      border-radius: 44px;
+      box-shadow:
+        0 0 0 2px #0a0a0a,
+        0 30px 80px rgba(229, 87, 34, 0.25),
+        0 50px 120px rgba(0, 0, 0, 0.5);
+      padding: 14px 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 28px;
+      background: #0a0a0a;
+      border-radius: 18px;
+      z-index: 2;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #050505, #1a0d05);
+      border-radius: 32px;
+      padding: 50px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      overflow: hidden;
+    }
+    .mock-tag {
+      font: 700 10px/1.4 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 6px;
+    }
+    .mock-lift {
+      font: 800 38px/1 "Bebas Neue", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    .mock-chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .mock-chip {
+      flex: 1;
+      padding: 8px 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .mock-chip .l { font: 700 9px/1 "Montserrat", system-ui, sans-serif; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.6); }
+    .mock-chip .v { font: 700 13px/1.4 "Montserrat", system-ui, sans-serif; color: white; }
+    .mock-cycle {
+      font: 700 13px/1.4 "Montserrat", system-ui, sans-serif;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .mock-prescription {
+      font: 800 18px/1.2 "Bebas Neue", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-align: center;
+      color: var(--brand-orange);
+      margin-bottom: 18px;
+    }
+    .mock-pill {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      background: rgba(229, 87, 34, 0.12);
+      border: 1px solid rgba(229, 87, 34, 0.3);
+      border-radius: 12px;
+      font: 600 12px/1.3 "Montserrat", system-ui, sans-serif;
+      color: var(--brand-orange);
+      margin-top: auto;
+    }
+    .mock-pill::before {
+      content: '🔥';
+      font-size: 16px;
+    }
+
+    @media (max-width: 880px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+        padding: 60px 22px 70px;
+      }
+      .hero-eyebrow, .hero-ctas { justify-content: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-phone { order: -1; }
+    }
+
+    /* ===================== Trust Strip ===================== */
+    .trust {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 22px 22px;
+      text-align: center;
+      font: 600 13px/1.6 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .trust span { color: var(--brand-orange); margin: 0 14px; }
+    @media (max-width: 580px) { .trust { font-size: 12px; } }
+
+    /* ===================== Section base ===================== */
+    section.block {
+      padding: 100px 22px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-block;
+      font: 700 12px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font: 800 clamp(30px, 4vw, 46px) / 1.1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+    .lede {
+      font-size: clamp(16px, 1.6vw, 18px);
+      color: var(--ink-muted);
+      max-width: 720px;
+      line-height: 1.65;
+    }
+
+    /* ===================== Three Pillars ===================== */
+    .pillars-section { background: white; border-top: 1px solid var(--ring); border-bottom: 1px solid var(--ring); }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+    .pillar {
+      padding: 32px 26px;
+      background: var(--brand-bg);
+      border: 1px solid var(--ring);
+      border-radius: 18px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--brand-orange);
+    }
+    .pillar-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--brand-orange), #ff7a3d);
+      display: grid;
+      place-items: center;
+      color: white;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 16px rgba(229, 87, 34, 0.25);
+    }
+    .pillar h3 {
+      font: 800 22px/1.2 "Montserrat", system-ui, sans-serif;
+      margin-bottom: 10px;
+    }
+    .pillar p {
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+    @media (max-width: 880px) {
+      .pillars-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ===================== Feature Deep Dives ===================== */
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      padding: 80px 0;
+      border-top: 1px solid var(--ring);
+    }
+    .feature:first-of-type { border-top: none; }
+    .feature.reverse .feature-text { order: 2; }
+    .feature.reverse .feature-visual { order: 1; }
+    .feature-text h3 {
+      font: 800 clamp(26px, 3vw, 34px) / 1.15 "Montserrat", system-ui, sans-serif;
+      margin-bottom: 18px;
+    }
+    .feature-text p {
+      color: var(--ink-muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .feature-text ul {
+      list-style: none;
+      margin-top: 22px;
+    }
+    .feature-text li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid var(--ring);
+    }
+    .feature-text li:first-child { border-top: none; padding-top: 0; }
+    .feature-text li strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .feature-text li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, var(--brand-orange), #ff7a3d);
+      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+      margin-top: 3px;
+    }
+
+    /* Feature visual mockups (CSS-only "screenshots") */
+    .feature-visual {
+      display: grid;
+      place-items: center;
+    }
+    .mock-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      background: linear-gradient(160deg, var(--ink), #1a0d05);
+      border-radius: 22px;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .mock-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(229, 87, 34, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mock-card-tag {
+      font: 700 11px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.16em;
+      color: var(--brand-orange);
+      margin-bottom: 14px;
+    }
+    .mock-card-title {
+      font: 800 24px/1.2 "Montserrat", system-ui, sans-serif;
+      margin-bottom: 18px;
+    }
+
+    /* AI Coach mock */
+    .mock-coach .mock-msg {
+      padding: 12px 16px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .mock-coach .mock-msg.ai {
+      background: rgba(255, 255, 255, 0.08);
+      border-bottom-left-radius: 4px;
+    }
+    .mock-coach .mock-msg.user {
+      background: var(--brand-orange);
+      border-bottom-right-radius: 4px;
+      margin-left: 30px;
+    }
+    .mock-coach .mock-result {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: rgba(44, 127, 122, 0.18);
+      border: 1px solid rgba(44, 127, 122, 0.4);
+      border-radius: 12px;
+    }
+    .mock-coach .mock-result strong { color: #5fd5cf; }
+
+    /* Autoregulation mock */
+    .mock-auto .mock-bars { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+    .mock-auto .mock-bar-row { display: grid; grid-template-columns: 80px 1fr 60px; gap: 12px; align-items: center; font-size: 13px; }
+    .mock-auto .mock-bar { height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden; }
+    .mock-auto .mock-bar-fill { height: 100%; border-radius: 999px; }
+    .mock-auto .mock-bar-fill.green { width: 78%; background: linear-gradient(90deg, #2c7f7a, #5fd5cf); }
+    .mock-auto .mock-bar-fill.green2 { width: 82%; background: linear-gradient(90deg, #2c7f7a, #5fd5cf); }
+    .mock-auto .mock-bar-fill.amber { width: 42%; background: linear-gradient(90deg, var(--brand-orange-dark), var(--brand-orange)); }
+    .mock-auto .mock-action.proceed { color: #5fd5cf; font-weight: 700; }
+    .mock-auto .mock-action.hold { color: var(--brand-orange); font-weight: 700; }
+    .mock-auto .mock-note { margin-top: 18px; font-size: 13px; color: rgba(255, 255, 255, 0.6); line-height: 1.55; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+
+    /* Readiness chart mock */
+    .mock-readiness .mock-score {
+      font: 800 56px/1 "Bebas Neue", system-ui, sans-serif;
+      color: #5fd5cf;
+      letter-spacing: 0.02em;
+    }
+    .mock-readiness .mock-score-label {
+      font: 700 13px/1 "Montserrat", system-ui, sans-serif;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+      margin-bottom: 22px;
+    }
+    .mock-readiness svg.chart { width: 100%; height: 100px; }
+    .mock-readiness .mock-factors { margin-top: 18px; display: grid; gap: 8px; }
+    .mock-readiness .mock-factor { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 12px; background: rgba(255, 255, 255, 0.04); border-radius: 8px; }
+    .mock-readiness .mock-factor .v { color: var(--brand-orange); font-weight: 700; }
+
+    @media (max-width: 880px) {
+      .feature { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
+      .feature.reverse .feature-text { order: 1; }
+      .feature.reverse .feature-visual { order: 2; }
+    }
+
+    /* ===================== Free vs Premium ===================== */
+    .pricing { background: white; border-top: 1px solid var(--ring); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 50px;
+    }
+    .tier {
+      padding: 36px 32px;
+      border-radius: 20px;
+      border: 1px solid var(--ring);
+      background: var(--brand-bg);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tier:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .tier.premium {
+      background: linear-gradient(160deg, var(--ink), #1a0d05);
+      color: white;
+      border-color: var(--brand-orange);
+      position: relative;
+    }
+    .tier.premium::before {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      padding: 6px 12px;
+      background: var(--brand-orange);
+      color: white;
+      font: 800 11px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(229, 87, 34, 0.35);
+    }
+    .tier-label {
+      font: 700 12px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin-bottom: 8px;
+    }
+    .tier.premium .tier-label { color: var(--brand-orange); }
+    .tier h3 {
+      font: 800 28px/1.15 "Montserrat", system-ui, sans-serif;
+      margin-bottom: 4px;
+    }
+    .tier-price {
+      font: 800 36px/1 "Montserrat", system-ui, sans-serif;
+      margin: 18px 0 4px;
+    }
+    .tier-price-sub {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .tier.premium .tier-price-sub { color: rgba(255, 255, 255, 0.65); }
+    .tier ul {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .tier li {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .tier li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 12px;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 12px;
+      margin-top: 2px;
+    }
+    .tier.premium li::before {
+      background: var(--brand-orange);
+    }
+    .tier-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font: 700 15px/1 "Montserrat", system-ui, sans-serif;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .tier:not(.premium) .tier-cta {
+      background: var(--ink);
+      color: white;
+    }
+    .tier:not(.premium) .tier-cta:hover { background: var(--brand-orange); }
+    .tier.premium .tier-cta {
+      background: var(--brand-orange);
+      color: white;
+    }
+    .tier.premium .tier-cta:hover {
+      background: white;
+      color: var(--ink);
+    }
+    .tier-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .tier.premium .tier-note { color: rgba(255, 255, 255, 0.5); }
+
+    @media (max-width: 880px) {
+      .pricing-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* ===================== Privacy callout ===================== */
+    .privacy-block {
+      background: linear-gradient(160deg, var(--ink), #1a0d05);
+      color: white;
+      text-align: center;
+      padding: 80px 22px;
+    }
+    .privacy-block h2 { color: white; }
+    .privacy-block .lede { color: rgba(255, 255, 255, 0.7); margin: 18px auto 32px; }
+    .privacy-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 40px auto 0;
+      max-width: 800px;
+    }
+    .privacy-stat {
+      padding: 22px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .privacy-stat-num {
+      font: 800 32px/1 "Bebas Neue", system-ui, sans-serif;
+      color: var(--brand-orange);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .privacy-stat-label {
+      font: 600 12px/1.4 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      .privacy-stats { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+
+    /* ===================== Final CTA ===================== */
+    .final-cta {
+      background: var(--brand-bg);
+      text-align: center;
+      padding: 100px 22px;
+      border-top: 1px solid var(--ring);
+    }
+    .final-cta h2 { max-width: 760px; margin-left: auto; margin-right: auto; }
+    .final-cta .lede { margin: 18px auto 32px; }
+    .final-cta .hero-ctas { justify-content: center; }
+
+    /* Reuse app-store-btn dark variant for light backgrounds */
+    .final-cta .app-store-btn {
+      background: var(--ink);
+      color: white;
+    }
+    .final-cta .app-store-btn .stack .small { color: rgba(255, 255, 255, 0.65); }
+    .final-cta .secondary-cta {
+      color: var(--ink-muted);
+      border-color: var(--ring-strong);
+    }
+    .final-cta .secondary-cta:hover { color: var(--brand-orange); border-color: var(--brand-orange); }
+
+    /* ===================== Footer ===================== */
+    footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 50px 22px 30px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand p { margin-top: 14px; font-size: 14px; line-height: 1.6; max-width: 340px; }
+    .footer-col h4 {
+      font: 700 12px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { padding: 6px 0; }
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s ease;
+    }
+    .footer-col a:hover { color: var(--brand-orange); }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 30px; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- tiny top-right nav -->
-    <nav class="nav">
-      <a href="philosophy.html">Philosophy</a>
+
+<!-- ===================== Nav ===================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">🔥</span>
+      <span>Beyond Normal</span>
+    </a>
+    <div class="nav-links">
+      <a href="/philosophy.html">Philosophy</a>
+      <a href="/support.html">Support</a>
       <a href="/privacy/">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="support.html">Support</a>
-    </nav>
-
-    <header>
-      <div class="badge"><span class="dot"></span> Beyond Normal • Strength</div>
-    </header>
-
-    <main>
-      <section class="hero" aria-labelledby="title">
-        <img class="logo" src="assets/bn_strength_logo.png" alt="Beyond Normal Strength logo" />
-        <div class="kicker">Train Smarter</div>
-        <h1 id="title" class="title">Beyond Normal</h1>
-        <div class="kicker" style="color:var(--ink-muted); letter-spacing:.24em;">STRENGTH</div>
-
-        <p class="tagline">
-          A focused strength companion: 5/3/1 programs, simple logging, PR tracking, and clean data export—so you can lift, learn, and keep momentum.
-        </p>
-
-        <div class="features" role="list">
-          <div class="feat" role="listitem">
-            <span class="chip orange" aria-hidden="true"></span>
-            <div><strong>Workout engine.</strong>The science of progressive overload—automated. Intelligent volume and intensity cycling to keep your body adapting and your numbers climbing.</div>
-          </div>
-          <div class="feat" role="listitem">
-            <span class="chip teal" aria-hidden="true"></span>
-            <div><strong>PR tracking.</strong> See rep maxes, best sets, and streaks without spreadsheets.</div>
-          </div>
-          <div class="feat" role="listitem">
-            <span class="chip slate" aria-hidden="true"></span>
-            <div><strong>Data export.</strong> Own your training logs—export anytime.</div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <a class="btn btn-primary" href="mailto:support@beyondnormal.app?subject=Beyond%20Normal%20•%20Strength">
-            Contact Us
-          </a>
-          <a class="btn btn-primary" href="support.html">Get Support</a>
-          <a class="btn btn-ghost" href="/privacy/">Privacy</a>
-          <a class="btn btn-ghost" href="terms.html">Terms</a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © <span id="y"></span> Beyond Normal. All rights reserved. ·
-      <a href="philosophy.html">Philosophy</a> ·
-      <a href="/privacy/">Privacy</a> ·
-      <a href="terms.html">Terms</a> ·
-      <a href="support.html">Support</a>
-    </footer>
+      <a href="https://apps.apple.com/app/id6753819612" class="nav-cta">Get the App</a>
+    </div>
   </div>
+</nav>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+<!-- ===================== Hero ===================== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">5/3/1 · Reinvented</span>
+      <h1>The thinking lifter's <span class="accent">5/3/1.</span></h1>
+      <p class="hero-sub">
+        Beyond Normal pairs Wendler's proven foundation with an AI strength coach,
+        adaptive autoregulation, and a readiness model built from every workout.
+        Train smarter. Recover better. Stay in it longer.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://apps.apple.com/app/id6753819612" class="app-store-btn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="stack">
+            <span class="small">Download on the</span>
+            <span class="big">App Store</span>
+          </span>
+        </a>
+        <a href="#features" class="secondary-cta">
+          See how it works
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero phone mockup -->
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="mock-tag">5/3/1 · BEYOND NORMAL</div>
+          <div class="mock-lift">Squat</div>
+          <div class="mock-chips">
+            <div class="mock-chip">
+              <div class="l">SQ</div>
+              <div class="v">315</div>
+            </div>
+            <div class="mock-chip">
+              <div class="l">BP</div>
+              <div class="v">225</div>
+            </div>
+            <div class="mock-chip">
+              <div class="l">DL</div>
+              <div class="v">405</div>
+            </div>
+          </div>
+          <div class="mock-cycle">Cycle 3 · Week 3 · Squat</div>
+          <div class="mock-prescription">95% × 1+ → 305 lb</div>
+          <div class="mock-pill">
+            AMRAP coming up — readiness is strong
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<div class="trust">
+  No accounts<span>·</span>No analytics SDKs<span>·</span>No ad tracking<span>·</span>Your data stays yours
+</div>
+
+<!-- ===================== Three pillars ===================== -->
+<section class="block pillars-section" id="features">
+  <div class="container" style="text-align: center;">
+    <span class="eyebrow">Why Beyond Normal</span>
+    <h2>Built for lifters who want more than a logbook.</h2>
+    <p class="lede" style="margin: 14px auto 0;">
+      The intelligence is in the algorithm. Every cycle adapts to your AMRAPs.
+      Every check-in feeds your readiness model. Every weak point gets a plan.
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4 4 4 0 0 0 4-4V6a4 4 0 0 0-4-4zm-2 14a6 6 0 0 0-6 6h4a4 4 0 0 1 8 0h4a6 6 0 0 0-6-6h-4z"/></svg>
+        </div>
+        <h3>AI Strength Coach</h3>
+        <p>A short conversation that diagnoses the weak point limiting each main lift and prescribes the assistance exercise to address it.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <h3>Adaptive Autoregulation</h3>
+        <p>Training maxes progress algorithmically from your AMRAPs and hold automatically when readiness flags fatigue. No grinding into a wall.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Readiness Analytics</h3>
+        <p>3-, 6-, and 12-month trends with factor-level drill-downs across sleep, effort, soreness, and strength. Watch how training shapes recovery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Feature deep dives ===================== -->
+<section class="block">
+  <div class="container">
+
+    <!-- Feature 1: AI Strength Coach -->
+    <div class="feature">
+      <div class="feature-text">
+        <span class="eyebrow">AI Strength Coach</span>
+        <h3>Diagnose the weak point. Prescribe the fix.</h3>
+        <p>Most lifters know they have a sticking point. Few know what to do about it. The AI coach walks you through a short, focused conversation — then prescribes the assistance exercise built to address it.</p>
+        <ul>
+          <li><strong>Biomechanical, not generic.</strong> Targets the limiting factor for YOUR squat, bench, deadlift, or press.</li>
+          <li><strong>One-tap apply.</strong> Set the weight, log the work, see the carryover.</li>
+          <li><strong>Reads your history.</strong> Recommendations adapt as your weak points shift.</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mock-card mock-coach">
+          <div class="mock-card-tag">AI STRENGTH COACH</div>
+          <div class="mock-card-title">What's limiting your squat?</div>
+          <div class="mock-msg ai">Where does your squat usually break down — out of the hole, the middle, or near lockout?</div>
+          <div class="mock-msg user">Out of the hole. Velocity stalls at parallel.</div>
+          <div class="mock-msg ai">That's a posterior chain limiter. Got it.</div>
+          <div class="mock-result">
+            <strong>Pause Squat — 3 × 5 @ 70%</strong><br>
+            <span style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">Targets the bottom position weakness. Apply to this cycle's squat day.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Adaptive Autoregulation -->
+    <div class="feature reverse">
+      <div class="feature-text">
+        <span class="eyebrow">Adaptive Autoregulation</span>
+        <h3>Training maxes that respond to reality.</h3>
+        <p>Classic 5/3/1 adds 5 or 10 lbs every cycle regardless of how you're recovering. Beyond Normal watches your AMRAPs and your readiness — and adjusts each lift independently.</p>
+        <ul>
+          <li><strong>Hold what's fatigued.</strong> Lifts the model flags as under-recovered repeat at current TM.</li>
+          <li><strong>Progress what's strong.</strong> Lifts with momentum and clean readiness keep climbing.</li>
+          <li><strong>You decide.</strong> Every suggestion is a consent card — accept, override, or progress normally.</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mock-card mock-auto">
+          <div class="mock-card-tag">CYCLE 4 → 5 ADVANCE</div>
+          <div class="mock-card-title">Adaptive proposal</div>
+          <div class="mock-bars">
+            <div class="mock-bar-row">
+              <span>Bench</span>
+              <div class="mock-bar"><div class="mock-bar-fill green"></div></div>
+              <span class="mock-action proceed">+5 lb</span>
+            </div>
+            <div class="mock-bar-row">
+              <span>Deadlift</span>
+              <div class="mock-bar"><div class="mock-bar-fill green2"></div></div>
+              <span class="mock-action proceed">+10 lb</span>
+            </div>
+            <div class="mock-bar-row">
+              <span>Squat</span>
+              <div class="mock-bar"><div class="mock-bar-fill amber"></div></div>
+              <span class="mock-action hold">Hold</span>
+            </div>
+            <div class="mock-bar-row">
+              <span>Press</span>
+              <div class="mock-bar"><div class="mock-bar-fill green"></div></div>
+              <span class="mock-action proceed">+5 lb</span>
+            </div>
+          </div>
+          <div class="mock-note">Squat readiness has been dragging for two weeks. Suggesting a hold to consolidate before pushing again. You can override.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Readiness Analytics -->
+    <div class="feature">
+      <div class="feature-text">
+        <span class="eyebrow">Readiness Analytics</span>
+        <h3>See how training shapes recovery — and back.</h3>
+        <p>Every post-workout check-in feeds a continuous readiness score. Watch the trend over months. Drill into the factor that's actually dragging — sleep, effort, soreness, or strength itself.</p>
+        <ul>
+          <li><strong>3, 6, and 12-month windows.</strong> The long view that monthly snapshots miss.</li>
+          <li><strong>Factor-level drill-downs.</strong> When the score drops, see exactly why.</li>
+          <li><strong>Deload nudges.</strong> Low readiness surfaces a deload suggestion regardless of cadence.</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mock-card mock-readiness">
+          <div class="mock-card-tag">READINESS · LAST 90 DAYS</div>
+          <div class="mock-score">72</div>
+          <div class="mock-score-label">STRONG</div>
+          <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#5fd5cf" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#5fd5cf" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M 0,60 Q 30,40 60,50 T 120,30 T 180,55 T 240,25 T 300,28 L 300,100 L 0,100 Z" fill="url(#chartGrad)"/>
+            <path d="M 0,60 Q 30,40 60,50 T 120,30 T 180,55 T 240,25 T 300,28" fill="none" stroke="#5fd5cf" stroke-width="2.5"/>
+            <circle cx="300" cy="28" r="4" fill="#5fd5cf"/>
+          </svg>
+          <div class="mock-factors">
+            <div class="mock-factor">
+              <span>Strength trend</span>
+              <span class="v" style="color: #5fd5cf;">+8</span>
+            </div>
+            <div class="mock-factor">
+              <span>Sleep average</span>
+              <span class="v" style="color: #5fd5cf;">7.2h</span>
+            </div>
+            <div class="mock-factor">
+              <span>Soreness window</span>
+              <span class="v">+3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== Pricing ===================== -->
+<section class="block pricing" id="pricing">
+  <div class="container" style="text-align: center;">
+    <span class="eyebrow">Pricing</span>
+    <h2>Free forever. Premium when you're ready.</h2>
+    <p class="lede" style="margin: 14px auto 0;">
+      The core 5/3/1 program is free and unlimited. Premium unlocks the intelligence layer —
+      the AI coach, autoregulation, and complete readiness analytics.
+    </p>
+
+    <div class="pricing-grid" style="text-align: left;">
+
+      <div class="tier">
+        <div class="tier-label">Free</div>
+        <h3>The complete program.</h3>
+        <div class="tier-price">$0</div>
+        <div class="tier-price-sub">Forever. No card required.</div>
+        <ul>
+          <li>The complete 5/3/1 program engine</li>
+          <li>Classic +5 / +10 TM progression</li>
+          <li>PR tracking + digital medals</li>
+          <li>2 AI debriefs per week</li>
+          <li>Last 3 weeks of readiness analytics</li>
+          <li>CSV export of workouts and PRs</li>
+          <li>Apple Watch companion</li>
+        </ul>
+        <a href="https://apps.apple.com/app/id6753819612" class="tier-cta">
+          Download free →
+        </a>
+        <div class="tier-note">Available on iPhone &amp; Apple Watch.</div>
+      </div>
+
+      <div class="tier premium">
+        <div class="tier-label">Premium</div>
+        <h3>The intelligence unlocked.</h3>
+        <div class="tier-price">$4.99<span style="font-size: 18px; color: rgba(255, 255, 255, 0.6); font-weight: 600;">/mo</span></div>
+        <div class="tier-price-sub">or $39.99/year (Save 33%) · 30-day free trial</div>
+        <ul>
+          <li>Unlimited AI debriefs</li>
+          <li>AI strength coach (assistance prescriptions)</li>
+          <li>Adaptive autoregulation (TM holds + auto progression)</li>
+          <li>Full readiness analytics (3, 6, 12-month trends + drill-downs)</li>
+          <li>Joker set auto-suggestions</li>
+          <li>Full JSON backup with re-import</li>
+          <li>Everything in Free, with no caps</li>
+        </ul>
+        <a href="https://apps.apple.com/app/id6753819612" class="tier-cta">
+          Start free trial →
+        </a>
+        <div class="tier-note">Cancel anytime in your Apple ID settings.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Privacy callout ===================== -->
+<section class="privacy-block">
+  <div class="container">
+    <span class="eyebrow">Privacy You Can Verify</span>
+    <h2>We don't want your data. We want you stronger.</h2>
+    <p class="lede">
+      Beyond Normal has no user accounts, no analytics SDKs, no ad trackers, and never sells data.
+      Workouts stay on your device and your iCloud. The only thing the AI sees is the workout context
+      it needs to coach you — and Anthropic doesn't train on it.
+    </p>
+    <div class="privacy-stats">
+      <div class="privacy-stat">
+        <div class="privacy-stat-num">0</div>
+        <div class="privacy-stat-label">Accounts</div>
+      </div>
+      <div class="privacy-stat">
+        <div class="privacy-stat-num">0</div>
+        <div class="privacy-stat-label">Analytics SDKs</div>
+      </div>
+      <div class="privacy-stat">
+        <div class="privacy-stat-num">0</div>
+        <div class="privacy-stat-label">Ad Trackers</div>
+      </div>
+      <div class="privacy-stat">
+        <div class="privacy-stat-num">100%</div>
+        <div class="privacy-stat-label">Your data</div>
+      </div>
+    </div>
+    <p style="margin-top: 36px; font-size: 14px;">
+      <a href="/privacy/" style="color: var(--brand-orange); text-decoration: none; border-bottom: 1px solid rgba(229,87,34,.4);">Read the full privacy policy →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== Final CTA ===================== -->
+<section class="final-cta">
+  <div class="container">
+    <span class="eyebrow">Ready to start</span>
+    <h2>Strength is simplicity, intelligently applied.</h2>
+    <p class="lede">
+      Stop overthinking your program. Stop drowning in spreadsheets. Build the rhythm,
+      trust the system, and go beyond normal.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://apps.apple.com/app/id6753819612" class="app-store-btn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <span class="stack">
+          <span class="small">Download on the</span>
+          <span class="big">App Store</span>
+        </span>
+      </a>
+      <a href="/philosophy.html" class="secondary-cta">
+        Read the philosophy
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Footer ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand" style="color: white;">
+        <span class="nav-brand-icon">🔥</span>
+        <span>Beyond Normal</span>
+      </a>
+      <p>The thinking lifter's 5/3/1 — built around adaptive intelligence, honest privacy, and the science of progressive overload.</p>
+    </div>
+    <div class="footer-col">
+      <h4>App</h4>
+      <ul>
+        <li><a href="https://apps.apple.com/app/id6753819612">Download</a></li>
+        <li><a href="/philosophy.html">Philosophy</a></li>
+        <li><a href="/support.html">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="y"></span> Beyond Normal. All rights reserved.</span>
+    <span>Built for lifters, by a lifter.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

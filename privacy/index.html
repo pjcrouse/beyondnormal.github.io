@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Privacy Policy • Beyond Normal</title>
+    <meta name="description" content="How Beyond Normal handles your training data — including CloudKit sync and the AI features powered by Anthropic." />
+    <meta property="og:title" content="Privacy Policy • Beyond Normal">
+    <meta property="og:description" content="An honest description of what Beyond Normal collects, what it doesn't, and how the AI features work.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --brand-bg:#fafaf0;
+            --brand-orange:#e55722;
+            --ink:#0f0f0f;
+            --ink-muted:#36454f;
+            --ring:rgba(0,0,0,.08);
+            --success:#2c7f7a;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            background:var(--brand-bg);
+            color:var(--ink);
+            font:16px/1.7 "Open Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        }
+        .top{
+            position:sticky;
+            top:0;
+            background:rgba(250,250,240,.95);
+            backdrop-filter:saturate(1.2) blur(8px);
+            border-bottom:1px solid var(--ring);
+            z-index:100;
+        }
+        .top nav{
+            max-width:980px;
+            margin:0 auto;
+            padding:14px 18px;
+            display:flex;
+            gap:12px;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+        .top a{
+            font:600 14px/1 "Montserrat",system-ui,sans-serif;
+            color:var(--ink-muted);
+            text-decoration:none;
+            background:#fff;
+            border:1px solid var(--ring);
+            padding:8px 12px;
+            border-radius:10px;
+            transition:all .2s ease;
+        }
+        .top a:hover{
+            background:var(--brand-orange);
+            color:#fff;
+            border-color:var(--brand-orange);
+            transform:translateY(-1px);
+        }
+        .top span.pill{
+            font:700 12px/1 "Montserrat",system-ui,sans-serif;
+            background:#fff;
+            border:1px solid var(--ring);
+            padding:8px 12px;
+            border-radius:999px;
+        }
+        .wrap{
+            max-width:980px;
+            margin:32px auto;
+            padding:0 18px;
+        }
+        h1{
+            font-family:"Bebas Neue",system-ui,sans-serif;
+            letter-spacing:.02em;
+            margin:18px 0 8px;
+            font-size:64px;
+            line-height:1;
+            background:linear-gradient(135deg,var(--ink),var(--brand-orange));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .meta{
+            color:#5b666d;
+            font-size:14px;
+            margin-bottom:24px;
+        }
+        h2{
+            font-family:"Montserrat",system-ui,sans-serif;
+            margin:32px 0 12px;
+            font-size:24px;
+            color:var(--ink);
+            padding-bottom:8px;
+            border-bottom:2px solid var(--ring);
+        }
+        h2:first-of-type{margin-top:20px}
+        h3{
+            font-family:"Montserrat",system-ui,sans-serif;
+            margin:24px 0 8px;
+            font-size:18px;
+            color:var(--ink-muted);
+        }
+        .card{
+            background:#fff;
+            border:1px solid var(--ring);
+            border-radius:20px;
+            box-shadow:0 12px 50px rgba(0,0,0,.08);
+            padding:36px;
+            margin-bottom:32px;
+        }
+        .callout{
+            border-left:4px solid var(--brand-orange);
+            padding:16px 20px;
+            background:linear-gradient(90deg,#fff8f4,#ffffff);
+            border-radius:12px;
+            margin:20px 0;
+            font-weight:600;
+            font-size:17px;
+            line-height:1.6;
+        }
+        .highlight-box{
+            background:#f8fffe;
+            border:2px solid var(--success);
+            border-radius:12px;
+            padding:20px;
+            margin:20px 0;
+        }
+        .highlight-box h3{
+            margin-top:0;
+            color:var(--success);
+        }
+        ul{
+            padding-left:24px;
+            margin:12px 0;
+        }
+        li{
+            margin:10px 0;
+            line-height:1.8;
+        }
+        li strong{
+            color:var(--brand-orange);
+        }
+        a{
+            color:var(--brand-orange);
+            font-weight:600;
+            text-decoration:none;
+            border-bottom:1px solid transparent;
+            transition:border-color .2s ease;
+        }
+        a:hover{
+            border-bottom-color:var(--brand-orange);
+        }
+        .section-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:20px;
+            margin:20px 0;
+        }
+        .info-box{
+            background:#f9f9f9;
+            border:1px solid var(--ring);
+            border-radius:12px;
+            padding:20px;
+        }
+        .info-box h3{
+            margin-top:0;
+            font-size:16px;
+        }
+        footer{
+            color:#5b666d;
+            text-align:center;
+            margin:40px 0 50px;
+            padding:20px;
+            border-top:1px solid var(--ring);
+        }
+        footer a{
+            color:#5b666d;
+            margin:0 10px;
+        }
+        .toc{
+            background:#f9f9f9;
+            border:1px solid var(--ring);
+            border-radius:12px;
+            padding:20px;
+            margin-bottom:30px;
+        }
+        .toc h3{
+            margin-top:0;
+            font-size:16px;
+            text-transform:uppercase;
+            letter-spacing:.05em;
+        }
+        .toc ul{
+            list-style:none;
+            padding-left:0;
+        }
+        .toc li{
+            margin:8px 0;
+        }
+        .toc a{
+            color:var(--ink-muted);
+            font-size:15px;
+        }
+        @media(max-width:640px){
+            h1{font-size:48px}
+            .card{padding:24px}
+            .section-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <nav>
+        <a href="/">Home</a>
+        <a href="/philosophy.html">Philosophy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/support.html">Support</a>
+        <span class="pill">Beyond Normal</span>
+    </nav>
+</div>
+
+<main class="wrap">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: <span id="date"></span></p>
+
+    <section class="card">
+        <div class="callout">
+            Beyond Normal rejects "normal" data practices. No accounts. No analytics SDKs. No ad networks. No selling your data — ever. What follows is an honest description of what the app does, what it sends, and what it doesn't.
+        </div>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#data-storage">Where Your Data Lives</a></li>
+                <li><a href="#ai-features">AI Features &amp; Third-Party Processing</a></li>
+                <li><a href="#data-control">Data Control &amp; Deletion</a></li>
+                <li><a href="#purchases">Purchases &amp; Subscriptions</a></li>
+                <li><a href="#no-collection">What We Don't Collect</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <h2 id="overview">Overview</h2>
+        <p>Beyond Normal is designed with privacy as a core principle. We believe your workout data is yours alone. This policy explains exactly how we handle data — including the parts that leave your device for AI processing — and how to control it.</p>
+
+        <div class="highlight-box">
+            <h3>Privacy Promise</h3>
+            <ul>
+                <li>✓ No accounts, no registration, no email required</li>
+                <li>✓ No analytics SDKs, no ad networks, no cross-app tracking</li>
+                <li>✓ No data sold or shared with third parties</li>
+                <li>✓ Data syncs across your own devices via your Apple ID (iCloud, Apple-managed)</li>
+                <li>✓ AI features send only the workout context — nothing else</li>
+                <li>✓ Your data on your terms — CSV export free, full JSON backup with Premium</li>
+            </ul>
+        </div>
+
+        <h2 id="data-storage">Where Your Data Lives</h2>
+        <p>Beyond Normal stores your training data in two places:</p>
+
+        <h3>On your device</h3>
+        <ul>
+            <li><strong>Workout history:</strong> All logged workouts, sets, reps, and weights</li>
+            <li><strong>Personal records:</strong> Your PR tracking and achievements</li>
+            <li><strong>Custom exercises:</strong> Assistance exercises and custom movements</li>
+            <li><strong>Program settings:</strong> Your training maxes, cycle configuration, and preferences</li>
+            <li><strong>Notes:</strong> Any notes or comments you add to workouts</li>
+            <li><strong>HealthKit data (optional):</strong> Body weight and other Health data, only when you grant permission</li>
+        </ul>
+
+        <h3>In your iCloud</h3>
+        <p>The data above syncs automatically across devices signed into the same Apple ID using Apple's CloudKit. This is Apple-managed iCloud — Apple handles the encryption, storage, and access controls. We don't see, store, or have access to your iCloud data.</p>
+        <p>You can turn off iCloud sync at any time in <em>iOS Settings → [your name] → iCloud → Beyond Normal</em>.</p>
+
+        <h2 id="ai-features">AI Features &amp; Third-Party Processing</h2>
+        <p>Beyond Normal's AI features — the post-workout debrief, the AI strength coach, and readiness scoring — are powered by Anthropic's Claude. To generate a response, the app sends a minimal request to our privacy-respecting proxy running on Cloudflare Workers, which forwards it to Anthropic's API.</p>
+
+        <h3>What gets sent</h3>
+        <ul>
+            <li>The lift name, cycle, and week of the workout you just finished</li>
+            <li>AMRAP reps and weight</li>
+            <li>Estimated one-rep max for that lift</li>
+            <li>Your free-form text replies in the debrief conversation</li>
+            <li>A randomly generated device identifier (used only for rate-limiting and abuse prevention; not tied to your identity, not built into a user profile)</li>
+        </ul>
+
+        <h3>What does NOT get sent</h3>
+        <ul>
+            <li>Your name, email, Apple ID, or any contact information</li>
+            <li>Your full workout history beyond the session being discussed</li>
+            <li>Your training maxes, PRs, or program settings</li>
+            <li>Anything from outside the AI features — logging a workout, viewing your PRs, exporting data, none of that touches our proxy or Anthropic</li>
+        </ul>
+
+        <h3>How Anthropic handles it</h3>
+        <p>Anthropic processes the request synchronously and returns a response. <strong>Anthropic does not train models on data sent through their API.</strong> Their handling is governed by <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a>.</p>
+
+        <p>You can use Beyond Normal entirely without the AI features. The core 5/3/1 logging, progression, and PR tracking are fully on-device and never touch our proxy or Anthropic.</p>
+
+        <h2 id="data-control">Data Control &amp; Deletion</h2>
+        <p>You have complete control over your data at all times:</p>
+
+        <h3>Export Your Data</h3>
+        <p>Navigate to <em>Data Management</em> in the app. CSV export of your workouts and PRs is free for everyone. Premium adds a full JSON backup that round-trips through import, so your full state moves with you, not the app.</p>
+
+        <h3>Delete Your Data</h3>
+        <div class="section-grid">
+            <div class="info-box">
+                <h3>Individual Items</h3>
+                <p>Delete specific workouts or personal records directly from <em>Data Management</em>. Deletions are immediate and permanent.</p>
+            </div>
+            <div class="info-box">
+                <h3>Complete Reset</h3>
+                <p>Use <em>Delete All Data</em> in <em>Data Management</em> to clear everything instantly. This action cannot be undone.</p>
+            </div>
+            <div class="info-box">
+                <h3>Uninstall App</h3>
+                <p>Removing Beyond Normal from your device automatically deletes locally stored training data. Your iCloud copy stays until you remove the app from iCloud as well.</p>
+            </div>
+        </div>
+
+        <h2 id="purchases">Purchases &amp; Subscriptions</h2>
+        <p>Beyond Normal offers two subscription tiers for Premium features:</p>
+        <ul>
+            <li><strong>Monthly subscription:</strong> 30-day free trial, then billed monthly</li>
+            <li><strong>Annual subscription:</strong> Billed yearly</li>
+        </ul>
+        <p>Users who purchased a lifetime unlock before this version of the app retain their access permanently. Lifetime is no longer offered for new purchase.</p>
+
+        <p>All payment processing is handled entirely by Apple through the App Store:</p>
+        <ul>
+            <li><strong>Payment processing:</strong> Handled exclusively by Apple</li>
+            <li><strong>Purchase validation:</strong> We receive only Apple's anonymized transaction receipt to verify your purchase and unlock features</li>
+            <li><strong>No payment details:</strong> We never see, store, or access your credit card, billing address, or payment information</li>
+            <li><strong>Subscription management:</strong> Managed through your Apple ID settings, not by us</li>
+        </ul>
+        <p>Apple's privacy policy governs their handling of payment data. We recommend reviewing it at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+
+        <h2 id="no-collection">What We Don't Collect</h2>
+        <p>Beyond Normal is built to respect your privacy. We explicitly do not collect:</p>
+        <ul>
+            <li>No personal identifiable information (name, email, phone, address)</li>
+            <li>No analytics or usage statistics</li>
+            <li>No advertising identifiers, no cross-app tracking, no ad networks</li>
+            <li>No precise or coarse location data</li>
+            <li>No third-party analytics SDKs (no Google Analytics, no Firebase Analytics, no Facebook SDK, no Mixpanel, no Segment — none)</li>
+            <li>No crash reports collected by us (Apple may collect crash logs per your iOS settings; those go to Apple, not to us)</li>
+            <li>No behavioral tracking or user profiling</li>
+        </ul>
+
+        <h3>Communication</h3>
+        <p>The only time we may receive personal information is if you contact us directly via email for support. In such cases:</p>
+        <ul>
+            <li>We'll only use your email address to respond to your inquiry</li>
+            <li>We won't add you to mailing lists without explicit consent</li>
+            <li>We won't share your contact information with third parties</li>
+            <li>Support emails are deleted after your issue is resolved</li>
+        </ul>
+
+        <h2>Data Security</h2>
+        <p>Your data is protected by multiple layers:</p>
+        <ul>
+            <li><strong>On device:</strong> iOS device encryption, Face ID/Touch ID, and iOS sandbox protections that isolate app data</li>
+            <li><strong>In iCloud:</strong> Apple's CloudKit encryption and access controls</li>
+            <li><strong>In transit to our proxy:</strong> HTTPS/TLS with shared-secret authentication. The proxy itself runs on Cloudflare Workers and forwards to Anthropic over HTTPS.</li>
+        </ul>
+        <p>We recommend keeping your device updated with the latest iOS security patches and using a strong passcode.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>Beyond Normal does not knowingly collect information from children under 13. The app does not require accounts or personal information, making it suitable for all ages. Parents should supervise device access as appropriate.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>As Beyond Normal evolves, we may update this privacy policy. Material changes will be reflected here with an updated "Last updated" date. We encourage you to review this policy periodically. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+        <h2 id="contact">Contact Us</h2>
+        <p>If you have questions, concerns, or feedback about this privacy policy or our data practices, please contact us:</p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:patcrouse@gmail.com?subject=Beyond%20Normal%20Privacy%20Policy">patcrouse@gmail.com</a><br>
+            <strong>Subject:</strong> "Beyond Normal Privacy Policy"
+        </p>
+
+        <h2>Legal</h2>
+        <p>This privacy policy is governed by the laws of the United States. By using Beyond Normal, you consent to the practices described in this policy.</p>
+    </section>
+
+    <footer>
+        <p>
+            <a href="/">Home</a> •
+            <a href="/philosophy.html">Philosophy</a> •
+            <a href="/support.html">Support</a> •
+            <a href="/terms.html">Terms of Service</a> •
+            <a href="/privacy/">Privacy Policy</a>
+        </p>
+        <p>© <span id="year"></span> Beyond Normal. All rights reserved.</p>
+    </footer>
+</main>
+
+<script>
+    const now = new Date();
+    document.getElementById('year').textContent = now.getFullYear();
+    document.getElementById('date').textContent = now.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+</script>
+</body>
+</html>

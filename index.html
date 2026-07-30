@@ -288,6 +288,16 @@
       color: white;
       overflow: hidden;
     }
+    /* Real screenshot variant: fills the screen edge to edge, so the frame's
+       padding and gradient (which existed to letterbox the old mockup) go. */
+    .phone-screen--shot { padding: 0; background: #000; }
+    .phone-screen--shot img {
+      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 32px;
+    }
     .mock-tag {
       font: 700 10px/1.4 "Montserrat", system-ui, sans-serif;
       letter-spacing: 0.18em;
@@ -491,6 +501,17 @@
     .feature-visual {
       display: grid;
       place-items: center;
+    }
+    /* The medal spins against pure black, so it needs no card or border --
+       the video's own background blends into the section. */
+    .medal-video {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      background: #000;
+      filter: drop-shadow(0 24px 60px rgba(229, 87, 34, 0.20));
     }
     .mock-card {
       width: 100%;
@@ -903,28 +924,9 @@
     <div class="hero-phone">
       <div class="phone-frame">
         <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="mock-tag">5/3/1 · BEYOND NORMAL</div>
-          <div class="mock-lift">Squat</div>
-          <div class="mock-chips">
-            <div class="mock-chip">
-              <div class="l">SQ</div>
-              <div class="v">315</div>
-            </div>
-            <div class="mock-chip">
-              <div class="l">BP</div>
-              <div class="v">225</div>
-            </div>
-            <div class="mock-chip">
-              <div class="l">DL</div>
-              <div class="v">405</div>
-            </div>
-          </div>
-          <div class="mock-cycle">Cycle 3 · Week 3 · Squat</div>
-          <div class="mock-prescription">95% × 1+ → 305 lb</div>
-          <div class="mock-pill">
-            AMRAP coming up — readiness is strong
-          </div>
+        <div class="phone-screen phone-screen--shot">
+          <img src="/assets/shots/hero-workout.png" width="600" height="1304"
+               alt="The Beyond Normal workout screen on iPhone: Deadlift, cycle 31, week 1, prescribing 85% for 5+ reps at 565 lb, with the Trends sheet open over it charting estimated 1RM climbing from roughly 350 to 550 lb across 28 cycles.">
         </div>
       </div>
     </div>
@@ -1089,6 +1091,27 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: PR Medals -->
+    <div class="feature reverse">
+      <div class="feature-text">
+        <span class="eyebrow">PR Medals</span>
+        <h3>Your PRs, cast in metal.</h3>
+        <p>Every personal record mints a medal — struck with the lift, the weight, the date, and your name. Turn it over and it's engraved. Spin it with your finger. It's yours because you earned it, and nobody can hand you one.</p>
+        <ul>
+          <li><strong>Engraved with your name.</strong> The one you gave the app when you set it up.</li>
+          <li><strong>Every lift, every milestone.</strong> Squat, bench, deadlift, press, row — first rep and all-time best.</li>
+          <li><strong>Built to be shown.</strong> Share the award straight out of the trophy room.</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <video class="medal-video" src="/assets/shots/medal.mp4" poster="/assets/shots/medal-poster.jpg"
+               width="520" height="748"
+               autoplay muted loop playsinline preload="metadata"
+               aria-label="A silver personal-record medal rotating in three dimensions. The front shows a lifter at deadlift lockout above the word PR; the back is engraved: earned by Pat, 549 lb deadlift PR, March 27 2026.">
+        </video>
       </div>
     </div>
 

@@ -154,12 +154,16 @@ footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 22px
    rather than `hidden` so the vertical axis stays visible. */
 .showcase { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: center; overflow-x: clip; }
 .showcase-shot { justify-self: center; position: relative; }
-.showcase-shot img {
+.showcase-shot img,
+.showcase-shot video {
   display: block; width: 100%; max-width: 330px; height: auto;
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: 0 28px 70px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.16);
 }
+/* The looping clip is the single strongest asset on the site, so it gets a
+   little more room than a static screenshot. */
+.showcase-shot video { max-width: 360px; background: #000; }
 /* Warm halo behind the phone so a dark screenshot doesn't float on cream. */
 .showcase-shot::before {
   content: ''; position: absolute; inset: -14% -22%;

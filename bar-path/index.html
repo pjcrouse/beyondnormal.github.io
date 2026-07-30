@@ -72,30 +72,74 @@
 
 <section class="block tight">
   <div class="container">
+    <div class="showcase">
+      <div class="showcase-shot">
+        <video src="/assets/shots/barpath.mp4" poster="/assets/shots/barpath-poster.jpg"
+               width="660" height="1010"
+               autoplay muted loop playsinline preload="metadata"
+               aria-label="A deadlift filmed from the side. An orange line traces the bar's path on the plate while a readout in the corner shows the rep number, bar speed in metres per second, and drift in inches.">
+        </video>
+      </div>
+      <div class="showcase-text">
+        <span class="eyebrow">This is the output</span>
+        <h2>The line is your bar.</h2>
+        <p>Orange traces the path the bar actually took. The readout in the corner counts the rep, times the pull, and measures how far the bar strayed from vertical — burned into your own footage.</p>
+        <p>No wearable on the sleeve. No sensor on the bar. A phone leaned against whatever was handy, filming from the side.</p>
+        <div class="readout">
+          <strong>Rep 1 · 0.32 m/s · 1.6 in drift</strong> <span>— then it does that for every rep in the set</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 10px;">
+  <div class="container">
     <span class="eyebrow">What you get back</span>
     <h2>Four numbers, straight off the video.</h2>
     <p class="lede">Every one of these is computed on your phone from the frames themselves. No wearable on the bar, no sensor clipped to the sleeve, no account.</p>
 
     <div class="card-grid cols-4" style="margin-top: 32px;">
       <div class="metric">
-        <div class="metric-value">7</div>
+        <div class="metric-value">15</div>
         <div class="metric-label">Reps counted</div>
         <p class="metric-note">Each rep found and timed automatically, so the set is broken down one pull at a time.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">0.42<span>m/s</span></div>
+        <div class="metric-value">0.37<span>m/s</span></div>
         <div class="metric-label">Mean bar speed</div>
         <p class="metric-note">Average concentric velocity across the set — how fast the bar actually moved on the way up.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">31<span>%</span></div>
+        <div class="metric-value">15<span>%</span></div>
         <div class="metric-label">Velocity loss</div>
-        <p class="metric-note">How much slower your last rep was than your best. The clearest signal of how deep into the tank you went.</p>
+        <p class="metric-note">How much slower the set finished than it started. The clearest signal of how deep into the tank you went.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">1.4<span>in</span></div>
+        <div class="metric-value">2.4<span>in</span></div>
         <div class="metric-label">Worst drift</div>
         <p class="metric-note">How far the bar wandered from a straight line, per rep and at its worst.</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top: 22px;">Those are the real numbers from the set below — not a mockup.</p>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 10px;">
+  <div class="container">
+    <div class="showcase">
+      <div class="showcase-shot">
+        <img src="/assets/shots/barpath.png" width="760" height="1134"
+             alt="Bar path results on iPhone: 15 reps, 15% velocity loss, mean concentric 0.37 m/s, worst drift 2.4 inches, followed by a colour-coded per-rep table and a measured acceleration check of 0.38 metres per second squared.">
+      </div>
+      <div class="showcase-text">
+        <span class="eyebrow">A real set, straight off the phone</span>
+        <h2>Every rep, graded.</h2>
+        <p>Speed and drift for all fifteen pulls, coloured so the bad ones find you. Reps 5, 6 and 10 drifted past two inches. Rep 3 was the straightest bar in the set.</p>
+        <p>And look at the headline: <strong>15 reps at only 15% velocity loss</strong>. The bar was still moving at the end — that's a set with more left in it, which is exactly the thing you can't feel reliably and can't fake afterward.</p>
+        <div class="readout">
+          <strong>Measured acceleration 0.38 m/s²</strong> <span>· R² 0.93 across 35 frames — the tracker checking its own work</span>
+        </div>
       </div>
     </div>
   </div>

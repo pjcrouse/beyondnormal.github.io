@@ -148,6 +148,39 @@ footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 22px
 .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
 @media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 30px; } }
 
+/* Screenshot showcase — the visual payoff, placed high so it lands first */
+/* overflow-x: clip contains the halo below. It is a pseudo-element, so it
+   widens the page without ever showing up in a bounding-rect audit. `clip`
+   rather than `hidden` so the vertical axis stays visible. */
+.showcase { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: center; overflow-x: clip; }
+.showcase-shot { justify-self: center; position: relative; }
+.showcase-shot img {
+  display: block; width: 100%; max-width: 330px; height: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 28px 70px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.16);
+}
+/* Warm halo behind the phone so a dark screenshot doesn't float on cream. */
+.showcase-shot::before {
+  content: ''; position: absolute; inset: -14% -22%;
+  background: radial-gradient(ellipse at center, rgba(229,87,34,.16) 0%, transparent 62%);
+  pointer-events: none; z-index: -1;
+}
+.showcase-text h2 { margin-bottom: 14px; }
+.showcase-text p { color: var(--ink-muted); line-height: 1.7; }
+.showcase-text p + p { margin-top: 14px; }
+.showcase-text .readout {
+  margin-top: 22px; padding: 18px 20px;
+  background: white; border: 1px solid var(--ring); border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.showcase-text .readout strong { color: var(--ink); }
+.showcase-text .readout span { color: var(--ink-soft); }
+@media (max-width: 880px) {
+  .showcase { grid-template-columns: 1fr; gap: 32px; }
+  .showcase-text { order: -1; }
+}
+
 /* Email capture band */
 .signup { background: white; border: 1px solid var(--ring); border-radius: 20px; padding: 40px; box-shadow: var(--shadow-sm); }
 .signup h2 { margin-bottom: 10px; }

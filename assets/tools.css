@@ -175,6 +175,13 @@ footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 22px
 }
 .signup button:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(229,87,34,.45); }
 .signup .fine { margin-top: 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+/* Honeypot: off-screen rather than display:none, which some bots skip. */
+.signup .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.signup .status { margin-top: 16px; font-size: 14px; line-height: 1.55; font-weight: 600; display: none; }
+.signup .status.show { display: block; }
+.signup .status.ok { color: var(--teal); }
+.signup .status.err { color: var(--brand-orange-dark); }
+.signup form.busy button { opacity: .6; pointer-events: none; }
 @media (max-width: 560px) {
   .signup { padding: 28px 24px; }
   .signup button { width: 100%; }

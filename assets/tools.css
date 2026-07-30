@@ -148,5 +148,37 @@ footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 22px
 .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
 @media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 30px; } }
 
+/* Email capture band */
+.signup { background: white; border: 1px solid var(--ring); border-radius: 20px; padding: 40px; box-shadow: var(--shadow-sm); }
+.signup h2 { margin-bottom: 10px; }
+.signup > p { color: var(--ink-muted); line-height: 1.65; max-width: 620px; }
+.signup form { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+.signup input[type="email"] {
+  flex: 1 1 280px; min-width: 0;
+  padding: 15px 18px;
+  font: 400 16px/1.2 "Open Sans", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--brand-bg);
+  border: 1px solid var(--ring-strong); border-radius: 12px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.signup input[type="email"]::placeholder { color: var(--ink-soft); }
+.signup input[type="email"]:focus { outline: none; border-color: var(--brand-orange); box-shadow: 0 0 0 3px rgba(229,87,34,.15); }
+.signup button {
+  flex: 0 0 auto;
+  padding: 15px 26px;
+  font: 700 15px/1.2 "Montserrat", system-ui, sans-serif;
+  color: white; background: var(--brand-orange);
+  border: 0; border-radius: 12px; cursor: pointer;
+  box-shadow: 0 10px 28px rgba(229,87,34,.35);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.signup button:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(229,87,34,.45); }
+.signup .fine { margin-top: 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+@media (max-width: 560px) {
+  .signup { padding: 28px 24px; }
+  .signup button { width: 100%; }
+}
+
 /* Platform-conditional blocks, toggled by the inline script */
 .ios-only, .not-ios-only { display: none; }

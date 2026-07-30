@@ -861,6 +861,16 @@
     }
     .signup button:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(229,87,34,.45); }
     .signup .fine { margin-top: 18px; font-size: 13px; color: #5b666d; line-height: 1.55; }
+    /* Honeypot. MUST stay hidden: a visible one gets filled by real people,
+       and the server treats a filled honeypot as a bot and silently discards
+       the signup. The element also carries an inline style saying the same
+       thing, so this can never be lost by editing a stylesheet in isolation. */
+    .signup .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .signup .status { margin-top: 16px; font-size: 14px; line-height: 1.55; font-weight: 600; display: none; }
+    .signup .status.show { display: block; }
+    .signup .status.ok { color: var(--teal); }
+    .signup .status.err { color: var(--brand-orange-dark); }
+    .signup form.busy button { opacity: .6; pointer-events: none; }
     @media (max-width: 560px) {
       .signup { padding: 30px 24px; }
       .signup button { width: 100%; }
@@ -1216,7 +1226,7 @@
     <p>Squat and bench bar path, new free tools, and the occasional note about where the app is going. Sent when there's something real to say — which is not often.</p>
     <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="home">
       <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
-        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="hp" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit">Keep me posted</button>
     </form>
       <p class="status" role="status" aria-live="polite"></p>

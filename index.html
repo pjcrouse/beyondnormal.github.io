@@ -1224,7 +1224,9 @@
     <span class="eyebrow">Stay in the loop</span>
     <h2>Hear about it when it ships.</h2>
     <p>Squat and bench bar path, new free tools, and the occasional note about where the app is going. Sent when there's something real to say — which is not often.</p>
-    <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="home">
+    <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="home"
+            data-confirm="You're on the list. We'll be in touch when there's something worth saying."
+            data-confirm-repeat="You're already on the list — nothing needed from you.">
       <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
         <input class="hp" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit">Keep me posted</button>

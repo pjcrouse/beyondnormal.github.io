@@ -44,13 +44,16 @@
           form.classList.remove('busy');
           if (result.status === 200) {
             form.reset();
-            setStatus(
-              form,
-              result.body.alreadySubscribed
-                ? "You're already on the list — nothing more to do."
-                : "You're on the list. We'll be in touch when there's something worth saying.",
-              'ok'
-            );
+            // Confirm what THIS page promised, rather than a generic success.
+            // Someone on /bar-path came for the squat and bench notification;
+            // telling them "nothing more to do" reads as "you're not covered".
+            // Copy lives on the form so it can be edited alongside the page.
+            var isRepeat = result.body.alreadySubscribed;
+            var msg = form.getAttribute(isRepeat ? 'data-confirm-repeat' : 'data-confirm')
+              || (isRepeat
+                    ? "You're already on the list — this page's update is noted too."
+                    : "You're on the list. We'll be in touch when there's something worth saying.");
+            setStatus(form, msg, 'ok');
           } else if (result.status === 422) {
             setStatus(form, "That doesn't look like an email address.", 'err');
           } else if (result.status === 429) {

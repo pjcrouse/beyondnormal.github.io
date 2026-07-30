@@ -208,7 +208,9 @@
       <span class="eyebrow">Squat and bench are next</span>
       <h2>Want to know when they land?</h2>
       <p>Bar path ships on the deadlift first because that's where the rep detection is validated. The other lifts are in progress. Leave your email and you'll get one message when they're live — nothing else.</p>
-      <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="bar-path">
+      <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="bar-path"
+            data-confirm="You're on the list. One email when squat and bench bar path ship — nothing else."
+            data-confirm-repeat="Already on the list — and we've noted bar path is what you're waiting on.">
         <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
         <input class="hp" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit">Notify me</button>

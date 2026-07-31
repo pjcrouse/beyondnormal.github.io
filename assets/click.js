@@ -45,6 +45,16 @@
     } catch (e) { /* never block the navigation */ }
   }
 
+
+  // TEMPORARY DIAGNOSTIC -- remove once click tracking is confirmed.
+  // Fires on page load rather than on click. If this arrives from a phone but
+  // click reports do not, the cross-origin request is fine and the problem is
+  // timing at unload. If neither arrives, Safari is blocking the cross-origin
+  // request itself and the endpoint needs to move to a first-party subdomain.
+  try {
+    navigator.sendBeacon(ENDPOINT, new Blob([JSON.stringify({ source: 'unknown' })], { type: 'text/plain' }));
+  } catch (e) { /* diagnostic only */ }
+
   // Delegated, so links added later are covered and each page needs no wiring.
   document.addEventListener('click', function (event) {
     var link = event.target && event.target.closest

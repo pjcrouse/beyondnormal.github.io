@@ -25,7 +25,14 @@
     // sendBeacon survives unload; fetch does not, reliably. Fall back only if
     // the browser is old enough to lack it.
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'application/json' }));
+      // text/plain, NOT application/json. application/json is not a
+      // CORS-safelisted content type, so it forces a preflight -- and
+      // sendBeacon cannot preflight. The browser drops the request while
+      // sendBeacon() still returns true, because that only reports whether it
+      // was queued. Verified: the JSON-typed beacon never reached the Worker.
+      // The body is still JSON; the Worker reads the raw text and parses it
+      // itself, so the declared type is irrelevant to it.
+      navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'text/plain' }));
       return;
     }
     try {

@@ -319,6 +319,22 @@
           <li>No behavioral tracking or user profiling</li>
         </ul>
 
+        <h3>This website</h3>
+        <p>
+          The list above describes the iOS app. This website (beyondnormal.app) measures page
+          visits using a cookieless analytics beacon so we can tell whether anyone is finding
+          the site. It records the page you viewed, the referring site, your country, and your
+          screen size. It sets <strong>no cookies</strong>, assigns you <strong>no persistent
+          identifier</strong>, and cannot follow you to any other site. We cannot identify you
+          from it, and it is never combined with anything from the app.
+        </p>
+        <p>
+          If you enter your email address in a signup form on this site, we store that address
+          — and which page you signed up from — in order to email you about the thing you asked
+          about. Nothing else. Every message includes a one-click unsubscribe, and unsubscribing
+          is permanent unless you deliberately sign up again.
+        </p>
+
         <h3>Communication</h3>
         <p>The only time we may receive personal information is if you contact us directly via email for support. In such cases:</p>
         <ul>
@@ -393,6 +409,9 @@
   document.getElementById('y').textContent = new Date().getFullYear();
   document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
+
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
 
 </body>
 </html>

@@ -1223,7 +1223,7 @@
     <span class="eyebrow">Privacy You Can Verify</span>
     <h2>We don't want your data. We want you stronger.</h2>
     <p class="lede">
-      Beyond Normal has no user accounts, no analytics SDKs, no ad trackers, and never sells data.
+      The app has no user accounts, no analytics SDKs, no ad trackers, and never sells data.
       Workouts stay on your device and your iCloud. The only thing the AI sees is the workout context
       it needs to coach you — and Anthropic doesn't train on it.
     </p>
@@ -1245,7 +1245,14 @@
         <div class="privacy-stat-label">Your data</div>
       </div>
     </div>
-    <p style="margin-top: 36px; font-size: 14px;">
+    <!-- Explicit rather than implied. The counts describe the iOS app; this
+         website counts visits with a cookieless beacon, and saying so here
+         costs less than being caught not saying it. -->
+    <p style="margin-top: 28px; font-size: 13px; color: rgba(255,255,255,.5); max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+      Those counts describe the app. This website measures page visits with a cookieless
+      analytics beacon — no cookies, no cross-site tracking, no personal data.
+    </p>
+    <p style="margin-top: 24px; font-size: 14px;">
       <a href="/privacy/" style="color: var(--brand-orange); text-decoration: none; border-bottom: 1px solid rgba(229,87,34,.4);">Read the full privacy policy →</a>
     </p>
   </div>
@@ -1341,6 +1348,9 @@
 </script>
 
 <script src="/assets/signup.js"></script>
+
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
 
 </body>
 </html>

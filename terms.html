@@ -395,5 +395,8 @@
   document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
 
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
+
 </body>
 </html>

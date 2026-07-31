@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opening the App Store…</title>
+<!-- This page exists only so an App Store click becomes a countable pageview.
+     Cloudflare Web Analytics cannot observe a click that leaves the domain, so
+     the click is routed through here first. -->
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://apps.apple.com/app/id6753819612">
+<!-- No-JS fallback. Deliberately 1s, not 0s: the beacon below needs a moment to
+     dispatch, and a 0s refresh can beat it and lose the very pageview we came
+     for. With JS the redirect below fires much sooner. -->
+<meta http-equiv="refresh" content="1;url=https://apps.apple.com/app/id6753819612">
+<!-- NOT deferred, unlike every other page. The beacon has to start immediately
+     because this page navigates away almost at once. -->
+<script src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
+<style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;text-align:center;
+       background:#fafaf0;color:#36454f;
+       font:16px/1.6 "Open Sans",system-ui,-apple-system,sans-serif;padding:22px}
+  .mark{width:52px;height:52px;border-radius:14px;background:#e55722;display:grid;
+        place-items:center;margin:0 auto 20px;font-size:26px}
+  h1{font:800 20px/1.3 "Montserrat",system-ui,sans-serif;color:#0a0a0a;margin:0 0 8px}
+  p{margin:0 0 18px;font-size:15px}
+  a{color:#e55722;font-weight:600}
+</style>
+</head>
+<body>
+<div>
+  <div class="mark">🔥</div>
+  <h1>Opening the App Store…</h1>
+  <p>Taking you to Bar Path &amp; Velocity on the App Store.</p>
+  <p><a href="https://apps.apple.com/app/id6753819612">Tap here if nothing happens</a></p>
+</div>
+<script>
+  // Give the beacon ~250ms to dispatch, then leave. replace() keeps this page
+  // out of history so Back returns to the page they came from, not here.
+  setTimeout(function () { location.replace('https://apps.apple.com/app/id6753819612'); }, 250);
+</script>
+</body>
+</html>

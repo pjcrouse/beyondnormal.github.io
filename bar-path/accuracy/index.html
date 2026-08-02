@@ -64,6 +64,9 @@
 .msa .summary h2 { border:none; padding:0; margin:0 0 6px; font-size:26px; }
 .msa .summary .answer { font:600 19px/1.5 -apple-system,system-ui,sans-serif; margin:14px 0 4px; }
 .msa .summary p { max-width:66ch; }
+.msa .summary h3.break { font:600 17px/1.4 -apple-system,system-ui,sans-serif; margin:30px 0 0;
+  letter-spacing:.005em; }
+.msa .summary .callout { margin-top:12px; }
 .msa .plot { margin:26px 0 8px; color:var(--msa-ink); }
 .msa .plot figcaption { font-size:13.5px; color:var(--msa-muted); margin-top:6px; max-width:66ch;
   font-family:-apple-system,system-ui,sans-serif; }
@@ -189,7 +192,9 @@
   <p>We tested the whole measurement against the one acceleration everybody already has:
   Earth&#8217;s gravity. It is one of the best-known physical constants, it is the same in your
   garage as in ours, and it does not care what we hoped to find. Drop a loaded barbell, film
-  it, and the app either reports 9.81 m/s&#178; or it does not.</p>
+  it, and the app&#8217;s answer can be held against a number nobody gets to negotiate. Whatever
+  the gap turns out to be, it is measurable &#8212; and the rest of this page is that
+  measurement.</p>
   <p>We did that fifteen times.</p>
 
   <dl class="verdicts">
@@ -217,12 +222,17 @@
   useless in practice. Most claims of &#8220;accuracy&#8221; do not say which they mean. This one
   measures both.</p>
 
-  <p><strong>And running the study broke the feature open.</strong> It found <strong>nine
-  defects</strong> and forced <strong>five design changes</strong> &#8212; four of the defects and all
-  five changes in the bar-path feature people actually use. One of them had every analysis the
-  app had ever run working from 30 frames a second when the phone had recorded 120. All nine are
-  published in <a href="#appendix-b">Appendix B</a>, including the two that turned out to be
-  worthless.</p>
+  <h3 class="break">The study did not only measure the feature. It repaired it.</h3>
+  <div class="callout">
+    <p>Running it found <strong>nine defects</strong> and forced <strong>five design
+    changes</strong> &#8212; four of the defects and all five of the changes in the bar-path feature
+    people actually use. One of them had every analysis the app had ever run working from
+    <strong>30 frames a second when the phone had recorded 120</strong>.</p>
+    <p>All nine are published in <a href="#appendix-b">Appendix B</a>, including the two that
+    turned out to be worthless. None of them was visible from the app&#8217;s own output &#8212; the
+    fit quality read a perfect 1.000 through most of them. They only appeared once the
+    measurement was pointed at an answer that was already known.</p>
+  </div>
 
   <p><strong>What we did not test.</strong> One operator, one phone, one plate, one room, one
   session. The 3.00% belongs to a tripod that never moved, so it is not a number your

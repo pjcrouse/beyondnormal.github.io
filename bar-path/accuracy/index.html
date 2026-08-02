@@ -59,6 +59,16 @@
 .msa .meta div strong { font:500 15px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;
   font-variant-numeric:tabular-nums; }
 .msa section { margin:0 0 52px; }
+.msa .summary { background:var(--msa-panel); border:1px solid var(--msa-rule); border-radius:4px;
+  padding:30px 32px; margin:0 0 20px; box-shadow:var(--msa-shadow); }
+.msa .summary h2 { border:none; padding:0; margin:0 0 6px; font-size:26px; }
+.msa .summary .answer { font:600 19px/1.5 -apple-system,system-ui,sans-serif; margin:14px 0 4px; }
+.msa .summary p { max-width:66ch; }
+.msa .plot { margin:26px 0 8px; color:var(--msa-ink); }
+.msa .plot figcaption { font-size:13.5px; color:var(--msa-muted); margin-top:6px; max-width:66ch;
+  font-family:-apple-system,system-ui,sans-serif; }
+.msa .handoff { border-top:1px solid var(--msa-rule); margin-top:26px; padding-top:18px;
+  font-size:15px; color:var(--msa-muted); }
 .msa .tldr { border:1px solid var(--msa-rule); border-left:3px solid var(--msa-accent); background:var(--msa-panel);
   border-radius:0 3px 3px 0; padding:24px 26px; margin:0 0 52px; box-shadow:var(--msa-shadow); }
 .msa .tldr h2 { border:none; padding:0; margin:0 0 4px; }
@@ -173,48 +183,53 @@
   </div>
 </header>
 
-<div class="tldr">
-  <h2><span class="cl">TL;DR</span> What this establishes</h2>
-  <p class="lede">The gravity of Earth, denoted g, is the net acceleration imparted to
-  objects by the Earth. Its standard value is <strong>9.80665 m/s&#178;</strong>. An ordinary
-  iPhone, filming a dropped barbell, measured it fifteen times: it repeats to
-  <strong>1.25%</strong> and lands <strong>3.00%</strong> from the standard
-  value, with no correction applied.</p>
-  <p><strong>In plain terms.</strong> Two different things can be wrong with a measurement and
-  they need separate answers. <em>Repeatability</em> is whether you get the same number twice.
-  <em>Trueness</em> is whether that number sits where it should. A tape measure with a bent end
-  is perfectly repeatable and consistently wrong; a stretchy one is honest on average and
-  useless in practice. This report measures both, separately: the reading wanders by
-  <strong>1.25%</strong>, and it sits <strong>3.00%</strong> from where gravity
-  says it should &#8212; a gap that disappears entirely for velocity loss, because that is a ratio of
-  two speeds measured with the same ruler.</p>
+<div class="summary">
+  <h2>Can I trust this?</h2>
+  <p class="answer">Yes &#8212; and here is exactly how far.</p>
+  <p>We tested the whole measurement against the one acceleration everybody already has:
+  Earth&#8217;s gravity. It is one of the best-known physical constants, it is the same in your
+  garage as in ours, and it does not care what we hoped to find. Drop a loaded barbell, film
+  it, and the app either reports 9.81 m/s&#178; or it does not.</p>
+  <p>We did that fifteen times.</p>
+
   <dl class="verdicts">
-    <div><dt>Repeatability</dt><dd><b>1.25%</b>combined standard uncertainty,
-      2.50% expanded. Criterion was 2%, declared before any data existed.</dd></div>
-    <div><dt>Trueness</dt><dd><b>3.00%</b>reproducible to &#177;0.46% across
-      three passes on five recordings &#8212; a constant of the setup, not a limit of the method.</dd></div>
-    <div><dt>Acceleration</dt><dd><b>Direct</b>Not an inference. Gravity IS an acceleration;
-      it is the quantity the whole study measured.</dd></div>
-    <div><dt>Velocity loss</dt><dd><b>Exact</b>A ratio through one ruler, so the offset
-      divides out identically. Repeatability stands unmodified.</dd></div>
+    <div><dt>Measurements</dt><dd><b>15</b>Five separate drops, each analysed three times from
+      an independent placement of the calibration circle.</dd></div>
+    <div><dt>Repeatability</dt><dd><b>1.25%</b>How much the answer moves when you do the
+      same thing again. The target was 2%, written down before any data existed.</dd></div>
+    <div><dt>Off gravity by</dt><dd><b>3.00%</b>With no correction of any kind
+      applied, and it reproduces to &#177;0.46% &#8212; a property of the setup, not a limit of the
+      method.</dd></div>
+    <div><dt>Effect on velocity loss</dt><dd><b>None</b>Loss is a ratio measured through one
+      ruler, so that offset divides out exactly. It cannot reach the number.</dd></div>
   </dl>
-  <p><strong>What follows from it.</strong> Absolute velocity carries the same repeatability
-  and an offset of between <strong>1.51% and 3.00%</strong>. Acceleration is a
-  distance over a time <em>squared</em>, so the two possible causes do not carry through
-  equally: a spatial error passes into velocity in full, while a timing error passes as the
-  <em>square root</em> of the acceleration ratio &#8212; &#8730;0.9700 = 0.9849, or 1.51%. Separating
-  them needs a measurement this study did not take.</p>
-  <p><strong>It did not only measure the feature &#8212; it repaired it.</strong> Nine defects and
-  five design changes came out of running this. Four of the defects and all five of the changes
-  reached the bar-path feature people actually use, including one that had every analysis the
-  app ever ran working from 30 frames a second when the phone had recorded 120.
-  <a href="#appendix-b">Appendix B</a> lists every one, including the two that turned out to be
+
+  <figure class="plot">
+    <svg viewBox="0 0 620 132" width="100%" role="img" aria-label="All fifteen measurements plotted against standard gravity. They cluster tightly between 9.32 and 9.69, with a mean of 9.512, sitting just left of the reference line at 9.80665."><line x1="88.3" y1="96" x2="88.3" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="88.3" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.3</text><line x1="172.9" y1="96" x2="172.9" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="172.9" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.4</text><line x1="257.5" y1="96" x2="257.5" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="257.5" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.5</text><line x1="342.2" y1="96" x2="342.2" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="342.2" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.6</text><line x1="426.8" y1="96" x2="426.8" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="426.8" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.7</text><line x1="511.4" y1="96" x2="511.4" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="511.4" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.8</text><line x1="596.0" y1="96" x2="596.0" y2="101" stroke="currentColor" stroke-opacity=".35"/><text x="596.0" y="116" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">9.9</text><line x1="46" y1="96" x2="596" y2="96" stroke="currentColor" stroke-opacity=".35"/><line x1="517.0" y1="16" x2="517.0" y2="96" stroke="var(--msa-pass, #256B45)" stroke-width="2"/><text x="510.0" y="14" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--msa-pass, #256B45)">Earth&#8217;s gravity 9.80665</text><circle cx="105.2" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="122.2" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="172.9" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="172.9" cy="75.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="215.2" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="223.7" cy="75.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="274.5" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="291.4" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="308.3" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="316.8" cy="75.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="316.8" cy="64.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="350.6" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="359.1" cy="75.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="367.5" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><circle cx="418.3" cy="86.0" r="4.2" fill="var(--msa-accent, #1B4B77)" fill-opacity=".85"/><line x1="267.7" y1="92" x2="267.7" y2="105" stroke="currentColor" stroke-width="2"/><text x="267.7" y="127" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">mean 9.512</text></svg>
+    <figcaption>Every measurement taken, none excluded. The spread is the repeatability; the
+    gap to the line is the offset. They are separate problems and this report treats them
+    separately.</figcaption>
+  </figure>
+
+  <p><strong>Two different things can be wrong with a measurement.</strong> Whether you get the
+  same number twice, and whether that number sits where it should. A tape measure with a bent
+  end is perfectly repeatable and consistently wrong; a stretchy one is honest on average and
+  useless in practice. Most claims of &#8220;accuracy&#8221; do not say which they mean. This one
+  measures both.</p>
+
+  <p><strong>And running the study broke the feature open.</strong> It found <strong>nine
+  defects</strong> and forced <strong>five design changes</strong> &#8212; four of the defects and all
+  five changes in the bar-path feature people actually use. One of them had every analysis the
+  app had ever run working from 30 frames a second when the phone had recorded 120. All nine are
+  published in <a href="#appendix-b">Appendix B</a>, including the two that turned out to be
   worthless.</p>
-  <p><strong>What it does not establish.</strong> One configuration, one operator, one
-  session. The 3.00% offset belongs to a tripod that never moved, so it is not a
-  figure other setups inherit &#8212; which is the argument for shipping the check itself rather
-  than a number: any user can measure their own. Linearity is partly covered (&#167;8) and no
-  velocity-dependent slope has been separately resolved.</p>
+
+  <p><strong>What we did not test.</strong> One operator, one phone, one plate, one room, one
+  session. The 3.00% belongs to a tripod that never moved, so it is not a number your
+  setup inherits &#8212; which is why the app ships the drop test itself. Measure your own.</p>
+
+  <p class="handoff">Everything below is the engineering: the method, the statistics, the
+  causes ruled out, and every limitation we know of. Every figure in it is measured.</p>
 </div>
 
 <section>
@@ -222,8 +237,9 @@
   <p class="lede">Every velocity-based training product claims accuracy. None publish a
   characterisation. This is one, for a measurement that reads bar speed from an ordinary
   phone camera.</p>
-  <p>A dropped barbell accelerates at g, which makes free fall the only test in this domain
-  whose correct answer is not itself a measurement.
+  <p>A dropped barbell accelerates at g &#8212; the net acceleration the Earth imparts to objects,
+  standard value 9.80665 m/s&#178; &#8212; which makes free fall the only test in this domain whose correct
+  answer is not itself a measurement.
   It exercises the entire chain at once &#8212; the plate-diameter calibration that turns pixels
   into inches, the frame timing that turns them into seconds, and the tracker between them.
   A reading of 9.81 m/s&#178; certifies all three together; any other reading condemns them
@@ -457,8 +473,9 @@
 
 <section>
   <h2><span class="cl">&#167;9</span> Conclusion</h2>
-  <p class="lede">The question was narrow: does a phone measure bar speed well enough to train
-  on? <strong>It does, and now there is a number attached rather than an assurance.</strong></p>
+  <p class="lede">The question was simple: can an ordinary phone measure bar speed accurately
+  enough for training? <strong>It can, and now there is a number attached rather than an
+  assurance.</strong></p>
   <p>Fifteen measurements against a constant that does not care what anyone hoped for.
   <strong>1.25% combined standard uncertainty</strong> &#8212; against a 2% criterion fixed in
   writing before a single drop was filmed &#8212; and <strong>3.00% from standard
@@ -470,6 +487,12 @@
   a bounce fitted as part of a fall, a card whose own arithmetic did not close, a calibration
   drawn at half the available resolution. R&#178; read 1.000 through most of them. None of it was
   visible until the measurement was pointed at an answer that was already known.</p>
+  <p><strong>What the offset means for a velocity reading.</strong> Absolute velocity carries
+  the same repeatability and an offset of between <strong>1.51% and 3.00%</strong>.
+  Acceleration is a distance over a time <em>squared</em>, so the two possible causes do not
+  carry through equally: a spatial error passes into velocity in full, while a timing error
+  passes as the <em>square root</em> of the acceleration ratio &#8212; &#8730;0.9700 = 0.9849, or 1.51%.
+  Separating them needs a measurement this study did not take.</p>
   <p><strong>No further characterisation is planned, and that is a decision.</strong> The
   measurement clears the bar it was given, by a margin, for the job it does today. Appendix C
   lists what would be worth running next and what would have to be true for it to be worth

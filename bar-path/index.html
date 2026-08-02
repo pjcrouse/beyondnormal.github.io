@@ -238,16 +238,22 @@
     <div class="signup" id="notify">
       <span class="eyebrow">In Apple's review queue</span>
       <h2>Want to know when it lands?</h2>
-      <p>Built, measured and submitted. Leave your email and you'll get one message the day it goes live &mdash; nothing else.</p>
+      <p>Built, measured and submitted. Leave your email and you'll get one message the day it goes live &mdash; nothing else. Or tick the box and try it before then.</p>
       <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe" method="post" data-source="bar-path"
-            data-confirm="You're on the list. One email when squat and bench bar path ship — nothing else."
-            data-confirm-repeat="Already on the list — and we've noted bar path is what you're waiting on.">
+            data-confirm="You're on the list. One email the day bar path goes live — nothing else."
+            data-confirm-repeat="Already on the list — and we've noted bar path is what you're waiting on."
+            data-confirm-beta="You're on the list, and down for the beta. TestFlight invites go out by hand, so give it a day or two."
+            data-confirm-beta-repeat="Already on the list — and you're down for the beta now too. The TestFlight invite comes by hand.">
         <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
         <input class="hp" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit">Notify me</button>
+        <label class="opt-in">
+          <input type="checkbox" name="beta" value="1">
+          <span><strong>Add me to the public beta.</strong> TestFlight invites go out by hand, so you can have it before it clears review. Still just the one email either way.</span>
+        </label>
       </form>
       <p class="status" role="status" aria-live="polite"></p>
-      <p class="fine">One email when squat and bench bar path ship. No newsletter, no drip sequence, no sharing your address. Unsubscribe in one click.</p>
+      <p class="fine">One email the day bar path ships. No newsletter, no drip sequence, no sharing your address. Unsubscribe in one click &mdash; which also takes you off the beta list.</p>
     </div>
   </div>
 </section>

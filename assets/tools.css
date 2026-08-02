@@ -219,6 +219,12 @@ footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 22px
 .signup .status.ok { color: var(--teal); }
 .signup .status.err { color: var(--brand-orange-dark); }
 .signup form.busy button { opacity: .6; pointer-events: none; }
+.signup .opt-in { flex-basis: 100%; display: flex; align-items: flex-start; gap: 10px;
+  margin-top: -2px; cursor: pointer; }
+.signup .opt-in input { width: 18px; height: 18px; margin: 2px 0 0; flex: none;
+  accent-color: var(--brand-orange); cursor: pointer; }
+.signup .opt-in span { font-size: 15px; line-height: 1.5; color: var(--ink-muted); }
+.signup .opt-in strong { color: var(--ink); font-weight: 700; }
 @media (max-width: 560px) {
   .signup { padding: 28px 24px; }
   .signup button { width: 100%; }

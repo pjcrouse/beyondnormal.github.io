@@ -23,6 +23,11 @@
       var email = (form.querySelector('input[type=email]') || {}).value || '';
       var trap = (form.querySelector('input[name=company]') || {}).value || '';
       var source = form.getAttribute('data-source') || 'unknown';
+      // Optional, and only present on pages that offer it. Sent as a real
+      // boolean because the worker enrols on a literal true and nothing else --
+      // a stray "on" from a checkbox would silently fail to volunteer anyone.
+      var betaBox = form.querySelector('input[name=beta]');
+      var beta = !!(betaBox && betaBox.checked);
 
       if (!email.trim()) {
         setStatus(form, 'Enter an email address first.', 'err');
@@ -35,7 +40,7 @@
       fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email: email, source: source, company: trap })
+        body: JSON.stringify({ email: email, source: source, company: trap, beta: beta })
       })
         .then(function (res) {
           return res.json().then(function (body) { return { status: res.status, body: body }; });
@@ -49,7 +54,11 @@
             // telling them "nothing more to do" reads as "you're not covered".
             // Copy lives on the form so it can be edited alongside the page.
             var isRepeat = result.body.alreadySubscribed;
-            var msg = form.getAttribute(isRepeat ? 'data-confirm-repeat' : 'data-confirm')
+            // Someone who ticked the beta box asked for two things; confirming
+            // only the mailing list reads as though the second was ignored.
+            var betaAttr = isRepeat ? 'data-confirm-beta-repeat' : 'data-confirm-beta';
+            var msg = (beta && form.getAttribute(betaAttr))
+              || form.getAttribute(isRepeat ? 'data-confirm-repeat' : 'data-confirm')
               || (isRepeat
                     ? "You're already on the list — this page's update is noted too."
                     : "You're on the list. We'll be in touch when there's something worth saying.");

@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="bn-page" content="bar-path-accuracy">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>How Accurate Is It? &mdash; Beyond Normal</title>
+  <meta name="description" content="A measurement system analysis of Beyond Normal's camera-based barbell velocity: 1.25% repeatability and 3.00% trueness against standard gravity, measured over fifteen drops." />
+  <link rel="canonical" href="https://beyondnormal.app/bar-path/accuracy/" />
+
+  <meta property="og:title" content="How Accurate Is It? &mdash; Beyond Normal">
+  <meta property="og:description" content="Every VBT product claims accuracy. This is the characterisation: 1.25% repeatability, 3.00% trueness, measured against gravity over fifteen drops.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://beyondnormal.app/bar-path/accuracy/">
+  <meta property="og:site_name" content="Beyond Normal">
+  <meta property="og:image" content="https://beyondnormal.app/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Accurate Is It? &mdash; Beyond Normal">
+  <meta name="twitter:description" content="1.25% repeatability, 3.00% trueness, measured against gravity over fifteen drops.">
+  <meta name="twitter:image" content="https://beyondnormal.app/assets/og-image.png">
+
+  <meta name="theme-color" content="#e55722">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/tools.css">
+  <style>
+:root {
+  --msa-ground:#F6F7F9; --msa-panel:#FFFFFF; --msa-ink:#0F141B; --msa-muted:#59636F; --msa-rule:#DCE1E8;
+  --msa-accent:#1B4B77; --msa-accent-soft:#E7EFF6;
+  --msa-pass:#256B45; --msa-caution:#8A5D00; --msa-fail:#9E2B2B;
+  --msa-shadow:0 1px 2px rgba(15,20,27,.05);
+}
+.msa, .msa * { box-sizing:border-box; }
+.msa {
+  margin:0; background:var(--msa-ground); color:var(--msa-ink);
+  font:400 16.5px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.msa .wrap { max-width:1000px; margin:0 auto; padding:0 24px 96px; }
+.msa .mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-variant-numeric:tabular-nums; }
+.msa header.cert {
+  border-bottom:2px solid var(--msa-ink); padding:56px 0 22px; margin-bottom:44px;
+}
+.msa .eyebrow {
+  font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--msa-accent); margin:0 0 18px;
+}
+.msa h1 {
+  font:600 clamp(28px,4.4vw,44px)/1.14 ui-serif,Georgia,"Times New Roman",serif;
+  letter-spacing:-.012em; margin:0 0 14px; text-wrap:balance; max-width:20ch;
+}
+.msa .sub { color:var(--msa-muted); font-size:18px; margin:0 0 28px; max-width:62ch; }
+.msa .meta {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); gap:18px 28px;
+  border-top:1px solid var(--msa-rule); padding-top:20px;
+}
+.msa .meta div { min-width:0; }
+.msa .meta div span { display:block; font:600 10.5px/1 ui-monospace,Menlo,monospace; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--msa-muted); margin-bottom:6px; }
+.msa .meta div strong { font:500 15px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-variant-numeric:tabular-nums; }
+.msa section { margin:0 0 52px; }
+.msa .tldr { border:1px solid var(--msa-rule); border-left:3px solid var(--msa-accent); background:var(--msa-panel);
+  border-radius:0 3px 3px 0; padding:24px 26px; margin:0 0 52px; box-shadow:var(--msa-shadow); }
+.msa .tldr h2 { border:none; padding:0; margin:0 0 4px; }
+.msa .tldr > p:first-of-type { margin-top:10px; }
+.msa .verdicts { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));
+  gap:2px; margin:20px 0 4px; background:var(--msa-rule); border:1px solid var(--msa-rule); border-radius:3px; }
+.msa .verdicts div { background:var(--msa-panel); padding:13px 15px; min-width:0; }
+.msa .verdicts dt { font:600 10.5px/1 ui-monospace,Menlo,monospace; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--msa-muted); margin-bottom:7px; }
+.msa .verdicts dd { margin:0; font:500 14px/1.45 -apple-system,system-ui,sans-serif; }
+.msa .verdicts dd b { font:650 19px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-variant-numeric:tabular-nums; display:block; margin-bottom:4px; }
+.msa h2 {
+  font:600 21px/1.3 ui-serif,Georgia,serif; margin:0 0 6px; display:flex; gap:14px; align-items:baseline;
+  border-bottom:1px solid var(--msa-rule); padding-bottom:10px;
+}
+.msa h2 .cl { font:600 13px/1 ui-monospace,Menlo,monospace; color:var(--msa-accent); flex:none; }
+.msa h3 { font:600 15px/1.4 -apple-system,system-ui,sans-serif; margin:30px 0 8px;
+  letter-spacing:.01em; }
+.msa p { max-width:70ch; margin:14px 0; }
+.msa p.lede { font-size:17.5px; }
+.msa ul { max-width:70ch; padding-left:20px; }
+.msa li { margin:7px 0; }
+.msa strong { font-weight:640; }
+.msa .scroll { overflow-x:auto; margin:22px 0; border:1px solid var(--msa-rule); border-radius:3px;
+  background:var(--msa-panel); box-shadow:var(--msa-shadow); }
+.msa table { border-collapse:collapse; width:100%; font-size:14.5px; }
+.msa caption { caption-side:top; text-align:left; padding:14px 16px 12px; color:var(--msa-muted);
+  font:500 12px/1.5 ui-monospace,Menlo,monospace; letter-spacing:.06em; text-transform:uppercase;
+  border-bottom:1px solid var(--msa-rule); }
+.msa th, .msa td { padding:9px 14px; text-align:right; border-bottom:1px solid var(--msa-rule); white-space:nowrap; }
+.msa thead th { font:600 11px/1.3 ui-monospace,Menlo,monospace; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--msa-muted); text-align:right; }
+.msa th[scope=row], .msa td:first-child, .msa thead th:first-child { text-align:left; }
+.msa tbody td { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-variant-numeric:tabular-nums; }
+.msa tbody tr:last-child td, .msa tbody tr:last-child th { border-bottom:none; }
+.msa td.em { font-weight:650; }
+.msa td.q, .msa .q { color:var(--msa-muted); }
+.msa tr.total td, .msa tr.total th { border-top:2px solid var(--msa-ink); font-weight:650; }
+.msa .chip { display:inline-block; font:600 10.5px/1 ui-monospace,Menlo,monospace; letter-spacing:.1em;
+  text-transform:uppercase; padding:5px 9px; border-radius:2px; vertical-align:2px; }
+.msa .chip.pass { color:var(--msa-pass); border:1px solid currentColor; }
+.msa .chip.open { color:var(--msa-caution); border:1px solid currentColor; }
+.msa .chip.na { color:var(--msa-muted); border:1px solid currentColor; }
+.msa .chip.part { color:var(--msa-accent); border:1px solid currentColor; }
+.msa .callout { border-left:3px solid var(--msa-accent); background:var(--msa-accent-soft);
+  padding:16px 20px; margin:24px 0; border-radius:0 3px 3px 0; }
+.msa .callout p { margin:0; max-width:66ch; }
+.msa .callout p + p { margin-top:10px; }
+.msa .figs { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(215px,100%),1fr)); gap:20px; margin:24px 0; }
+.msa figure { margin:0; min-width:0; }
+.msa figure img { width:100%; height:auto; display:block; border:1px solid var(--msa-rule); border-radius:3px; background:#000; }
+.msa figcaption { font:500 11.5px/1.45 ui-monospace,Menlo,monospace; color:var(--msa-muted); margin-top:7px; }
+.msa figcaption .fc { color:var(--msa-ink); font-weight:650; }
+.msa .pair { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:24px; margin:24px 0; }
+.msa .pair figcaption strong.state { display:inline-block; font:600 10px/1 ui-monospace,Menlo,monospace;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--msa-fail); border:1px solid currentColor;
+  padding:3px 7px; border-radius:2px; margin-right:8px; vertical-align:1px; }
+.msa .pair figcaption { font-family:-apple-system,system-ui,sans-serif; font-size:13.5px; line-height:1.5; max-width:46ch; }
+.msa footer { border-top:1px solid var(--msa-rule); margin-top:56px; padding-top:20px;
+  color:var(--msa-muted); font-size:13.5px; }
+.msa a { color:var(--msa-accent); }
+.msa a:focus-visible, .msa button:focus-visible { outline:2px solid var(--msa-accent); outline-offset:2px; }
+
+.msa {
+  --msa-ground:#fafaf0; --msa-panel:#ffffff; --msa-ink:#0a0a0a; --msa-muted:#5b666d;
+  --msa-rule:rgba(0,0,0,.13); --msa-accent:#2c7f7a; --msa-accent-soft:#eef5f4;
+  --msa-pass:#1f6b4a; --msa-caution:#8a5d00; --msa-fail:#a33227;
+  --msa-shadow:0 1px 2px rgba(0,0,0,.04);
+  background:transparent; color:var(--msa-ink);
+  font-family:'Open Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+.msa h1, .msa h2, .msa h3 { font-family:'Montserrat',-apple-system,sans-serif; }
+.msa h1 { letter-spacing:-.02em; }
+.msa .eyebrow, .msa .cl, .msa .chip, .msa .state,
+.msa thead th, .msa caption, .msa figcaption,
+.msa .meta div span, .msa .verdicts dt { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+.msa .wrap { padding-bottom:72px; }
+
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">&#128293;</span>
+      <span>Beyond Normal</span>
+    </a>
+    <div class="nav-links">
+      <a href="/bar-path/">Bar Path</a>
+      <a href="/philosophy.html">Philosophy</a>
+      <a href="/support.html">Support</a>
+      <a href="https://apps.apple.com/app/id6753819612" class="nav-cta">Get the App</a>
+    </div>
+  </div>
+</nav>
+
+<main class="msa">
+<div class="wrap">
+<header class="cert">
+  <p class="eyebrow">Measurement System Analysis &#183; Beyond Normal</p>
+  <h1>Camera-Based Barbell Velocity</h1>
+  <p class="sub">Repeatability, trueness and uncertainty of an iPhone bar-path measurement,
+  characterised against free fall. Every figure below is measured.</p>
+  <div class="meta">
+    <div><span>Reference</span><strong>g = 9.80665 m/s&#178;</strong></div>
+    <div><span>Measurements</span><strong>15</strong></div>
+    <div><span>Combined u<sub>c</sub></span><strong>1.25%</strong></div>
+    <div><span>Bias</span><strong>-3.00%</strong></div>
+    <div><span>Date</span><strong>2026-08-01</strong></div>
+  </div>
+</header>
+
+<div class="tldr">
+  <h2><span class="cl">TL;DR</span> What this establishes</h2>
+  <p class="lede">The gravity of Earth, denoted g, is the net acceleration imparted to
+  objects by the Earth. Its standard value is <strong>9.80665 m/s&#178;</strong>. An ordinary
+  iPhone, filming a dropped barbell, measured it fifteen times: it repeats to
+  <strong>1.25%</strong> and lands <strong>3.00%</strong> from the standard
+  value, with no correction applied.</p>
+  <p><strong>In plain terms.</strong> Two different things can be wrong with a measurement and
+  they need separate answers. <em>Repeatability</em> is whether you get the same number twice.
+  <em>Trueness</em> is whether that number sits where it should. A tape measure with a bent end
+  is perfectly repeatable and consistently wrong; a stretchy one is honest on average and
+  useless in practice. This report measures both, separately: the reading wanders by
+  <strong>1.25%</strong>, and it sits <strong>3.00%</strong> from where gravity
+  says it should &#8212; a gap that disappears entirely for velocity loss, because that is a ratio of
+  two speeds measured with the same ruler.</p>
+  <dl class="verdicts">
+    <div><dt>Repeatability</dt><dd><b>1.25%</b>combined standard uncertainty,
+      2.50% expanded. Criterion was 2%, declared before any data existed.</dd></div>
+    <div><dt>Trueness</dt><dd><b>3.00%</b>reproducible to &#177;0.46% across
+      three passes on five recordings &#8212; a constant of the setup, not a limit of the method.</dd></div>
+    <div><dt>Acceleration</dt><dd><b>Direct</b>Not an inference. Gravity IS an acceleration;
+      it is the quantity the whole study measured.</dd></div>
+    <div><dt>Velocity loss</dt><dd><b>Exact</b>A ratio through one ruler, so the offset
+      divides out identically. Repeatability stands unmodified.</dd></div>
+  </dl>
+  <p><strong>What follows from it.</strong> Absolute velocity carries the same repeatability
+  and an offset of between <strong>1.51% and 3.00%</strong>. Acceleration is a
+  distance over a time <em>squared</em>, so the two possible causes do not carry through
+  equally: a spatial error passes into velocity in full, while a timing error passes as the
+  <em>square root</em> of the acceleration ratio &#8212; &#8730;0.9700 = 0.9849, or 1.51%. Separating
+  them needs a measurement this study did not take.</p>
+  <p><strong>It did not only measure the feature &#8212; it repaired it.</strong> Nine defects and
+  five design changes came out of running this. Four of the defects and all five of the changes
+  reached the bar-path feature people actually use, including one that had every analysis the
+  app ever ran working from 30 frames a second when the phone had recorded 120.
+  <a href="#appendix-b">Appendix B</a> lists every one, including the two that turned out to be
+  worthless.</p>
+  <p><strong>What it does not establish.</strong> One configuration, one operator, one
+  session. The 3.00% offset belongs to a tripod that never moved, so it is not a
+  figure other setups inherit &#8212; which is the argument for shipping the check itself rather
+  than a number: any user can measure their own. Linearity is partly covered (&#167;8) and no
+  velocity-dependent slope has been separately resolved.</p>
+</div>
+
+<section>
+  <h2><span class="cl">&#167;1</span> Purpose and scope</h2>
+  <p class="lede">Every velocity-based training product claims accuracy. None publish a
+  characterisation. This is one, for a measurement that reads bar speed from an ordinary
+  phone camera.</p>
+  <p>A dropped barbell accelerates at g, which makes free fall the only test in this domain
+  whose correct answer is not itself a measurement.
+  It exercises the entire chain at once &#8212; the plate-diameter calibration that turns pixels
+  into inches, the frame timing that turns them into seconds, and the tracker between them.
+  A reading of 9.81 m/s&#178; certifies all three together; any other reading condemns them
+  together.</p>
+  <p><strong>Scope.</strong> One measurement system, one operator, one bar and plate, one
+  venue, one camera, one format. Repeatability and bias only. Clause 8 states what this does not
+  cover, and that list is longer than this one.</p>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;2</span> Method</h2>
+  <p>Five drops of a barbell loaded with an Olympic bumper plate onto a mat, filmed at 4K
+  120 fps in portrait from a tripod square to the drop, camera position unchanged throughout.
+  The plate face is what the tracker follows, and its 450 mm diameter is what converts pixels
+  to inches. Each of the five recordings was then analysed <strong>three times</strong>, each
+  pass beginning with an independent placement of the calibration circle.</p>
+  <p><strong>Focus and exposure were left on automatic.</strong> Locking both would have been
+  the better protocol &#8212; autofocus can alter apparent scale mid-clip &#8212; and this records what
+  was done rather than what should have been.</p>
+  <p>That structure is the point. The circle is placed by a human and is the system's only
+  ruler, so the operator sits <em>inside</em> the measurement rather than beside it. Analysing
+  each clip once would confound the operator's contribution with the drop's; three
+  independent placements separate them.</p>
+  <p>Pass 3 was taken after the placement interface gained full-screen and 12&#215; zoom, to test
+  whether operator contribution was limited by what the operator could see.</p>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;3</span> Acceptance criteria</h2>
+  <p>Declared before any data was collected, and derived from the decisions the number
+  drives rather than from what looked achievable.</p>
+  <div class="scroll"><table>
+    <caption>Table 1 &#8212; Pre-declared acceptance criteria and outcome</caption>
+    <thead><tr><th>Criterion</th><th>Basis</th><th>Target</th><th>Result</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Repeatability</td><td>Distinguishing 10/20/30% velocity-loss thresholds</td><td>&#963; &#8804; 2%</td><td>1.25%</td><td><span class="chip pass">Met</span></td></tr>
+      <tr><td>Bias, absolute zones</td><td>Velocity-zone prescription</td><td>&#8804; 2% after calibration</td><td>-3.00%, no correction applied</td><td><span class="chip open">Open</span></td></tr>
+      <tr><td>Bias, velocity loss</td><td>Loss is a ratio; scale cancels exactly</td><td>&#8212;</td><td>Cancels</td><td><span class="chip pass">N/A by design</span></td></tr>
+      <tr><td>Linearity</td><td>Drop sweeps 0&#8211;4.4 m/s from rest; lifts occupy 0.1&#8211;1.0 m/s</td><td>No significant slope</td><td>Range covered; slope not separately resolved</td><td><span class="chip part">Partial</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p>Velocity loss is a <em>ratio</em> of two velocities measured through
+  the same ruler, so any constant scale error divides out exactly. For the quantity most
+  velocity-based training decisions actually rest on, the bias in Table 3 is arithmetically
+  irrelevant. It matters only for absolute velocity zones.</p></div>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;4</span> Results</h2>
+  <p>Fifteen measurements. Every one returned a value; none was rejected.</p>
+  <p>The measurement is a least-squares fit of the plate's vertical position against time to
+  <strong>y = at&#178; + bt + c</strong>, over the frames between release and first impact.
+  Acceleration is |2a|; b is the speed at the first fitted frame and c its position. R&#178; is the
+  fit of that parabola to those positions, and it was <strong>1.000 in all fifteen</strong> &#8212;
+  reported chiefly to show that it carries no information about accuracy, see &#167;7.</p>
+  <div class="scroll"><table>
+    <caption>Table 2 &#8212; Measured acceleration, m/s&#178;. Five recordings &#215; three independent circle placements</caption>
+    <thead><tr><th>Clip</th><th>Pass 1</th><th>Pass 2</th><th>Pass 3</th><th>Mean</th><th>Range</th><th>Bias</th></tr></thead>
+    <tbody><tr><th scope='row'>A</th><td>9.52</td><td>9.45</td><td>9.63</td><td class='em'>9.533</td><td>0.18</td><td class='q'>-2.8%</td></tr><tr><th scope='row'>B</th><td>9.57</td><td>9.46</td><td>9.57</td><td class='em'>9.533</td><td>0.11</td><td class='q'>-2.8%</td></tr><tr><th scope='row'>C</th><td>9.40</td><td>9.32</td><td>9.34</td><td class='em'>9.353</td><td>0.08</td><td class='q'>-4.6%</td></tr><tr><th scope='row'>D</th><td>9.54</td><td>9.62</td><td>9.40</td><td class='em'>9.520</td><td>0.22</td><td class='q'>-2.9%</td></tr><tr><th scope='row'>E</th><td>9.56</td><td>9.69</td><td>9.61</td><td class='em'>9.620</td><td>0.13</td><td class='q'>-1.9%</td></tr>
+      <tr class="total"><th scope="row">Pass mean</th><td>9.518</td><td>9.508</td><td>9.510</td><td class="em">9.512</td><td>&#8212;</td><td class="q">-3.00%</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The three pass means span 0.11% of reading.</strong> Three independent
+  re-placements of the ruler, on five separate drops, reproduce the same answer to a tenth
+  of a percent. Whatever is displacing this measurement from 9.81 is not random and is not
+  the operator.</p>
+
+  <h3>Variance decomposition</h3>
+  <div class="scroll"><table>
+    <caption>Table 3 &#8212; One-way ANOVA, 5 recordings &#215; 3 placements, and uncertainty budget</caption>
+    <thead><tr><th>Component</th><th>Type</th><th>sd (m/s&#178;)</th><th>% of reading</th></tr></thead>
+    <tbody>
+      <tr><td>Placement and analysis</td><td>A</td><td>0.0784</td><td>0.82%</td></tr>
+      <tr><td>Drop execution and setup</td><td>A</td><td>0.0861</td><td>0.90%</td></tr>
+      <tr><td>Plate diameter, 450 &#177; 2 mm (specification)</td><td>B</td><td>&#8212;</td><td>0.26%</td></tr>
+      <tr><td colspan="4" class="q" style="font-size:13px; white-space:normal; text-align:left;">
+        <strong>Type A</strong> is evaluated from the scatter of repeated measurements;
+        <strong>Type B</strong> by any other means &#8212; a specification, a certificate, an
+        engineering judgement. The plate term is Type B because it rests on the standard
+        Olympic bumper diameter of 450 mm rather than on anything measured here. The &#177;2 mm is
+        an assumed manufacturing tolerance covering training plates rather than a
+        competition-certified one, treated as rectangular.</td></tr>
+      <tr class="total"><td>Combined standard uncertainty, u<sub>c</sub></td><td></td><td>&#8212;</td><td>1.25%</td></tr>
+      <tr><td>Expanded uncertainty, k = 2 (&#8776;95%)</td><td></td><td>&#8212;</td><td>2.50%</td></tr>
+      <tr><td colspan="4" class="q" style="font-size:13px; white-space:normal; text-align:left;">
+        The components are added in quadrature &#8212; squared, summed, square-rooted &#8212; because
+        independent errors partly cancel rather than stacking. <strong>Combined standard
+        uncertainty</strong> is the one-sigma figure: about two measurements in three land
+        within it. <strong>Expanded</strong> doubles it, and roughly nineteen in twenty land
+        within that.</td></tr>
+      <tr class="total"><td>Bias vs 9.80665 m/s&#178;</td><td></td><td>-0.2946</td><td>-3.00% &#177; 0.46%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout">
+    <p><strong>Precision and trueness separate cleanly here.</strong> The measurement repeats
+    to 1.25%. Its offset from the reference is 3.00% and reproduces to
+    &#177;0.46% across three independent passes on five separate recordings &#8212; larger than
+    the entire 95% interval, which is the signature of a fixed constant rather than
+    instability. A constant of that kind is either corrected or declared. This one is
+    declared, because velocity loss does not see it.</p>
+    <p>The study design expected the operator to dominate. It does not: placement contributes
+    0.82% against 0.90% for everything else about executing a drop &#8212;
+    comparable, not larger. Where the plate lands, how it is lit and what the seed frame looks
+    like matter as much as the fingertip does. That is one of the things the study was run to
+    find out.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;5</span> Isolating the operator's contribution</h2>
+  <p>Placement is the largest single component in Table 3, and it is the one a human
+  controls, so it was the first candidate for the bias. Between passes 2 and 3 the
+  placement screen gained full-screen presentation and 12&#215; zoom. In a 260-point preview a
+  4K plate spans roughly three image pixels per screen point, so a pixel of calibration
+  was not reachable because it was not visible.</p>
+  <p>Across all five recordings the paired change is <strong>&#8722;0.03% (t = &#8722;0.06, 4 df)</strong>.
+  <strong>That is the result this clause exists for: placement is eliminated as the source
+  of the bias.</strong> A cause removed by measurement is worth more than a cause suspected,
+  and it redirects the remaining search onto the fixed camera geometry in &#167;6.</p>
+  <div class="callout">
+    <p><strong>What it does not establish.</strong> One operator ran all fifteen
+    measurements, and by pass 3 he knew exactly where that rim was. The finding is that
+    magnification did not change <em>this</em> operator's result &#8212; it says nothing about a
+    first-time user placing a circle on a plate they have never measured, which is a
+    different population and was not sampled.</p>
+    <p>The change was retained on that basis. It is a usability improvement whose value sits
+    outside what this study can measure, and one clip did move 2% before the full set showed
+    the mean had not &#8212; a reminder that with five recordings and a 1.3% spread, nothing under
+    about 1.7% is a signal.</p>
+  </div>
+
+  <h2><span class="cl">&#167;6</span> Causes eliminated</h2>
+  <p>Each of the following was excluded by derivation or by measurement, not by assumption.</p>
+  <div class="scroll"><table>
+    <caption>Table 4 &#8212; Candidate causes of the residual bias, and their disposition</caption>
+    <thead><tr><th>Candidate</th><th>Magnitude</th><th>Disposition</th></tr></thead>
+    <tbody>
+      <tr><td>Operator circle placement</td><td>&#8722;0.03% (t = &#8722;0.06)</td><td>Eliminated by measurement, &#167;5</td></tr>
+      <tr><td>Plate diameter vs specification</td><td>&#177;0.26%, Type B</td><td>Not a candidate &#8212; see Table 3</td></tr>
+      <tr><td>Motion blur; tracker lag; exposure offset</td><td>0.00%</td><td>Structurally absorbed into the fitted velocity term</td></tr>
+      <tr><td>Air resistance and buoyancy</td><td>&#8722;0.13%</td><td>20&#215; too small</td></tr>
+      <tr><td>Rolling shutter</td><td>&#8776; 0% in portrait</td><td>Sensor readout runs perpendicular to the fall</td></tr>
+      <tr><td>Camera roll</td><td>(1 &#8722; cos &#961;); 0.14% at 3&#176;</td><td>Second order</td></tr>
+      <tr><td>Camera pitch (keystone)</td><td>&#8722;1.5 to &#8722;2% per degree</td><td><span class="chip open">Open</span></td></tr>
+      <tr><td>Calibration plane &#8800; fall plane</td><td>&#8722;1% per cm, order of magnitude</td><td><span class="chip open">Open</span></td></tr>
+      <tr><td>Frame time base</td><td>unquantified</td><td><span class="chip open">Open</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>The three that remain open share a property that fits the data: they are fixed in the
+  camera's geometry, and <strong>the tripod did not move for the duration of the study</strong>.
+  A constant setup error produces exactly what Table 2 shows &#8212; a bias stable to a tenth of a
+  percent across every recording and every pass.</p>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;7</span> Two instrument findings</h2>
+  <h3>R&#178; is not a quality gate</h3>
+  <p>R&#178; read <strong>1.000 on all fifteen measurements</strong>, including the one that was
+  4.8% wrong. The quadratic term dominates the variance of a falling body, so a fit can be
+  arbitrarily misplaced and still describe a parabola. Every fit-quality figure in this class
+  of product has the same defect. The instrument now reports the worst frame's distance from
+  the curve in millimetres instead &#8212; a physical quantity that does not flatter itself.</p>
+  <h3>Reliability, before and after</h3>
+  <p>Before the corrections in Appendix B, four drops yielded <strong>one</strong> usable
+  measurement. After, fifteen of fifteen returned a value. A measurement that works half the
+  time cannot support an accuracy claim however close its successes land, and that failure
+  was invisible because failed measurements were being hidden rather than displayed.</p>
+
+  <h3>What two of those failures looked like</h3>
+  <p><strong>Both of the cards below are pre-correction.</strong> They are not a before and
+  an after &#8212; they are two different defects, each caught and fixed before the measurements in
+  Table 2 were taken. Neither behaviour survives in the shipped tool.</p>
+  <div class="pair">
+    <figure><img src="fig/defect-bounce-in-fit.jpg" alt="Bimodal velocity plot, two ramps separated by a cliff">
+      <figcaption><strong class="state">Before</strong><strong>3.23 m/s&#178;.</strong> The analysis window closed at the lowest tracked
+      point, which on a bar that bounces is the end of the <em>bounce</em>. One parabola was
+      fitted across fall, impact, rebound and second fall &#8212; 112 frames where 46 were free fall.
+      Each arc alone measures 9.40 and 8.91.</figcaption></figure>
+    <figure><img src="fig/defect-origin-mismatch.jpg" alt="Velocity plot with the measured line offset from the reference">
+      <figcaption><strong class="state">Before</strong><strong>0.84 m in 0.517 s.</strong> Distance ran from the first surviving
+      frame, time from the untrimmed release. A reader checking &#189;gt&#178; gets 1.26 m and concludes
+      the app is a third out. A card that fails the reader's own arithmetic is worse than no
+      card.
+      <br><br>Note the shape of the failure: the measured line sits below the reference for
+      the whole sweep yet still reports 9.43. On a velocity plot g is the <em>slope</em>, and
+      that line is offset, not tilted &#8212; <strong>a tilt would mean the calibration was wrong; an
+      offset means the window was.</strong> The fit had opened before the bar was released,
+      so extrapolated back it claims a dropped barbell travelling upward at 0.76 m/s. On a
+      position plot the same defect is an unremarkable parabola.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;8</span> Limitations</h2>
+  <p>What follows is not covered by any figure above. It is scoped to what a known mechanism
+  could plausibly do &#8212; an untested case with no mechanism behind it is not a limitation, it is
+  a sentence.</p>
+  <ul>
+    <li><strong>Linearity is partly covered, and the uncovered part is one-sided.</strong>
+    Each drop begins at rest and sweeps continuously to 4.4 m/s, so the 0.1&#8211;1.0 m/s lifting
+    band is <em>inside</em> every measurement rather than extrapolated to &#8212; about
+    <strong>20% of the frames in each fit</strong> are taken there. And the mechanisms that
+    degrade a camera measurement all worsen with speed: the bar travels 37 mm between frames
+    at the bottom of a drop against 4 mm during a squat, so the drop is roughly nine
+    times the tracking difficulty of the lift it stands in for. For any error that grows with
+    speed, the figures above are an upper bound. <strong>No mechanism is known that would run
+    the other way</strong> &#8212; that would take an error growing as the plate slows &#8212; so nothing
+    identified is left unbounded.</li>
+    <li><strong>Reproducibility across operators is not assessed.</strong> One operator, so
+    the between-operator term is structurally absent. Its likely size is constrained from two
+    directions: the within-operator figure is 0.82%, and the placement step now carries full
+    screen, 12&#215; zoom and axis ticks specifically to narrow the room two people have to
+    differ.</li>
+    <li><strong>Stability over time is not assessed.</strong> All fifteen measurements come
+    from one session.</li>
+    <li><strong>The plate was not independently verified.</strong> Its diameter is carried
+    as the specification with tolerance &#8212; 450 &#177; 2 mm, Type B &#8212; rather than as a measured
+    value, because nothing on hand could measure a chamfered rubber rim to better than the
+    tolerance itself. At 0.26% against 0.82% from placement, the term does not repay a
+    better instrument.</li>
+    <li><strong>One configuration throughout</strong> &#8212; one bar and plate, one camera, one
+    venue, one format, one camera position. Generalisation to other plates, phones and rooms
+    is untested.</li>
+    <li><strong>The offset is characterised but not attributed.</strong> It reproduces to
+    &#177;0.46% and &#167;6 narrows it to the camera's fixed geometry or the frame time base. It
+    is not corrected in the product, and that is a decision rather than an omission: the
+    question was whether the measurement is accurate within a delta that matters for training,
+    and at 3.00% &#8212; cancelling entirely for velocity loss &#8212; it is.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;9</span> Conclusion</h2>
+  <p class="lede">The question was narrow: does a phone measure bar speed well enough to train
+  on? <strong>It does, and now there is a number attached rather than an assurance.</strong></p>
+  <p>Fifteen measurements against a constant that does not care what anyone hoped for.
+  <strong>1.25% combined standard uncertainty</strong> &#8212; against a 2% criterion fixed in
+  writing before a single drop was filmed &#8212; and <strong>3.00% from standard
+  gravity with no correction applied at all</strong>. For velocity loss, which is what most
+  velocity-based training decisions actually rest on, that offset divides out exactly and the
+  repeatability figure stands unmodified.</p>
+  <p>What makes those numbers worth anything is what it took to get them. Nine defects in
+  Appendix B were found by running this study and fixed before the data in Table 2 existed &#8212;
+  a bounce fitted as part of a fall, a card whose own arithmetic did not close, a calibration
+  drawn at half the available resolution. R&#178; read 1.000 through most of them. None of it was
+  visible until the measurement was pointed at an answer that was already known.</p>
+  <p><strong>No further characterisation is planned, and that is a decision.</strong> The
+  measurement clears the bar it was given, by a margin, for the job it does today. Appendix C
+  lists what would be worth running next and what would have to be true for it to be worth
+  running &#8212; every entry there is gated on a feature that does not exist yet, not on a doubt
+  about this one.</p>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;10</span> Appendix A &#8212; instrument outputs</h2>
+  <p>All fifteen, unselected, in acquisition order. Clip C is visibly the poorest in every
+  pass: a single-frame tracker excursion mid-plot, the worst residuals of the set at 13&#8211;18 mm,
+  and the lowest reading of the set each time. It was not excluded from any figure in this
+  report.</p>
+  <div class="figs"><figure><img src="fig/t1-A.jpg" alt='Instrument output, clip A, trial 1' loading='lazy'><figcaption><span class='fc'>Clip A</span> &#183; pass 1 &#183; 9.52 m/s&#178;</figcaption></figure><figure><img src="fig/t1-B.jpg" alt='Instrument output, clip B, trial 1' loading='lazy'><figcaption><span class='fc'>Clip B</span> &#183; pass 1 &#183; 9.57 m/s&#178;</figcaption></figure><figure><img src="fig/t1-C.jpg" alt='Instrument output, clip C, trial 1' loading='lazy'><figcaption><span class='fc'>Clip C</span> &#183; pass 1 &#183; 9.40 m/s&#178;</figcaption></figure><figure><img src="fig/t1-D.jpg" alt='Instrument output, clip D, trial 1' loading='lazy'><figcaption><span class='fc'>Clip D</span> &#183; pass 1 &#183; 9.54 m/s&#178;</figcaption></figure><figure><img src="fig/t1-E.jpg" alt='Instrument output, clip E, trial 1' loading='lazy'><figcaption><span class='fc'>Clip E</span> &#183; pass 1 &#183; 9.56 m/s&#178;</figcaption></figure><figure><img src="fig/t2-A.jpg" alt='Instrument output, clip A, trial 2' loading='lazy'><figcaption><span class='fc'>Clip A</span> &#183; pass 2 &#183; 9.45 m/s&#178;</figcaption></figure><figure><img src="fig/t2-B.jpg" alt='Instrument output, clip B, trial 2' loading='lazy'><figcaption><span class='fc'>Clip B</span> &#183; pass 2 &#183; 9.46 m/s&#178;</figcaption></figure><figure><img src="fig/t2-C.jpg" alt='Instrument output, clip C, trial 2' loading='lazy'><figcaption><span class='fc'>Clip C</span> &#183; pass 2 &#183; 9.32 m/s&#178;</figcaption></figure><figure><img src="fig/t2-D.jpg" alt='Instrument output, clip D, trial 2' loading='lazy'><figcaption><span class='fc'>Clip D</span> &#183; pass 2 &#183; 9.62 m/s&#178;</figcaption></figure><figure><img src="fig/t2-E.jpg" alt='Instrument output, clip E, trial 2' loading='lazy'><figcaption><span class='fc'>Clip E</span> &#183; pass 2 &#183; 9.69 m/s&#178;</figcaption></figure><figure><img src="fig/t3-A.jpg" alt='Instrument output, clip A, trial 3' loading='lazy'><figcaption><span class='fc'>Clip A</span> &#183; pass 3 &#183; 9.63 m/s&#178;</figcaption></figure><figure><img src="fig/t3-B.jpg" alt='Instrument output, clip B, trial 3' loading='lazy'><figcaption><span class='fc'>Clip B</span> &#183; pass 3 &#183; 9.57 m/s&#178;</figcaption></figure><figure><img src="fig/t3-C.jpg" alt='Instrument output, clip C, trial 3' loading='lazy'><figcaption><span class='fc'>Clip C</span> &#183; pass 3 &#183; 9.34 m/s&#178;</figcaption></figure><figure><img src="fig/t3-D.jpg" alt='Instrument output, clip D, trial 3' loading='lazy'><figcaption><span class='fc'>Clip D</span> &#183; pass 3 &#183; 9.40 m/s&#178;</figcaption></figure><figure><img src="fig/t3-E.jpg" alt='Instrument output, clip E, trial 3' loading='lazy'><figcaption><span class='fc'>Clip E</span> &#183; pass 3 &#183; 9.61 m/s&#178;</figcaption></figure></div>
+</section>
+
+<section>
+  <h2 id="appendix-b"><span class="cl">&#167;11</span> Appendix B &#8212; defects this study found and fixed</h2>
+  <p><strong>Every one of these was found by running this study, and every one was fixed
+  before the measurements in Table 2 were taken.</strong> None of them reached a user.</p>
+  <p>They are published because the list is the point. A feature that measures something can
+  be shipped on a plausible-looking screenshot, or it can be taken apart until the numbers
+  survive a reference that does not care what anybody hoped for. Every one of these was only
+  visible because the measurement was pointed at an answer known in advance &#8212; R&#178; read 1.000
+  through most of them.</p>
+  <p>The study was run to establish confidence in the measurement. It also <strong>repaired
+  the product</strong>, which was not its purpose and is the more useful outcome. The right
+  column says which: <strong>four of the nine</strong> reached the shipping bar-path feature
+  that measures your set, three were confined to the drop-test tool itself, and two fixed a
+  detector that was later removed on other grounds.</p>
+  <p>The four that landed are the load-bearing ones. Frame rate is the whole temporal
+  resolution of a rep &#8212; at 30 fps a turnaround is located to &#177;17 ms and a five-frame peak
+  spans 167 ms of the lift; at 120 fps that becomes &#177;4 ms and 42 ms. And the tracker is not a
+  detail of the drop test, it is what follows the plate through every rep you film.</p>
+
+  <h3>And what it changed that was never a defect</h3>
+  <p>These were working as designed. The study is what showed the design was the limit &#8212;
+  which is a different and more useful thing for a study to do than find bugs.</p>
+  <div class="scroll"><table>
+    <caption>Table 6 &#8212; Changes the study motivated, all of them in the shipping feature</caption>
+    <thead><tr><th>Change</th><th>Why the study forced it</th></tr></thead>
+    <tbody>
+      <tr><td>Full screen, 12&#215; zoom, mode toggle and axis ticks for circle placement</td><td>Placement is the largest single component of the uncertainty budget at 0.82%. In a 260-point preview a 4K plate spans about three image pixels per screen point &#8212; a pixel of calibration was unreachable because it was invisible. Nothing in the numbers said so until the budget was decomposed.</td></tr>
+      <tr><td>The calibration stated on screen, in pixels and px/in</td><td>Every velocity scales off one number that the app knew and never showed. It can now be checked against a tape instead of inferred from a result that looks plausible.</td></tr>
+      <tr><td>Snap removed</td><td>It never once succeeded on real footage in this gym. An assist that always fails is worse than none: it invites you to keep trying, and its failure note was read as evidence about a circle it was not describing.</td></tr>
+      <tr><td>Free-fall reading taken out of set analysis</td><td>Gated tightly it hid the bad drops, which are the ones worth seeing; gated loosely it put a gravity reading on every bench set. Needing a toggle between two wrong behaviours was the tell that it belonged elsewhere.</td></tr>
+      <tr><td><strong>The Free-Fall Check shipped as a tool in the app</strong></td><td>The most useful outcome of the whole study. Rather than publishing an accuracy figure and asking anyone to take it on trust, the instrument that produced every number in this report is in the app. Any user can drop a barbell and measure their own camera, their own plate, their own room &#8212; because &#167;8 is honest that this report characterises one configuration, and theirs is not it.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="scroll"><table>
+    <caption>Table 5 &#8212; Corrective actions</caption>
+    <thead><tr><th>Defect</th><th>Consequence</th><th>Reached</th></tr></thead>
+    <tbody>
+      <tr><td>Photos transcoded on import</td><td>HEVC 120 fps arrived as H.264 30 fps &#8212; 11 frames of fall instead of 54. Every prior analysis ran on a degraded copy.</td><td><span class="chip pass">Bar path</span></td></tr>
+      <tr><td>General-purpose object tracker</td><td>The fall's endpoints implied 10.4 m/s&#178; while the parabola through the middle said 6.8. Both cannot describe one fall.</td><td><span class="chip pass">Bar path</span></td></tr>
+      <tr><td>Detector scored by circumference fraction</td><td>Score improved as the circle grew past the rim. From a poor seed, 65% oversize.</td><td><span class="chip na">Removed since</span></td></tr>
+      <tr><td>Window closed at the lowest tracked point</td><td>Bounce fitted as part of the fall. 3.23 m/s&#178; where each arc measures 9.40 and 8.91.</td><td><span class="chip part">Drop test</span></td></tr>
+      <tr><td>Window opened at the highest tracked point</td><td>Pre-release hold flattened the parabola. Fitted vertex fell inside the window &#8212; a dropped barbell travelling upward.</td><td><span class="chip part">Drop test</span></td></tr>
+      <tr><td>Time and distance measured from different origins</td><td>"0.84 m in 0.517 s" for a 9.43 m/s&#178; fall.</td><td><span class="chip part">Drop test</span></td></tr>
+      <tr><td>Calibration frame capped at 1920 px</td><td>Portrait 4K seeded at half linear resolution &#8212; 0.5% of calibration per pixel of placement.</td><td><span class="chip pass">Bar path</span></td></tr>
+      <tr><td>Calibration ring stroked inside its radius</td><td>Only "outer edge exactly on the rim" was correct; every other alignment habit read large, and only large.</td><td><span class="chip pass">Bar path</span></td></tr>
+      <tr><td>Rim detection required a lighter background</td><td>A correct rim against dark gym equipment scored 34% against a 38% floor and was refused.</td><td><span class="chip na">Removed since</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="cl">&#167;12</span> Appendix C &#8212; studies not yet run</h2>
+  <p>Each of these answers a question the current feature does not ask. They are listed so the
+  scope of this report is unambiguous, and so that if any of them becomes relevant it is
+  already designed.</p>
+  <div class="scroll"><table>
+    <caption>Table 7 &#8212; Further work, and what would trigger it</caption>
+    <thead><tr><th>Study</th><th>What it would establish</th><th>Trigger</th></tr></thead>
+    <tbody>
+      <tr><td>Pendulum at lifting speed</td><td>Gravity from a period and a length, with no pixel scale involved, at 0.5 m/s &#8212; a direct check where the product operates rather than at 4.4 m/s</td><td>An absolute-velocity claim, or a velocity-zone feature</td></tr>
+      <tr><td>Separating space from time</td><td>Whether the 3.00% offset is a distance error or a timing one, which decides whether velocity inherits 3.00% or 1.51%</td><td>Any correction applied in the product</td></tr>
+      <tr><td>Operators and devices</td><td>The between-operator term, and whether the offset travels across phones, rooms and camera positions</td><td>Publishing an accuracy figure that other people's setups are expected to inherit</td></tr>
+      <tr><td>Instantaneous acceleration</td><td>Noise on acceleration within a rep rather than fitted across a fall &#8212; a different estimator with far worse conditioning</td><td>Force and power metrics</td></tr>
+    </tbody>
+  </table></div>
+  <p>Until then the honest position is the one the app already takes: rather than publishing an
+  accuracy figure and asking anyone to believe it, it ships the check itself. Any user can drop
+  a barbell and measure their own setup, in the tool this study was written from.</p>
+</section>
+
+<footer>
+  <p>Beyond Normal &#183; measurement system analysis &#183; 15 measurements, 5 recordings,
+  3 independent placements &#183; reference g = 9.80665 m/s&#178; &#183; 2026-08-01. Raw instrument outputs
+  reproduced in full at &#167;10; no measurement was excluded from any figure in this report.</p>
+</footer>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand" style="color: white;">
+        <span class="nav-brand-icon">&#128293;</span>
+        <span>Beyond Normal</span>
+      </a>
+      <p>The thinking lifter's 5/3/1 &mdash; built around adaptive intelligence, honest privacy, and the science of progressive overload.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Free Tools</h4>
+      <ul>
+        <li><a href="/bar-path/">Bar Path &amp; Velocity</a></li>
+        <li><a href="/plates/">Plate Math</a></li>
+        <li><a href="/1rm/">1RM Calculator</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>App</h4>
+      <ul>
+        <li><a href="https://apps.apple.com/app/id6753819612">Download</a></li>
+        <li><a href="/philosophy.html">Philosophy</a></li>
+        <li><a href="/support.html">Support</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="y"></span> Beyond Normal. All rights reserved.</span>
+    <span>Built for lifters, by a lifter.</span>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

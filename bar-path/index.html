@@ -87,7 +87,7 @@
         <p>Orange traces the path the bar actually took. The readout in the corner counts the rep, times the pull, and measures how far the bar strayed from vertical — burned into your own footage.</p>
         <p>No wearable on the sleeve. No sensor on the bar. A phone leaned against whatever was handy, filming from the side.</p>
         <div class="readout">
-          <strong>Rep 1 · 0.32 m/s · 1.6 in drift</strong> <span>— then it does that for every rep in the set</span>
+          <strong>Rep 3 · 0.31 m/s · 1.7 in drift</strong> <span>— then it does that for every rep in the set</span>
         </div>
       </div>
     </div>
@@ -102,22 +102,22 @@
 
     <div class="card-grid cols-4" style="margin-top: 32px;">
       <div class="metric">
-        <div class="metric-value">15</div>
+        <div class="metric-value">6</div>
         <div class="metric-label">Reps counted</div>
         <p class="metric-note">Each rep found and timed automatically, so the set is broken down one pull at a time.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">0.37<span>m/s</span></div>
+        <div class="metric-value">0.34<span>m/s</span></div>
         <div class="metric-label">Mean bar speed</div>
         <p class="metric-note">Average concentric velocity across the set — how fast the bar actually moved on the way up.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">15<span>%</span></div>
+        <div class="metric-value">0<span>%</span></div>
         <div class="metric-label">Velocity loss</div>
-        <p class="metric-note">How much slower the set finished than it started. The clearest signal of how deep into the tank you went.</p>
+        <p class="metric-note">How much slower the set finished than it started. The clearest signal of how deep into the tank you went &mdash; and this one says not very.</p>
       </div>
       <div class="metric">
-        <div class="metric-value">2.4<span>in</span></div>
+        <div class="metric-value">2.6<span>in</span></div>
         <div class="metric-label">Worst drift</div>
         <p class="metric-note">How far the bar wandered from a straight line, per rep and at its worst.</p>
       </div>
@@ -128,18 +128,49 @@
 
 <section class="block" style="padding-top: 10px;">
   <div class="container">
+    <span class="eyebrow">How accurate is it?</span>
+    <h2>We measured. Here's the paperwork.</h2>
+    <p class="lede">Every velocity product says &ldquo;accurate.&rdquo; None of them publish what that means. So we dropped a loaded barbell fifteen times and measured gravity with the same code that measures your set &mdash; because gravity is the one number whose right answer you already know.</p>
+
+    <div class="card-grid cols-3" style="margin-top: 32px;">
+      <div class="metric">
+        <div class="metric-value">1.25<span>%</span></div>
+        <div class="metric-label">Repeatability</div>
+        <p class="metric-note">Combined standard uncertainty across fifteen measurements. The target was 2%, set before any data existed.</p>
+      </div>
+      <div class="metric">
+        <div class="metric-value">3.00<span>%</span></div>
+        <div class="metric-label">From standard gravity</div>
+        <p class="metric-note">With no correction of any kind applied. It reproduces to &plusmn;0.46%, which makes it a property of the setup rather than the method.</p>
+      </div>
+      <div class="metric">
+        <div class="metric-value">None</div>
+        <div class="metric-label">Effect on velocity loss</div>
+        <p class="metric-note">Loss is a ratio measured through one ruler, so a constant offset divides out exactly &mdash; it cannot reach the number above.</p>
+      </div>
+    </div>
+
+    <p class="lede" style="margin-top: 22px;">The full report is public, including the parts that went badly: nine defects found and fixed, a hypothesis that failed its own test, and a clause listing what we still haven&rsquo;t established.</p>
+    <div class="btn-row" style="margin-top: 18px;">
+      <a class="btn" href="/bar-path/accuracy/">Read the measurement study</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 10px;">
+  <div class="container">
     <div class="showcase">
       <div class="showcase-shot">
-        <img src="/assets/shots/barpath.png" width="760" height="1134"
-             alt="Bar path results on iPhone: 15 reps, 15% velocity loss, mean concentric 0.37 m/s, worst drift 2.4 inches, followed by a colour-coded per-rep table and a measured acceleration check of 0.38 metres per second squared.">
+        <img src="/assets/shots/barpath.png" width="760" height="1411"
+             alt="A saved bar-path set on iPhone: 6 reps, mean concentric 0.34 metres per second, baseline 0.30, velocity loss 0%, median drift 1.8 inches, worst 2.6 inches, followed by a colour-coded speed and drift figure for every rep.">
       </div>
       <div class="showcase-text">
         <span class="eyebrow">A real set, straight off the phone</span>
         <h2>Every rep, graded.</h2>
-        <p>Speed and drift for all fifteen pulls, coloured so the bad ones find you. Reps 5, 6 and 10 drifted past two inches. Rep 3 was the straightest bar in the set.</p>
-        <p>And look at the headline: <strong>15 reps at only 15% velocity loss</strong>. The bar was still moving at the end — that's a set with more left in it, which is exactly the thing you can't feel reliably and can't fake afterward.</p>
+        <p>Speed and drift for all six pulls, coloured so the bad ones find you. Reps 5 and 6 drifted past two and a half inches. Rep 2 was the straightest bar in the set at 1.1.</p>
+        <p>And look at the headline: <strong>0% velocity loss</strong>. The last rep was as fast as the first, which means this set was nowhere near failure &mdash; and that is exactly the thing you cannot feel reliably and cannot reconstruct afterwards from the log.</p>
         <div class="readout">
-          <strong>Measured acceleration 0.38 m/s²</strong> <span>· R² 0.93 across 35 frames — the tracker checking its own work</span>
+          <strong>Saved, not screenshotted</strong> <span>&middot; every set keeps its own numbers, so the next one has something to be compared against</span>
         </div>
       </div>
     </div>

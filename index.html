@@ -813,8 +813,10 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 40px;
+      /* Brand + four columns. The fourth is the cross-product link, which is
+         how anyone on the Strength site finds SpendCopilot. */
+      grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+      gap: 40px 34px;
     }
     .footer-brand p { margin-top: 14px; font-size: 14px; line-height: 1.6; max-width: 340px; }
     .footer-col h4 {
@@ -1335,6 +1337,12 @@
       <ul>
         <li><a href="/privacy/">Privacy Policy</a></li>
         <li><a href="/terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Other Apps</h4>
+      <ul>
+        <li><a href="/spendcopilot/">SpendCopilot</a></li>
       </ul>
     </div>
   </div>

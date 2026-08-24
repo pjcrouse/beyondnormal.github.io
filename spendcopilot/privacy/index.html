@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="bn-page" content="spendcopilot-privacy">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SpendCopilot Privacy Policy — Beyond Normal</title>
+  <meta name="description" content="Exactly what SpendCopilot collects, why, how it is protected, how long it is kept, and the choices you have. Describes only what the backend actually does.">
+  <link rel="canonical" href="https://beyondnormal.app/spendcopilot/privacy/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpendCopilot Privacy Policy — Beyond Normal">
+  <meta property="og:description" content="A complete inventory of what SpendCopilot stores — and what it deliberately does not. No transactions at rest. No name or email. No ad tracking.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beyondnormal.app/spendcopilot/privacy/">
+  <meta property="og:site_name" content="Beyond Normal">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:secure_url" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SpendCopilot — Your money, finally explained.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpendCopilot Privacy Policy — Beyond Normal">
+  <meta name="twitter:description" content="A complete inventory of what SpendCopilot stores — and what it deliberately does not.">
+  <meta name="twitter:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+
+  <meta name="theme-color" content="#6d7cff">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/tools.css">
+  <link rel="stylesheet" href="/assets/spendcopilot.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">🔥</span>
+      <span class="nav-lockup">
+        <span class="nav-parent">Beyond Normal</span>
+        <span class="nav-product">SpendCopilot</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="/spendcopilot/">Overview</a>
+      <a href="/spendcopilot/support/">Support</a>
+      <a href="/spendcopilot/terms/">Terms</a>
+      <a href="/spendcopilot/#notify" class="nav-cta">Coming Soon</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow">SpendCopilot</span>
+    <h1>Privacy <span class="accent">Policy.</span></h1>
+    <p class="meta">Last updated: August 24, 2026</p>
+    <div class="policy-version">Policy version 2026-08-24</div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container narrow" style="max-width: 1100px;">
+    <div class="legal-layout">
+
+      <aside class="toc">
+        <h4>Contents</h4>
+        <ul>
+          <li><a href="#who">Who we are</a></li>
+          <li><a href="#collect">What we collect</a></li>
+          <li><a href="#use">How we use &amp; share</a></li>
+          <li><a href="#consent">Consent</a></li>
+          <li><a href="#protect">How we protect data</a></li>
+          <li><a href="#retention">Data retention</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#website">This website</a></li>
+        </ul>
+      </aside>
+
+      <div class="content">
+
+        <div class="callout">
+          This policy applies to <strong>SpendCopilot</strong> and its backend. It describes
+          <strong>only what the backend actually does</strong> — it does not claim data handling
+          we do not perform. It is versioned, and the version in effect when you consented is
+          recorded with your consent.
+        </div>
+
+        <p style="font-size: 14.5px; color: var(--ink-soft);">
+          Looking for the Beyond Normal Strength app instead? That product has its own policy at
+          <a href="/privacy/">beyondnormal.app/privacy</a>.
+        </p>
+
+        <h2 id="who">1. Who we are</h2>
+        <p>SpendCopilot is operated by Beyond Normal. For privacy questions or to exercise your rights, contact <a href="mailto:patcrouse@gmail.com?subject=SpendCopilot%20Privacy%20Policy">patcrouse@gmail.com</a> — the current monitored privacy contact for Beyond Normal and SpendCopilot.</p>
+
+        <h2 id="collect">2. What we collect and store</h2>
+        <p>The backend stores a deliberately small amount of data in a single encrypted database (Cloudflare D1). This is the complete inventory:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Purpose</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A random account identifier (UUID)</td>
+                <td>Identify your account</td>
+                <td>Not derived from any personal detail</td>
+              </tr>
+              <tr>
+                <td>Passkey public key and metadata (credential id, signature counter, transports)</td>
+                <td>Passwordless sign-in (WebAuthn)</td>
+                <td>Public key only — never a password or private key</td>
+              </tr>
+              <tr>
+                <td>Session tokens and timestamps</td>
+                <td>Keep you signed in</td>
+                <td>Expire automatically</td>
+              </tr>
+              <tr>
+                <td>Plaid <strong>Item</strong> connection: access token, institution id and name, sync cursor</td>
+                <td>Connect and sync your bank via Plaid</td>
+                <td>The access token is a credential to Plaid, not your bank password</td>
+              </tr>
+              <tr>
+                <td>Consent records (type, policy version, timestamp)</td>
+                <td>Evidence of your consent</td>
+                <td>See section 4</td>
+              </tr>
+              <tr>
+                <td>Deletion audit records (hashed account reference, timestamps)</td>
+                <td>Prove a deletion completed</td>
+                <td>Contains no personal data</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="promise-box">
+          <h3>✓ What we do NOT store</h3>
+          <ul>
+            <li><strong>No name or email.</strong> A display name entered at sign-up is used only to build the passkey and is not persisted.</li>
+            <li><strong>No bank credentials.</strong> Bank login happens inside Plaid; we never see it.</li>
+            <li><strong>No transaction history at rest.</strong> When the app syncs, transactions are fetched from Plaid and passed straight through to your device. The backend does not store your transactions, balances, or account numbers.</li>
+          </ul>
+        </div>
+
+        <h2 id="use">3. How we use and share data</h2>
+        <ul>
+          <li><strong>Bank connectivity (Plaid):</strong> we use Plaid to link your accounts and fetch transactions on demand. Your use of Plaid is also governed by <a href="https://plaid.com/legal/#consumers" target="_blank" rel="noopener">Plaid's privacy policy</a>. The Plaid access token is stored server-side so your device never handles it.</li>
+          <li><strong>AI assistance (Anthropic):</strong> the Copilot feature sends the conversation content your device submits to <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's API</a> to generate a response. Provide only what you are comfortable sending.</li>
+          <li>We do <strong>not</strong> sell your data and do <strong>not</strong> use it for advertising.</li>
+        </ul>
+
+        <h2 id="consent">4. Consent</h2>
+        <p>We record your consent at the points where data handling begins, and we store the exact <strong>policy version</strong> you agreed to as evidence:</p>
+        <ul>
+          <li><strong>Privacy-policy consent</strong> — recorded when you create your account.</li>
+          <li><strong>Plaid data consent</strong> — recorded when you link a bank account.</li>
+        </ul>
+        <p>You can review your consent records at any time via the <code>GET /v1/consent</code> API. When this policy materially changes, the version is bumped and consent is requested again.</p>
+
+        <h2 id="protect">5. How we protect data</h2>
+        <ul>
+          <li><strong>Encryption at rest:</strong> the database (Cloudflare D1) is encrypted at rest with AES-256-GCM under Cloudflare-managed keys.</li>
+          <li><strong>Encryption in transit:</strong> all API traffic uses TLS.</li>
+          <li><strong>Secrets:</strong> API keys and the Plaid secret are stored as Cloudflare Worker Secrets (encrypted), never in source or the database.</li>
+          <li><strong>Least data in logs:</strong> request logs record only endpoint, HTTP status, and an error class — never tokens, personal data, or financial data.</li>
+        </ul>
+
+        <h2 id="retention">6. Data retention</h2>
+        <p>In summary: sessions and challenges are purged shortly after they expire; your account data is kept while your account is active and erased when you delete your account; consent and deletion-audit evidence is retained for a limited compliance window.</p>
+
+        <h2 id="rights">7. Your rights</h2>
+        <div class="section-grid">
+          <div class="info-box">
+            <h3>Access &amp; transparency</h3>
+            <p>Retrieve your consent records via <code>GET /v1/consent</code>.</p>
+          </div>
+          <div class="info-box">
+            <h3>Deletion / right to erasure</h3>
+            <p>Delete your account and all associated data via <code>DELETE /v1/account</code>. This erases every record tied to your account across all tables and revokes your Plaid connection at Plaid.</p>
+          </div>
+          <div class="info-box">
+            <h3>Disconnect a bank</h3>
+            <p>Removing a linked bank revokes the Plaid Item and deletes its stored token and metadata.</p>
+          </div>
+        </div>
+        <p>When you delete your account you receive a deletion receipt. A de-identified audit record — a hash, containing no personal data — is retained only to prove the deletion occurred.</p>
+
+        <h2 id="children">8. Children</h2>
+        <p>SpendCopilot is not directed to children and we do not knowingly collect data from children.</p>
+
+        <h2 id="changes">9. Changes to this policy</h2>
+        <p>Material changes bump the <strong>policy version</strong> at the top of this page and re-request consent. The version in effect when you consented is stored with your consent record.</p>
+
+        <h2 id="website">10. This website</h2>
+        <p>The sections above describe the SpendCopilot application and its backend. This website (beyondnormal.app) measures page visits using a cookieless analytics beacon so we can tell whether anyone is finding the site. It records the page you viewed, the referring site, your country, and your screen size. It sets <strong>no cookies</strong>, assigns you <strong>no persistent identifier</strong>, and cannot follow you to any other site. We cannot identify you from it, and it is never combined with anything from the app.</p>
+        <p>If you enter your email address in the launch-notification form on this site, we store that address — and which page you signed up from — in order to email you about the thing you asked about. Nothing else. Every message includes a one-click unsubscribe, and unsubscribing is permanent unless you deliberately sign up again.</p>
+
+        <h2>Contact</h2>
+        <p>
+          <strong>Email:</strong> <a href="mailto:patcrouse@gmail.com?subject=SpendCopilot%20Privacy%20Policy">patcrouse@gmail.com</a><br>
+          <strong>Subject:</strong> "SpendCopilot Privacy Policy"
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner cols-4">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand" style="color: white;">
+        <span class="nav-brand-icon">🔥</span>
+        <span>Beyond Normal</span>
+      </a>
+      <p>SpendCopilot is a Beyond Normal product — built on the same commitments: hold as little data as possible, say plainly what the software does, and leave the decision with you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>SpendCopilot</h4>
+      <ul>
+        <li><a href="/spendcopilot/">Overview</a></li>
+        <li><a href="/spendcopilot/#how">How it works</a></li>
+        <li><a href="/spendcopilot/#security">Security</a></li>
+        <li><a href="/spendcopilot/support/">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/spendcopilot/privacy/">Privacy Policy</a></li>
+        <li><a href="/spendcopilot/terms/">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Beyond Normal</h4>
+      <ul>
+        <li><a href="/">Strength</a></li>
+        <li><a href="/philosophy.html">Philosophy</a></li>
+        <li><a href="/support.html">Strength support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="y"></span> Beyond Normal. All rights reserved.</span>
+    <span>SpendCopilot is not yet available for download.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
+
+</body>
+</html>

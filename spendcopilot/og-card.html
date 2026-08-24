@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>OG Card · SpendCopilot</title>
+  <meta name="robots" content="noindex">
+  <!--
+    Render source for assets/og-spendcopilot.png (1200x630). Mirrors the root
+    og-card.html, in SpendCopilot blue.
+
+    To re-export after editing, from the repo root:
+
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+        --headless --disable-gpu --hide-scrollbars \
+        --screenshot=assets/og-spendcopilot.png --window-size=1200,630 \
+        --default-background-color=00000000 \
+        "file://$PWD/spendcopilot/og-card.html"
+
+    Or open in Chrome → ⌘⇧P → "Capture full size screenshot".
+
+    Validators:
+      https://developers.facebook.com/tools/debug/   (also serves Slack/iMessage)
+      https://www.opengraph.xyz/url/{your-url}
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: #05070f; }
+    body { font-family: "Open Sans", system-ui, sans-serif; color: white; position: relative; }
+    .card {
+      width: 1200px; height: 630px;
+      background: linear-gradient(160deg, #05070f 0%, #0c1020 55%, #141b3d 100%);
+      padding: 70px 80px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+    /* Blue glow accent */
+    .card::before {
+      content: ''; position: absolute; top: -200px; right: -150px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(109,124,255,.34) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Diagonal stripes accent on the right */
+    .card::after {
+      content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%;
+      background: repeating-linear-gradient(135deg, transparent 0, transparent 30px, rgba(109,124,255,.07) 30px, rgba(109,124,255,.07) 32px);
+      pointer-events: none;
+    }
+    .row { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+    .icon {
+      width: 72px; height: 72px; border-radius: 16px;
+      background: linear-gradient(135deg, #e55722, #ff7a3d);
+      display: grid; place-items: center; font-size: 40px;
+      box-shadow: 0 12px 40px rgba(229,87,34,.35);
+    }
+    .brand { font: 800 30px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .04em; color: white; }
+    .product {
+      font: 700 26px/1 "Montserrat", system-ui, sans-serif;
+      color: #6d7cff; letter-spacing: .02em;
+      padding-left: 20px; margin-left: 4px;
+      border-left: 2px solid rgba(255,255,255,.2);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 8px 16px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+      font: 700 14px/1 "Montserrat", system-ui, sans-serif;
+      letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.85);
+      margin-bottom: 28px; position: relative; z-index: 2;
+    }
+    .eyebrow::before { content: ''; width: 8px; height: 8px; background: #6d7cff; border-radius: 50%; box-shadow: 0 0 14px #6d7cff; }
+    h1 {
+      font: 800 92px/1.05 "Montserrat", system-ui, sans-serif;
+      letter-spacing: -.025em; max-width: 900px; margin-bottom: 24px;
+      position: relative; z-index: 2;
+    }
+    h1 .accent {
+      background: linear-gradient(120deg, #6d7cff 0%, #9aa5ff 60%, #6d7cff 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .features { display: flex; gap: 22px; flex-wrap: wrap; position: relative; z-index: 2; }
+    .feature { display: inline-flex; align-items: center; gap: 10px; font: 600 20px/1 "Montserrat", system-ui, sans-serif; color: rgba(255,255,255,.78); }
+    .feature .dot { width: 10px; height: 10px; border-radius: 50%; background: #6d7cff; box-shadow: 0 0 12px rgba(109,124,255,.55); }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+    .platform { font: 600 18px/1 "Montserrat", system-ui, sans-serif; color: rgba(255,255,255,.55); letter-spacing: .08em; }
+    .url { font: 700 18px/1 "Montserrat", system-ui, sans-serif; color: #6d7cff; letter-spacing: .02em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <div class="row" style="margin-bottom: 36px;">
+        <div class="icon">🔥</div>
+        <div class="brand">Beyond Normal</div>
+        <div class="product">SpendCopilot</div>
+      </div>
+
+      <span class="eyebrow">Your finances · Understood</span>
+
+      <h1>Your money, finally <span class="accent">explained.</span></h1>
+
+      <!-- Only shipped capability belongs on a share card: it travels without
+           the page's "Planned" labels around it, so anything aspirational here
+           reads as a claim. Net worth and the Copilot are not built, and were
+           removed for that reason. -->
+      <div class="features">
+        <span class="feature"><span class="dot"></span>Spending clarity</span>
+        <span class="feature"><span class="dot"></span>One purchase, counted once</span>
+        <span class="feature"><span class="dot"></span>Passkey &amp; Face ID</span>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="platform">COMING SOON · iOS</span>
+      <span class="url">beyondnormal.app/spendcopilot</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="bn-page" content="spendcopilot-support">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SpendCopilot Support — Beyond Normal</title>
+  <meta name="description" content="Get help with SpendCopilot: bank connections, passkey sign-in, reconciliation, data deletion, and how to reach a human.">
+  <link rel="canonical" href="https://beyondnormal.app/spendcopilot/support/" />
+
+  <meta property="og:title" content="SpendCopilot Support — Beyond Normal">
+  <meta property="og:description" content="Bank connections, passkey sign-in, reconciliation, data deletion — and a direct line to a human.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beyondnormal.app/spendcopilot/support/">
+  <meta property="og:site_name" content="Beyond Normal">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:secure_url" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SpendCopilot — Your money, finally explained.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpendCopilot Support — Beyond Normal">
+  <meta name="twitter:description" content="Bank connections, passkey sign-in, reconciliation, data deletion — and a direct line to a human.">
+  <meta name="twitter:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+
+  <meta name="theme-color" content="#6d7cff">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/tools.css">
+  <link rel="stylesheet" href="/assets/spendcopilot.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">🔥</span>
+      <span class="nav-lockup">
+        <span class="nav-parent">Beyond Normal</span>
+        <span class="nav-product">SpendCopilot</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="/spendcopilot/">Overview</a>
+      <a href="/spendcopilot/privacy/">Privacy</a>
+      <a href="/spendcopilot/terms/">Terms</a>
+      <a href="/spendcopilot/#notify" class="nav-cta">Coming Soon</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow">SpendCopilot support</span>
+    <h1>How can we <span class="accent">help?</span></h1>
+    <p>SpendCopilot is not publicly available yet, so there is no in-app help centre to point you at. Until launch, one person reads every message — and that stays true afterwards. For what is and isn't built today, see the <a href="/spendcopilot/#how" style="color: var(--sc-blue-deep); font-weight: 600;">product page</a>.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container narrow">
+    <div class="cta-card">
+      <h2>Email us.</h2>
+      <p>Questions, bug reports, privacy requests, or anything you'd like the product to do. Include your device and iOS version if it's a bug, and we'll come back to you.</p>
+      <div class="btn-row">
+        <a class="btn" href="mailto:patcrouse@gmail.com?subject=SpendCopilot%20Support">patcrouse@gmail.com</a>
+        <a class="btn ghost" href="/spendcopilot/#notify">Get launch updates</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block tight">
+  <div class="container">
+    <span class="eyebrow">Common questions</span>
+    <h2>The things people ask first.</h2>
+
+    <div class="card-grid" style="margin-top: 30px;">
+      <div class="card">
+        <h3>When can I get it?</h3>
+        <p>There's no public release date yet, and we won't invent one. <a href="/spendcopilot/#notify">Leave your email</a> and you'll get a single message when SpendCopilot is available. No newsletter, no drip campaign.</p>
+      </div>
+      <div class="card">
+        <h3>How do I sign in?</h3>
+        <p>With a passkey, using Face ID or Touch ID. There is no password to create, remember or reset — which also means there's no password for anyone to steal. Only the passkey's public key is stored on our side.</p>
+      </div>
+      <div class="card">
+        <h3>How are my bank accounts connected?</h3>
+        <p>Through Plaid. Your bank login happens inside Plaid's own flow and we never see it. Transactions are fetched on demand and passed straight through to your device — the backend stores no transactions, balances or account numbers.</p>
+      </div>
+      <div class="card">
+        <h3>A bank connection stopped working.</h3>
+        <p>Institutions periodically require you to re-authorize. The in-app reconnect flow is part of the Plaid production work currently in progress. If a connection keeps dropping, email us with the institution name and we'll look at it from our side.</p>
+      </div>
+      <div class="card">
+        <h3>Why doesn't a bank amount match what I logged?</h3>
+        <p>That's expected. Amounts move between authorization and posting — a $155.16 report can post at $155.17. SpendCopilot treats both as one purchase and counts it once. You can review the evidence for any match, and unmatch it if we got it wrong.</p>
+      </div>
+      <div class="card">
+        <h3>A transaction landed on the wrong date.</h3>
+        <p>The bank's posting date isn't always the day you spent the money. SpendCopilot keeps the purchase date, the posting date and your budget date separately, so you can correct the budget date without rewriting the bank's record.</p>
+      </div>
+      <div class="card">
+        <h3>Can I connect more than one bank?</h3>
+        <p>Not in the first release — it connects one institution. Broader account coverage is planned, not built.</p>
+      </div>
+      <div class="card">
+        <h3>How do I disconnect a bank?</h3>
+        <p>Removing a single institution on its own isn't built yet. Deleting your account revokes the Plaid connection at Plaid and erases everything tied to it. If you need one connection removed before that control ships, email us.</p>
+      </div>
+      <div class="card">
+        <h3>How do I delete my account and data?</h3>
+        <p>Deletion erases every record tied to your account across all tables and revokes your Plaid connection at Plaid. You get a deletion receipt; only a de-identified hash is kept, to prove the deletion happened. The backend endpoint is live; the in-app control ships with the app, and until then you can ask us to run it. The detail is in the <a href="/spendcopilot/privacy/">privacy policy</a>.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h3>SpendCopilot is not financial advice</h3>
+      <p>SpendCopilot describes your financial position and makes tradeoffs visible. It doesn't tell you what you ought to do with your money, and it isn't a substitute for professional financial, tax or legal advice. The decision stays yours.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner cols-4">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand" style="color: white;">
+        <span class="nav-brand-icon">🔥</span>
+        <span>Beyond Normal</span>
+      </a>
+      <p>SpendCopilot is a Beyond Normal product — built on the same commitments: hold as little data as possible, say plainly what the software does, and leave the decision with you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>SpendCopilot</h4>
+      <ul>
+        <li><a href="/spendcopilot/">Overview</a></li>
+        <li><a href="/spendcopilot/#how">How it works</a></li>
+        <li><a href="/spendcopilot/#security">Security</a></li>
+        <li><a href="/spendcopilot/support/">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/spendcopilot/privacy/">Privacy Policy</a></li>
+        <li><a href="/spendcopilot/terms/">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Beyond Normal</h4>
+      <ul>
+        <li><a href="/">Strength</a></li>
+        <li><a href="/philosophy.html">Philosophy</a></li>
+        <li><a href="/support.html">Strength support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="y"></span> Beyond Normal. All rights reserved.</span>
+    <span>SpendCopilot is not yet available for download.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
+
+</body>
+</html>

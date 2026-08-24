@@ -1,0 +1,545 @@
+/* SpendCopilot product theme.
+   ---------------------------------------------------------------------------
+   Layered ON TOP of /assets/tools.css, which is the site's shared design system
+   (nav, page hero, cards, steps, buttons, signup band, footer). Load order on
+   every SpendCopilot page must be:
+
+       <link rel="stylesheet" href="/assets/tools.css">
+       <link rel="stylesheet" href="/assets/spendcopilot.css">
+
+   tools.css is NOT modified, so the Strength pages that link it (/bar-path,
+   /plates, /1rm) are untouched by anything in here.
+
+   Two jobs:
+     1. Swap the accent from Strength orange to SpendCopilot blue.
+     2. Add the dark hero / feature / trust components that live inline in the
+        root index.html, so this page reads as a first-party sibling rather
+        than a lighter-weight sub-page.
+
+   Blue is sampled from the shipping app UI (Docs/Screenshots/M1B-Home-Dark):
+   #6d7cff is the accent circle and sparkle tint, #00d2e0 is the "ON TRACK"
+   indicator. Nothing here is invented brand colour. */
+
+:root {
+  /* ---- SpendCopilot palette ---- */
+  --sc-blue: #6d7cff;        /* the app accent; used on dark surfaces */
+  --sc-blue-bright: #9aa5ff; /* gradient highlight only, never text */
+  --sc-blue-deep: #3b49d6;   /* 6.3:1 on the cream background — safe for text */
+  --sc-blue-ink: #2a35a8;    /* hover / pressed */
+  --sc-cyan: #00d2e0;        /* positive state, matches the app's ON TRACK dot */
+  --sc-night: #05070f;       /* near-black, blue undertone */
+  --sc-night-2: #0c1020;
+  --sc-night-3: #141b3d;
+
+  /* ---- Accent remap ----
+     tools.css reaches for --brand-orange wherever it means "the accent".
+     Remapping the two accent tokens here re-themes every shared component at
+     once (eyebrows, buttons, card icons, list ticks, step numbers, footer
+     hover, signup focus ring) instead of re-declaring forty rules. The handful
+     of places tools.css hardcodes rgba(229,87,34,…) or #ff7a3d rather than
+     using the token are overridden explicitly further down. */
+  --brand-orange: var(--sc-blue-deep);
+  --brand-orange-dark: var(--sc-blue-ink);
+}
+
+/* ===================== Nav ===================== */
+/* The cream bar and the Beyond Normal mark stay exactly as they are on the rest
+   of the site — this is the parent brand, and it should not change per product.
+   The product name sits after it as a separate blue chip, so the lockup reads
+   "Beyond Normal › SpendCopilot" rather than re-skinning the company. */
+.nav-brand-icon { background: #e55722; }  /* undo the accent remap: BN mark */
+
+.nav-lockup { display: inline-flex; align-items: center; }
+.nav-parent { font: 800 18px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .01em; }
+.nav-product {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  padding-left: 12px;
+  border-left: 1px solid var(--ring-strong);
+  font: 700 14px/1 "Montserrat", system-ui, sans-serif;
+  letter-spacing: .01em;
+  color: var(--sc-blue-deep);
+}
+/* On a phone the two names plus the CTA no longer fit on one line. Stacking
+   them keeps BOTH — dropping "Beyond Normal" would lose the parent brand on
+   exactly the devices this product ships to. */
+@media (max-width: 560px) {
+  .nav-lockup { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .nav-parent { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+  .nav-product { font-size: 16px; margin-left: 0; padding-left: 0; border-left: 0; }
+}
+/* Narrow phones (SE-class, 320-360px): tighten the bar so the stacked lockup
+   and the CTA both fit on one line instead of overlapping. */
+.nav-cta { white-space: nowrap; }
+@media (max-width: 380px) {
+  .nav-inner { padding: 12px 14px; }
+  .nav-brand { gap: 8px; }
+  .nav-brand-icon { width: 28px; height: 28px; font-size: 15px; }
+  .nav-product { font-size: 14px; }
+  .nav-links a.nav-cta { padding: 8px 11px; font-size: 13px; }
+}
+.nav-links a:hover { color: var(--sc-blue-deep); background: rgba(109,124,255,.10); }
+.nav-cta:hover { background: var(--sc-blue-deep) !important; }
+
+/* ===================== Hero ===================== */
+/* Same geometry and type scale as the root index.html hero. Only the warm
+   brown third stop and the orange halo become blue. */
+.sc-hero {
+  background: linear-gradient(160deg, var(--sc-night) 0%, var(--sc-night-2) 58%, var(--sc-night-3) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.sc-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 60%; height: 140%;
+  background: radial-gradient(circle, rgba(109,124,255,.20) 0%, transparent 50%);
+  pointer-events: none;
+}
+.sc-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 84px 22px 100px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 60px;
+  align-items: center;
+}
+.sc-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  font: 700 12px/1 "Montserrat", system-ui, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 24px;
+}
+.sc-hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--sc-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--sc-blue);
+}
+.sc-hero h1 {
+  font: 800 clamp(40px, 6.5vw, 76px)/1.05 "Montserrat", system-ui, sans-serif;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.sc-hero h1 .accent {
+  background: linear-gradient(120deg, var(--sc-blue) 0%, var(--sc-blue-bright) 60%, var(--sc-blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sc-hero-sub {
+  font-size: clamp(17px, 2vw, 19px);
+  line-height: 1.65;
+  color: rgba(255,255,255,.78);
+  margin-bottom: 34px;
+  max-width: 560px;
+}
+.sc-hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+/* "Coming Soon" primary.
+   Deliberately shaped like the App Store button used elsewhere on the site so
+   it carries the same visual weight, but it is NOT an App Store link and makes
+   no availability claim. It scrolls to the launch-notification form. */
+.sc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: white;
+  color: var(--ink);
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.sc-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.35); }
+.sc-cta svg { flex-shrink: 0; color: var(--sc-blue-deep); }
+.sc-cta .stack { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+.sc-cta .stack .small { font: 500 11px/1.2 "Montserrat", system-ui, sans-serif; color: var(--ink-muted); margin-bottom: 3px; }
+.sc-cta .stack .big { font: 700 19px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .01em; }
+
+.sc-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  color: rgba(255,255,255,.9);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  font: 600 15px/1 "Montserrat", system-ui, sans-serif;
+  transition: all .15s ease;
+}
+.sc-secondary:hover { border-color: var(--sc-blue); color: var(--sc-blue); }
+
+/* Hero phone — same frame as the root site, blue glow instead of orange. */
+.sc-phone { position: relative; justify-self: center; width: min(320px, 90%); }
+.sc-phone-frame {
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+  border: 8px solid #2a2a2a;
+  border-radius: 44px;
+  box-shadow: 0 0 0 2px #0a0a0a, 0 30px 80px rgba(109,124,255,.28), 0 50px 120px rgba(0,0,0,.5);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.sc-phone-notch {
+  position: absolute;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  width: 100px; height: 28px;
+  background: #0a0a0a;
+  border-radius: 18px;
+  z-index: 2;
+}
+.sc-phone-frame img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 32px;
+}
+
+@media (max-width: 880px) {
+  .sc-hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 60px 22px 70px; }
+  .sc-hero-eyebrow, .sc-hero-ctas { justify-content: center; }
+  .sc-hero-sub { margin-left: auto; margin-right: auto; }
+  .sc-phone { order: -1; }
+}
+
+/* ===================== Trust strip ===================== */
+.sc-trust {
+  background: var(--sc-night);
+  color: rgba(255,255,255,.72);
+  padding: 22px;
+  text-align: center;
+  font: 600 13px/1.7 "Montserrat", system-ui, sans-serif;
+  letter-spacing: .06em;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.sc-trust span { color: var(--sc-blue); margin: 0 14px; }
+@media (max-width: 580px) {
+  .sc-trust { font-size: 12px; }
+  .sc-trust span { margin: 0 8px; }
+}
+
+/* ===================== Section chrome ===================== */
+.sc-section { padding: 92px 22px; }
+.sc-section.on-white { background: white; border-top: 1px solid var(--ring); border-bottom: 1px solid var(--ring); }
+.sc-lede { font-size: clamp(16px, 1.6vw, 18px); color: var(--ink-muted); max-width: 720px; line-height: 1.7; }
+.sc-section h2 { font: 800 clamp(30px, 4vw, 44px)/1.1 "Montserrat", system-ui, sans-serif; letter-spacing: -.01em; margin-bottom: 16px; }
+
+/* ===================== Feature rows ===================== */
+.sc-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  padding: 78px 0;
+  border-top: 1px solid var(--ring);
+}
+.sc-feature:first-of-type { border-top: none; padding-top: 0; }
+.sc-feature.reverse .sc-feature-text { order: 2; }
+.sc-feature.reverse .sc-feature-visual { order: 1; }
+.sc-feature-text h3 { font: 800 clamp(26px, 3vw, 34px)/1.15 "Montserrat", system-ui, sans-serif; margin-bottom: 16px; }
+.sc-feature-text p { color: var(--ink-muted); font-size: 17px; line-height: 1.7; margin-bottom: 12px; }
+.sc-feature-text ul { list-style: none; margin-top: 22px; padding: 0; }
+/* The tick is absolutely positioned rather than a flex sibling. As a flex item
+   it turned the <strong> lead-in and the sentence after it into two separate
+   columns, which wrapped badly in the narrow feature column. */
+.sc-feature-text li { position: relative; padding: 13px 0 13px 34px; border-top: 1px solid var(--ring); color: var(--ink-muted); line-height: 1.6; }
+.sc-feature-text li:first-child { border-top: none; padding-top: 0; }
+.sc-feature-text li strong { color: var(--ink); font-weight: 700; }
+.sc-feature-text li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 15px;
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, var(--sc-blue-deep), var(--sc-blue));
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+}
+.sc-feature-text li:first-child::before { top: 2px; }
+.sc-feature-visual { display: grid; place-items: center; }
+@media (max-width: 880px) {
+  .sc-feature { grid-template-columns: 1fr; gap: 38px; padding: 56px 0; }
+  .sc-feature.reverse .sc-feature-text { order: 1; }
+  .sc-feature.reverse .sc-feature-visual { order: 2; }
+}
+
+/* ===================== Mock cards ===================== */
+/* CSS renderings of real app surfaces, matching the pattern the root index.html
+   already uses for its feature visuals. Numbers and copy come from the product
+   documentation and the app screenshots, not from imagination. */
+.sc-mock {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  background: linear-gradient(160deg, var(--sc-night) 0%, var(--sc-night-2) 100%);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 22px;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.sc-mock::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 80%; height: 100%;
+  background: radial-gradient(circle, rgba(109,124,255,.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sc-mock > * { position: relative; z-index: 1; }
+.sc-mock-tag { font: 700 11px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .16em; color: var(--sc-blue); margin-bottom: 14px; text-transform: uppercase; }
+.sc-mock-title { font: 800 24px/1.2 "Montserrat", system-ui, sans-serif; margin-bottom: 18px; }
+.sc-mock-note { margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; line-height: 1.55; color: rgba(255,255,255,.6); }
+
+/* Budget rows */
+.sc-budget { display: grid; gap: 14px; }
+.sc-budget-row { display: grid; gap: 6px; }
+.sc-budget-head { display: flex; justify-content: space-between; align-items: baseline; font: 600 14px/1 "Montserrat", system-ui, sans-serif; }
+.sc-budget-head .amt { color: rgba(255,255,255,.75); font-size: 13px; }
+.sc-bar { height: 6px; background: rgba(255,255,255,.09); border-radius: 999px; overflow: hidden; }
+.sc-bar > i { display: block; height: 100%; border-radius: 999px; }
+.sc-bar > i.blue { background: linear-gradient(90deg, var(--sc-blue-deep), var(--sc-blue)); }
+.sc-bar > i.cyan { background: linear-gradient(90deg, #0a8f99, var(--sc-cyan)); }
+.sc-bar > i.warm { background: linear-gradient(90deg, #b4651a, #e08a2e); }
+.sc-budget-sub { font-size: 12px; color: rgba(255,255,255,.55); display: flex; justify-content: space-between; gap: 12px; }
+
+/* Headline figure */
+.sc-figure { font: 800 52px/1 "Bebas Neue", system-ui, sans-serif; letter-spacing: .02em; }
+.sc-figure.pos { color: var(--sc-cyan); }
+.sc-figure-label { font: 700 12px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-top: 6px; }
+
+/* Account rows */
+.sc-accounts { display: grid; gap: 8px; margin-top: 18px; }
+.sc-account { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; background: rgba(255,255,255,.04); border-radius: 10px; font-size: 13px; }
+.sc-account .name { color: rgba(255,255,255,.82); font-weight: 600; }
+.sc-account .inst { display: block; font-size: 11px; color: rgba(255,255,255,.45); font-weight: 400; margin-top: 2px; }
+.sc-account .val { font: 700 14px/1 "Montserrat", system-ui, sans-serif; }
+.sc-account .val.neg { color: #ff9d7a; }
+
+/* Copilot conversation */
+.sc-msg { padding: 12px 16px; border-radius: 16px; margin-bottom: 10px; font-size: 14px; line-height: 1.55; }
+.sc-msg.user { background: var(--sc-blue-deep); border-bottom-right-radius: 4px; margin-left: 30px; }
+.sc-msg.ai { background: rgba(255,255,255,.07); border-bottom-left-radius: 4px; }
+.sc-result { margin-top: 14px; padding: 14px 16px; background: rgba(0,210,224,.12); border: 1px solid rgba(0,210,224,.35); border-radius: 12px; font-size: 14px; line-height: 1.55; }
+.sc-result strong { color: var(--sc-cyan); }
+
+/* Reconciliation panes */
+.sc-panes { display: grid; gap: 10px; }
+.sc-pane { padding: 14px 16px; background: rgba(255,255,255,.04); border-radius: 12px; }
+.sc-pane h5 { font: 700 10px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.sc-pane p { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,.85); }
+.sc-pane p span { color: rgba(255,255,255,.5); }
+.sc-pane.result { background: rgba(0,210,224,.10); border: 1px solid rgba(0,210,224,.30); }
+.sc-pane.result h5 { color: var(--sc-cyan); }
+
+/* ===================== Security block ===================== */
+.sc-secure {
+  background: linear-gradient(200deg, var(--sc-night-3) 0%, var(--sc-night-2) 45%, var(--sc-night) 100%);
+  color: white;
+  padding: 92px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.sc-secure::before {
+  content: '';
+  position: absolute;
+  top: -40%; left: 50%;
+  transform: translateX(-50%);
+  width: 90%; height: 180%;
+  background: radial-gradient(circle, rgba(109,124,255,.16) 0%, transparent 55%);
+  pointer-events: none;
+}
+.sc-secure .container { position: relative; z-index: 1; }
+.sc-secure h2 { color: white; }
+.sc-secure .sc-lede { color: rgba(255,255,255,.72); }
+.sc-secure .eyebrow, .sc-secure .sc-mock-tag { color: var(--sc-blue); }
+.sc-secure-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 44px; }
+.sc-secure-item {
+  padding: 26px 24px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
+}
+.sc-secure-item h3 { font: 700 17px/1.3 "Montserrat", system-ui, sans-serif; color: white; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.sc-secure-item h3 svg { color: var(--sc-blue); flex-shrink: 0; }
+.sc-secure-item p { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,.68); }
+.sc-secure-item p + p { margin-top: 8px; }
+.sc-secure-foot {
+  margin-top: 30px;
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
+}
+.sc-secure-foot a { color: var(--sc-blue); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(109,124,255,.4); }
+.sc-secure-foot a:hover { border-bottom-color: var(--sc-blue); }
+@media (max-width: 780px) { .sc-secure-grid { grid-template-columns: 1fr; gap: 14px; } }
+
+/* ===================== tools.css orange holdouts ===================== */
+/* Every rule below exists because tools.css hardcodes the orange rather than
+   reading --brand-orange. Kept together so it is obvious what is being undone. */
+.page-hero h1 .accent {
+  background: linear-gradient(120deg, var(--sc-blue-deep) 0%, var(--sc-blue) 60%, var(--sc-blue-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.btn { box-shadow: 0 10px 28px rgba(59,73,214,.32); }
+.btn:hover { box-shadow: 0 14px 38px rgba(59,73,214,.42); }
+.card-icon { background: linear-gradient(135deg, var(--sc-blue-deep), var(--sc-blue)); box-shadow: 0 6px 16px rgba(59,73,214,.25); }
+.card li::before { background: linear-gradient(135deg, var(--sc-blue-deep), var(--sc-blue)); }
+.card a { border-bottom-color: rgba(59,73,214,.3); }
+.card a:hover { border-bottom-color: var(--sc-blue-deep); }
+.step::before { background: linear-gradient(135deg, var(--sc-blue-deep), var(--sc-blue)); box-shadow: 0 6px 16px rgba(59,73,214,.25); }
+.note { background: rgba(109,124,255,.06); }
+.cta-card { background: linear-gradient(160deg, var(--sc-night), var(--sc-night-3)); }
+.cta-card::before { background: radial-gradient(circle, rgba(109,124,255,.20) 0%, transparent 55%); }
+.showcase-shot::before { background: radial-gradient(ellipse at center, rgba(109,124,255,.18) 0%, transparent 62%); }
+.signup input[type="email"]:focus { box-shadow: 0 0 0 3px rgba(109,124,255,.18); }
+.signup button { box-shadow: 0 10px 28px rgba(59,73,214,.32); }
+.signup button:hover { box-shadow: 0 14px 38px rgba(59,73,214,.42); }
+.signup .opt-in input { accent-color: var(--sc-blue-deep); }
+.signup .status.ok { color: #0a7f88; }
+/* Errors must not be blue — blue is the success/accent colour on this page. */
+.signup .status.err { color: #b4341a; }
+
+/* ===================== Status banner ===================== */
+/* Reuses tools.css's .clip-banner (the "here is honestly where this stands"
+   block from /bar-path) rather than inventing a second component. Only the
+   warm colours are re-pointed; the geometry is untouched. */
+.sc-status-band { padding: 46px 22px 0; background: var(--brand-bg); }
+.sc-status-band .clip-banner { margin: 0 auto; background: linear-gradient(160deg, var(--sc-night), var(--sc-night-3)); }
+.sc-status-band .clip-banner::before { background: radial-gradient(circle, rgba(109,124,255,.20) 0%, transparent 55%); }
+.sc-status-band .clip-banner-icon { background: linear-gradient(135deg, var(--sc-blue-deep), var(--sc-blue)); box-shadow: 0 6px 16px rgba(59,73,214,.3); }
+.sc-status-band .clip-banner h4 { color: var(--sc-blue); }
+
+/* "Planned" marker. Amber, deliberately NOT the product accent — a caveat must
+   not read as a feature badge. Same colour as the pre-release terms banner. */
+.tag-planned {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 9px;
+  border: 1px solid rgba(200,135,26,.45);
+  background: rgba(200,135,26,.10);
+  border-radius: 999px;
+  font: 700 10px/1 "Montserrat", system-ui, sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #8a5c0d;
+  vertical-align: middle;
+}
+.sc-mock-tag .tag-planned { margin-left: 8px; color: #e0a63a; border-color: rgba(224,166,58,.4); background: rgba(224,166,58,.12); }
+
+/* ===================== Notify band ===================== */
+.sc-notify { padding: 84px 22px; background: var(--brand-bg); border-top: 1px solid var(--ring); }
+.sc-notify .signup { max-width: 820px; margin: 0 auto; text-align: center; }
+.sc-notify .signup > p { margin-left: auto; margin-right: auto; }
+.sc-notify .signup form { justify-content: center; max-width: 560px; margin-left: auto; margin-right: auto; }
+.sc-notify .signup .opt-in { justify-content: center; text-align: left; }
+
+/* ===================== Legal / long-form pages ===================== */
+/* Mirrors the /privacy and /terms layout so the SpendCopilot legal pages are
+   visually identical to their Strength counterparts, minus the accent. */
+.legal-layout { display: grid; grid-template-columns: 220px 1fr; gap: 50px; align-items: start; }
+@media (max-width: 900px) { .legal-layout { grid-template-columns: 1fr; gap: 30px; } }
+/* Without this, the min-width:560px data table in .content inflates the auto
+   minimum of its grid track and pushes the whole page wider than the phone. */
+.legal-layout > * { min-width: 0; }
+
+.toc { position: sticky; top: 80px; background: white; border: 1px solid var(--ring); border-radius: 14px; padding: 22px 20px; box-shadow: var(--shadow-sm); }
+.toc h4 { font: 700 11px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--sc-blue-deep); margin-bottom: 14px; }
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { padding: 6px 0; }
+.toc a { color: var(--ink-muted); text-decoration: none; font-size: 14px; font-weight: 600; border-bottom: 1px solid transparent; transition: color .15s ease; }
+.toc a:hover { color: var(--sc-blue-deep); border-bottom-color: var(--sc-blue-deep); }
+@media (max-width: 900px) { .toc { position: static; } }
+
+.content { background: white; border: 1px solid var(--ring); border-radius: 20px; padding: 40px 44px; box-shadow: var(--shadow-md); }
+@media (max-width: 600px) { .content { padding: 28px 22px; } }
+.content h2 { font: 800 clamp(22px, 2.4vw, 28px)/1.15 "Montserrat", system-ui, sans-serif; margin: 40px 0 14px; padding-bottom: 10px; border-bottom: 2px solid var(--ring); color: var(--ink); }
+.content h2:first-of-type { margin-top: 0; }
+.content h3 { font: 700 18px/1.3 "Montserrat", system-ui, sans-serif; margin: 24px 0 10px; color: var(--ink); }
+.content p, .content li { color: var(--ink-muted); line-height: 1.75; }
+.content p { margin-bottom: 12px; }
+.content ul, .content ol { padding-left: 22px; margin: 10px 0 16px; }
+.content li { margin: 8px 0; }
+.content li strong { color: var(--sc-blue-deep); font-weight: 700; }
+.content a { color: var(--sc-blue-deep); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(59,73,214,.3); transition: border-color .15s ease; }
+.content a:hover { border-bottom-color: var(--sc-blue-deep); }
+.content code { font: 600 13.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; background: #f2f3f9; border: 1px solid var(--ring); border-radius: 6px; padding: 1px 6px; color: var(--sc-blue-ink); }
+
+.callout {
+  border-left: 4px solid var(--sc-blue-deep);
+  padding: 18px 22px;
+  background: linear-gradient(90deg, #f4f5ff, white);
+  border-radius: 12px;
+  margin: 0 0 32px;
+  font: 600 16px/1.6 "Open Sans", system-ui, sans-serif;
+  color: var(--ink);
+}
+.promise-box { background: linear-gradient(160deg, #f0fdff 0%, #fff 100%); border: 2px solid #0a8f99; border-radius: 14px; padding: 24px 26px; margin: 0 0 32px; }
+.promise-box h3 { margin-top: 0; color: #0a8f99; font: 800 16px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; }
+.promise-box ul { list-style: none; padding: 0; margin: 14px 0 0; }
+/* Tick absolutely positioned, not a flex sibling — as a flex item it split the
+   <strong> lead-in and the sentence after it into two columns. */
+.promise-box li { position: relative; padding: 6px 0 6px 32px; color: var(--ink); font-weight: 600; line-height: 1.6; }
+.promise-box li::before {
+  content: ''; position: absolute; left: 0; top: 8px; width: 22px; height: 22px; background: #0a8f99;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center / 16px;
+}
+
+/* Data-inventory table from the backend privacy policy. Scrolls inside its own
+   box rather than pushing the page sideways on a phone. */
+.table-wrap { overflow-x: auto; max-width: 100%; margin: 18px 0 20px; border: 1px solid var(--ring); border-radius: 12px; }
+.content table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14.5px; }
+.content th, .content td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--ring); vertical-align: top; line-height: 1.6; color: var(--ink-muted); }
+.content thead th { font: 700 11px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--sc-blue-deep); background: #f7f8fd; }
+.content tbody tr:last-child td { border-bottom: none; }
+.content td:first-child { color: var(--ink); font-weight: 600; }
+
+.section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
+.info-box { background: #f9f9fb; border: 1px solid var(--ring); border-radius: 12px; padding: 18px; }
+.info-box h3 { margin: 0 0 8px; font: 700 15px/1.3 "Montserrat", system-ui, sans-serif; }
+.info-box p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+.meta { color: var(--ink-soft); font-size: 14px; }
+.policy-version { display: inline-block; margin-top: 10px; padding: 5px 12px; border: 1px solid var(--ring-strong); border-radius: 999px; font: 600 12px/1 "Montserrat", system-ui, sans-serif; letter-spacing: .06em; color: var(--ink-muted); }
+
+/* Pre-release banner used on the Terms page. Amber, not blue — it is a caveat,
+   and the accent colour is reserved for the product itself. */
+.prerelease {
+  border-left: 4px solid #c8871a;
+  background: linear-gradient(90deg, #fffaf0, white);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 0 0 32px;
+  font: 600 15.5px/1.65 "Open Sans", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+/* ===================== Footer ===================== */
+/* Four columns on SpendCopilot pages (tools.css ships three). */
+.footer-inner.cols-4 { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
+@media (max-width: 980px) { .footer-inner.cols-4 { grid-template-columns: 1fr 1fr; gap: 34px; } }
+@media (max-width: 720px) { .footer-inner.cols-4 { grid-template-columns: 1fr; gap: 30px; } }
+footer .nav-product { color: var(--sc-blue); border-left-color: rgba(255,255,255,.2); }
+.footer-col a:hover { color: var(--sc-blue); }

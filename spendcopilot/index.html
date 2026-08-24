@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="bn-page" content="spendcopilot">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SpendCopilot — Your money, finally explained. | Beyond Normal</title>
+  <meta name="description" content="SpendCopilot connects to your financial accounts, organizes what's happening, and helps you understand where your money goes and what to do next. From Beyond Normal. Coming soon to iOS.">
+  <link rel="canonical" href="https://beyondnormal.app/spendcopilot/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpendCopilot — Your money, finally explained.">
+  <meta property="og:description" content="Report spending in plain language, see a projected surplus you can trust, and reconcile bank records so one purchase counts exactly once. From Beyond Normal. Coming soon to iOS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beyondnormal.app/spendcopilot/">
+  <meta property="og:site_name" content="Beyond Normal">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:secure_url" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SpendCopilot — Your money, finally explained. From Beyond Normal.">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpendCopilot — Your money, finally explained.">
+  <meta name="twitter:description" content="Spending clarity, a projected surplus you can trust, and reconciliation that counts one purchase exactly once. Coming soon to iOS.">
+  <meta name="twitter:image" content="https://beyondnormal.app/assets/og-spendcopilot.png">
+  <meta name="twitter:image:alt" content="SpendCopilot — Your money, finally explained.">
+
+  <meta name="theme-color" content="#6d7cff">
+
+  <!-- No apple-itunes-app banner here: that meta advertises the Beyond Normal
+       Strength app, and SpendCopilot is not on the App Store yet. -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/tools.css">
+  <link rel="stylesheet" href="/assets/spendcopilot.css">
+</head>
+<body>
+
+<!-- ===================== Nav ===================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">🔥</span>
+      <span class="nav-lockup">
+        <span class="nav-parent">Beyond Normal</span>
+        <span class="nav-product">SpendCopilot</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#security">Security</a>
+      <a href="/spendcopilot/privacy/">Privacy</a>
+      <a href="/spendcopilot/support/">Support</a>
+      <a href="#notify" class="nav-cta">Coming Soon</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== Hero ===================== -->
+<section class="sc-hero">
+  <div class="sc-hero-inner">
+    <div>
+      <span class="sc-hero-eyebrow">Your finances · Understood</span>
+      <h1>Your money, finally <span class="accent">explained.</span></h1>
+      <p class="sc-hero-sub">
+        SpendCopilot connects to your financial accounts, organizes what's happening,
+        and helps you understand where your money goes and what to do next.
+      </p>
+      <div class="sc-hero-ctas">
+        <a href="#notify" class="sc-cta">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+          </svg>
+          <span class="stack">
+            <span class="small">Beyond Normal · iOS</span>
+            <span class="big">Coming Soon</span>
+          </span>
+        </a>
+        <a href="#notify" class="sc-secondary">
+          Get notified at launch
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="sc-phone">
+      <div class="sc-phone-frame">
+        <div class="sc-phone-notch"></div>
+        <img src="/assets/shots/spendcopilot-home.png" width="600" height="1304"
+             alt="The SpendCopilot home screen on iPhone: a projected surplus of +$325 marked on track, tracked spending of $349.95 across three reported expenses, and budget rows for Groceries, Dining, Fuel and Family, above a single input field reading Ask or log anything.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip. Every item here is a factual statement about how the product
+     works; nothing on this line is a certification claim. -->
+<div class="sc-trust">
+  Passkey &amp; Face ID sign-in<span>·</span>Encrypted connections<span>·</span>Plaid-powered account linking<span>·</span>No ad tracking
+</div>
+
+<!-- Honest status block. Same component and same job as the one on /bar-path:
+     say plainly what is built and what isn't, before describing any of it. -->
+<div class="sc-status-band">
+  <div class="clip-banner">
+    <div class="clip-banner-inner">
+      <div class="clip-banner-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>
+      </div>
+      <div class="clip-banner-text">
+        <h4>Where SpendCopilot actually is</h4>
+        <p><strong>It is not out yet.</strong> What's built today is the part that has to be right first: reporting spending in plain language, deterministic budgets and projected surplus, bank import through Plaid, reconciliation that counts one purchase exactly once, and passkey sign-in with Face ID.</p>
+        <p>Net worth across every account, and the conversational Copilot, are designed but not built. The two sections below marked <strong>Planned</strong> describe where SpendCopilot is going — not what it does today.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== Sections ===================== -->
+<section class="sc-section" id="how">
+  <div class="container">
+
+    <!-- 1. Spending clarity -->
+    <div class="sc-feature">
+      <div class="sc-feature-text">
+        <span class="eyebrow">Spending clarity</span>
+        <h3>Know where you stand, while it still matters.</h3>
+        <p>Most finance apps explain your spending after the moment has passed. SpendCopilot shows you the position you're actually in right now — so the next decision is an informed one rather than a postmortem.</p>
+        <p>Log something in plain language and your picture updates immediately. No waiting for the bank to settle.</p>
+        <ul>
+          <li><strong>A single number that means something.</strong> Projected surplus or deficit for the period you're in, not a wall of charts.</li>
+          <li><strong>Category budgets that read at a glance.</strong> Spent, remaining, and whether the pace is sustainable.</li>
+          <li><strong>Immediate, not retrospective.</strong> Reported spending changes the picture the second you enter it.</li>
+        </ul>
+      </div>
+      <div class="sc-feature-visual">
+        <div class="sc-mock">
+          <div class="sc-mock-tag">This period · Day 3</div>
+          <div class="sc-figure pos">+$325</div>
+          <div class="sc-figure-label">Projected surplus · On track</div>
+          <div class="sc-budget" style="margin-top: 22px;">
+            <div class="sc-budget-row">
+              <div class="sc-budget-head"><span>Groceries</span><span class="amt">$271.71 / $225.00</span></div>
+              <div class="sc-bar"><i class="warm" style="width: 100%"></i></div>
+              <div class="sc-budget-sub"><span>Front-loaded · avoid another large run</span><span>121%</span></div>
+            </div>
+            <div class="sc-budget-row">
+              <div class="sc-budget-head"><span>Dining</span><span class="amt">$0.00 / $75.00</span></div>
+              <div class="sc-bar"><i class="blue" style="width: 0%"></i></div>
+              <div class="sc-budget-sub"><span>$75.00 remaining</span><span>0%</span></div>
+            </div>
+            <div class="sc-budget-row">
+              <div class="sc-budget-head"><span>Fuel</span><span class="amt">$48.24 / $175.00</span></div>
+              <div class="sc-bar"><i class="blue" style="width: 28%"></i></div>
+              <div class="sc-budget-sub"><span>Monthly reference</span><span>28%</span></div>
+            </div>
+          </div>
+          <!-- Deliberately a restatement of the arithmetic, not an advisory line.
+               The app's "Weekly Note" is static editorial copy, not a generated
+               insight, so presenting one here would imply intelligence that is
+               not built (the Copilot is the Planned section below). -->
+          <div class="sc-mock-note">Every figure here is computed from what you entered and what your bank posted. Groceries is 121% of plan for the period; the projection above already accounts for it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Net worth and account visibility -->
+    <div class="sc-feature reverse">
+      <div class="sc-feature-text">
+        <span class="eyebrow">Net worth &amp; accounts <span class="tag-planned">Planned</span></span>
+        <h3>Every account in one honest total.</h3>
+        <p>Bank connectivity is built: SpendCopilot links an institution through Plaid and imports its pending and posted transactions. What comes next is breadth — checking, savings, credit cards, loans and investments pulled into one number for what you own, what you owe, and the difference.</p>
+        <p>That work isn't done. The first release connects a single institution, and there is no net-worth view in the app yet.</p>
+        <ul>
+          <li><strong>Beyond one bank.</strong> Today's connection covers one institution; the goal is every account in one place.</li>
+          <li><strong>Balances in context.</strong> Each account shown beside the obligations it has to cover.</li>
+          <li><strong>You choose what's linked.</strong> Connecting and disconnecting institutions stays your decision.</li>
+        </ul>
+      </div>
+      <div class="sc-feature-visual">
+        <div class="sc-mock">
+          <div class="sc-mock-tag">Net worth <span class="tag-planned">Planned</span></div>
+          <div class="sc-figure">$84,210</div>
+          <div class="sc-figure-label">Across 5 linked accounts</div>
+          <div class="sc-accounts">
+            <div class="sc-account"><span class="name">Everyday Checking<span class="inst">Linked via Plaid</span></span><span class="val">$4,182</span></div>
+            <div class="sc-account"><span class="name">Savings<span class="inst">Linked via Plaid</span></span><span class="val">$12,940</span></div>
+            <div class="sc-account"><span class="name">Rewards Card<span class="inst">Linked via Plaid</span></span><span class="val neg">−$1,864</span></div>
+            <div class="sc-account"><span class="name">Brokerage<span class="inst">Linked via Plaid</span></span><span class="val">$68,952</span></div>
+          </div>
+          <div class="sc-mock-note">Design concept, not a shipped screen. Illustrative figures.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Copilot -->
+    <div class="sc-feature">
+      <div class="sc-feature-text">
+        <span class="eyebrow">Copilot <span class="tag-planned">Planned</span></span>
+        <h3>Ask a real question. Get a real answer.</h3>
+        <p>One field already takes what you spent in plain language — "$48.24 gas", "spent 8.96 at the market for buns and ice cream" — and turns it into a budgeted event, deterministically and without a model in the loop. The Copilot extends that same field from logging to asking.</p>
+        <p>It is designed and specified, and it is not built. The constraint it will ship under is already settled: deterministic systems own the financial truth, and the Copilot may only explain results it did not compute.</p>
+        <ul>
+          <li><strong>Explanation, not scolding.</strong> Calm and specific, with no shame mechanics, streaks or alarms.</li>
+          <li><strong>The math stays deterministic.</strong> AI may interpret and explain; it will never own a balance, a total or a projection.</li>
+          <li><strong>You decide.</strong> SpendCopilot's job is to make the tradeoff visible. The choice stays yours.</li>
+        </ul>
+      </div>
+      <div class="sc-feature-visual">
+        <div class="sc-mock">
+          <div class="sc-mock-tag">Copilot <span class="tag-planned">Planned</span></div>
+          <div class="sc-msg user">Can I afford takeout tonight?</div>
+          <div class="sc-msg ai">Yes — Dining is untouched at $75.00 for the period, and you're projected +$325.</div>
+          <div class="sc-msg ai">Groceries are already 121% of plan, so keep the rest of the week's food spending flexible rather than adding another large run.</div>
+          <div class="sc-result">
+            <strong>Still on track.</strong><br>
+            A $35 dinner leaves you at roughly +$290 projected for the period.
+          </div>
+          <div class="sc-mock-note">Design concept, not a shipped screen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Transaction organization -->
+    <div class="sc-feature reverse">
+      <div class="sc-feature-text">
+        <span class="eyebrow">Transaction organization</span>
+        <h3>One purchase. One entry. Counted once.</h3>
+        <p>What you reported and what the bank later posts are two observations of the same purchase. SpendCopilot matches them, keeps both records, and counts the event exactly once — so the total never quietly doubles.</p>
+        <p>Amounts drift between authorization and posting, and the posting date is often not the day you actually spent it. Both are handled explicitly instead of being papered over.</p>
+        <ul>
+          <li><strong>Reported and posted, reconciled.</strong> A $155.16 report and a $155.17 posting are the same purchase, not two.</li>
+          <li><strong>Dates you can correct.</strong> Purchase date, posting date and your budget date are kept separately.</li>
+          <li><strong>Nothing decided behind your back.</strong> Matches are shown with their evidence before they're applied.</li>
+        </ul>
+      </div>
+      <div class="sc-feature-visual">
+        <div class="sc-mock">
+          <div class="sc-mock-tag">Review match</div>
+          <div class="sc-panes">
+            <div class="sc-pane">
+              <h5>Your report</h5>
+              <p>$20.00 · Groceries<br><span>Budget date: Aug 18</span></p>
+            </div>
+            <div class="sc-pane">
+              <h5>Bank evidence</h5>
+              <p>EXACT MARKET · $20.00<br><span>Posted: Aug 18</span></p>
+            </div>
+            <div class="sc-pane result">
+              <h5>Result</h5>
+              <p><strong style="color:#fff">Counted once.</strong> No change to projected surplus.<br><span>Your budget date and category remain unchanged.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== 5. Security and privacy ===================== -->
+<section class="sc-secure" id="security">
+  <div class="container">
+    <span class="eyebrow">Security &amp; privacy</span>
+    <h2>Built to hold as little as possible.</h2>
+    <p class="sc-lede">
+      The most reliable way to protect financial data is not to keep it. SpendCopilot's
+      backend stores a deliberately small amount: enough to sign you in and keep your bank
+      connection working, and nothing more. Everything below is a description of what the
+      system actually does.
+    </p>
+
+    <div class="sc-secure-grid">
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Passkey and Face ID sign-in
+        </h3>
+        <p>Sign-in uses passkeys (WebAuthn) with Face ID or Touch ID. There is no password to phish, reuse or leak. Only the public key and its metadata are stored on our side.</p>
+      </div>
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 3v6c0 4.5-3 8.2-7 9-4-.8-7-4.5-7-9V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+          Encrypted connections
+        </h3>
+        <p>All API traffic runs over TLS. The database is encrypted at rest with AES-256-GCM under Cloudflare-managed keys, and API keys are held as encrypted Worker Secrets — never in source or in the database.</p>
+      </div>
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>
+          Plaid-powered account linking
+        </h3>
+        <p>Bank connections are made through Plaid. Your bank login happens inside Plaid and we never see it. Transactions are fetched on demand and passed straight through to your device — the backend stores no transactions, balances or account numbers.</p>
+      </div>
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>
+          Deletion you control
+        </h3>
+        <p>Account deletion erases every record tied to your account across all tables and revokes your Plaid connection at Plaid. You get a deletion receipt; only a de-identified hash is retained, to prove the deletion happened. The endpoint is live today; the in-app control ships with the app.</p>
+      </div>
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/><path d="M4 20L20 4"/></svg>
+          No ad tracking
+        </h3>
+        <p>No advertising identifiers, no ad networks, no cross-app tracking, no profiling. We do not sell your data and we do not use it for advertising.</p>
+      </div>
+      <div class="sc-secure-item">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 3v6c0 4.5-3.5 8.3-8 9-4.5-.7-8-4.5-8-9V6l8-3z"/></svg>
+          Versioned consent
+        </h3>
+        <p>Consent is recorded at the points where data handling begins — account creation and bank linking — along with the exact policy version you agreed to. You can retrieve your consent records at any time.</p>
+      </div>
+    </div>
+
+    <p class="sc-secure-foot">
+      We don't claim security certifications we don't hold. The full detail — the complete
+      inventory of what is stored, retention periods, and how to exercise your rights — is in the
+      <a href="/spendcopilot/privacy/">SpendCopilot privacy policy</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== Notify ===================== -->
+<section class="sc-notify" id="notify">
+  <div class="signup">
+    <h2>SpendCopilot is coming soon.</h2>
+    <p>
+      It isn't on the App Store yet, and we won't pretend otherwise. Leave your email and
+      you'll get one message when it's available — nothing else.
+    </p>
+    <form action="https://beyond-normal-worker.patcrouse.workers.dev/v1/subscribe"
+          method="post"
+          data-source="spendcopilot"
+          data-confirm="You're on the list. We'll email you once when SpendCopilot is available."
+          data-confirm-repeat="You're already on the list — your interest in SpendCopilot is noted too.">
+      <label class="hp" aria-hidden="true">
+        <!-- Honeypot. MUST stay hidden: a filled honeypot is treated as a bot
+             and the signup is silently discarded. -->
+        Company <input type="text" name="company" tabindex="-1" autocomplete="off"
+                       style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+      </label>
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="status" role="status" aria-live="polite"></p>
+    <p class="fine">
+      One email at launch. Every message has one-click unsubscribe.
+      We store the address and which page you signed up from, and nothing else —
+      see the <a href="/spendcopilot/privacy/" style="color: var(--sc-blue-deep); font-weight: 600;">privacy policy</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== Footer ===================== -->
+<footer>
+  <div class="footer-inner cols-4">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand" style="color: white;">
+        <span class="nav-brand-icon">🔥</span>
+        <span>Beyond Normal</span>
+      </a>
+      <p>SpendCopilot is a Beyond Normal product — built on the same commitments: hold as little data as possible, say plainly what the software does, and leave the decision with you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>SpendCopilot</h4>
+      <ul>
+        <li><a href="/spendcopilot/">Overview</a></li>
+        <li><a href="/spendcopilot/#how">How it works</a></li>
+        <li><a href="/spendcopilot/#security">Security</a></li>
+        <li><a href="/spendcopilot/support/">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/spendcopilot/privacy/">Privacy Policy</a></li>
+        <li><a href="/spendcopilot/terms/">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Beyond Normal</h4>
+      <ul>
+        <li><a href="/">Strength</a></li>
+        <li><a href="/philosophy.html">Philosophy</a></li>
+        <li><a href="/support.html">Strength support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="y"></span> Beyond Normal. All rights reserved.</span>
+    <span>SpendCopilot is not yet available for download.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<script src="/assets/signup.js"></script>
+
+<!-- Cloudflare Web Analytics: cookieless, no persistent identifier. Manual install because the zone is DNS-only, so Cloudflare never sees this HTML and cannot inject it at the edge. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f1fee310e08943e1b290af3e3e94e122"}'></script>
+
+</body>
+</html>

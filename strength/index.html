@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Beyond Normal Strength</title>
+  <!--
+    RESERVED ROUTE — not a product page yet.
+
+    Beyond Normal is becoming a multi-product site:
+
+        /               → today: the Strength product. Eventually: the
+                          Beyond Normal parent-company / product landing page.
+        /strength/      → this route. Eventually: the lifting product, moved
+                          off the root when the root becomes the parent page.
+        /spendcopilot/  → SpendCopilot (live).
+
+    Until that move happens, /strength/ exists only so the URL is claimed and
+    can be linked to in advance. It redirects to the root, where the Strength
+    product currently lives, and is excluded from indexing so it never competes
+    with "/" in search results.
+
+    To promote it later: move the current index.html here, drop the redirect,
+    remove the noindex, and set the canonical to this URL.
+  -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://beyondnormal.app/" />
+  <meta http-equiv="refresh" content="0; url=/" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #fafaf0;
+      color: #36454f;
+      font: 400 16px/1.6 "Open Sans", system-ui, -apple-system, sans-serif;
+      text-align: center;
+      padding: 22px;
+    }
+    a { color: #e55722; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <p>Beyond Normal Strength lives at <a href="/">beyondnormal.app</a>. Redirecting…</p>
+  <script>location.replace('/');</script>
+</body>
+</html>
